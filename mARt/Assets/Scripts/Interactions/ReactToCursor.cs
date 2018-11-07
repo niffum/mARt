@@ -5,8 +5,7 @@ using HoloToolkit.Unity.InputModule;
 
 public class ReactToCursor : MonoBehaviour, IFocusable, IInputClickHandler {
 
-	[Tooltip("Audio clip to play when interacting with this hologram.")]
-	public AudioClip TargetFeedbackSound;
+	
 	private AudioSource audioSource;
 
 	private Material[] defaultMaterials;

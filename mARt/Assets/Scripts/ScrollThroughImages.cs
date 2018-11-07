@@ -17,7 +17,8 @@ public class ScrollThroughImages : MonoBehaviour {
 
 	private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
 
-	private int depth;
+    [HideInInspector]
+	public int depth;
 
 	private Material material;
 
@@ -38,17 +39,14 @@ public class ScrollThroughImages : MonoBehaviour {
         {
 			if(depth < images.Count -1)
 			{
-				
-				depth++;
-				ChangeCanvasImage();
+				ChangeCanvasImage(depth+1);
 			} 
         }
 		if (Input.GetKeyDown(KeyCode.B))
         {
 			if(depth > 0)
 			{
-				depth--;
-				ChangeCanvasImage();
+				ChangeCanvasImage(depth-1);
 			}
         }
 	}
@@ -65,23 +63,22 @@ public class ScrollThroughImages : MonoBehaviour {
         {
             if (depth < images.Count - 1)
             {
-                depth++;
-                ChangeCanvasImage();
+                ChangeCanvasImage(depth+1);
             }
         }
         else
         {
             if (depth > 0)
             {
-                depth--;
-                ChangeCanvasImage();
+                ChangeCanvasImage(depth-1);
             }
         }
          
     }
 
-	private void ChangeCanvasImage()
+	public void ChangeCanvasImage(int newDepth)
 	{
+        depth = newDepth;
 		material.SetTexture("_MainTex",images[depth]);
 	}
 

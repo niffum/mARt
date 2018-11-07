@@ -24,6 +24,7 @@ public class ChangeScrollDirection : MonoBehaviour, IFocusable, IInputClickHandl
     void IInputClickHandler.OnInputClicked(InputClickedEventData eventData)
     {
         plane.ToggleScrollDirection();
+        plane.GetComponent<AudioSource>().Play();
     }
     #endregion IInputClickHandler
 }
