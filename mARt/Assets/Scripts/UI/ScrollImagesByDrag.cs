@@ -23,8 +23,6 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 	private int depth;
 
 	[SerializeField]
-	private GameObject plane;
-
 	private ManipulateMenu manipulateMenu;
 
 	private Material material;
@@ -36,11 +34,14 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 	 [SerializeField]
     float DragFactor = 10f;
 
+	[SerializeField]
+    float DragSpeed = 1.5f;
+
+	Vector3 lastPosition;
 
 	void Start()
 	{
-		manipulateMenu = GetComponentInParent<ManipulateMenu>();
-		material = plane.GetComponent<Renderer>().material;
+		material = GetComponent<Renderer>().material;
 		AddImagesToList();
 
 		depth = 0;
@@ -49,7 +50,11 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 
     public void Scroll(Vector3 newPosition)
     {
-		int scrollBy = (int)(newPosition.y * DragFactor);
+		//int scrollBy = (int)(newPosition.z);
+
+		var targetPosition = lastPosition + newPosition * DragFactor;
+		int scrollBy = (int)(Vector3.Lerp(transform.position, targetPosition, DragSpeed).z);
+
 		if(lastScrollBy != scrollBy)
 		{
 			if(scrollBy > lastScrollBy)
@@ -69,6 +74,7 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 			
 			lastScrollBy = scrollBy;
 		}
+		lastPosition= newPosition;
     }
 
 	public void ChangeCanvasImage(int newDepth)
