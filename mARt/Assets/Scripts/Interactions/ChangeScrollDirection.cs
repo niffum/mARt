@@ -10,13 +10,11 @@ public class ChangeScrollDirection : MonoBehaviour, IFocusable, IInputClickHandl
 
     void IFocusable.OnFocusEnter()
     {
-        Debug.LogWarning("FOCUS ENTER");
 
     }
 
     void IFocusable.OnFocusExit()
     {
-        Debug.LogWarning("FOCUS EXIT");
 
     }
 

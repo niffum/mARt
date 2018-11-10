@@ -10,13 +10,13 @@ public class ReactToCursor : MonoBehaviour, IFocusable, IInputClickHandler {
 
 	private Material[] defaultMaterials;
 
-	private ScrollThroughImages changeIamges;
+	private ScrollThroughImages changeImages;
 
 	private void Start()
 	{
 		defaultMaterials = GetComponent<Renderer>().materials;
 		audioSource = GetComponent<AudioSource>();
-		changeIamges = GetComponent<ScrollThroughImages>();
+		changeImages = GetComponent<ScrollThroughImages>();
 
 		// Add a BoxCollider if the interactible does not contain one.
 		Collider collider = GetComponentInChildren<Collider>();
@@ -28,13 +28,11 @@ public class ReactToCursor : MonoBehaviour, IFocusable, IInputClickHandler {
 
 	void IFocusable.OnFocusEnter()
 	{
-		Debug.LogWarning("FOCUS ENTER");
 	
 	}
 
 	void IFocusable.OnFocusExit()
 	{
-		Debug.LogWarning("FOCUS EXIT");
 		
 	}
 	
@@ -47,7 +45,7 @@ public class ReactToCursor : MonoBehaviour, IFocusable, IInputClickHandler {
 			audioSource.Play();
 		}
 
-		changeIamges.OnSelect();
+		changeImages.Scroll();
 	}
 	#endregion IInputClickHandler
     

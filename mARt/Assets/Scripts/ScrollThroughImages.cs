@@ -57,7 +57,7 @@ public class ScrollThroughImages : MonoBehaviour {
     }
 
 	// Called by GazeGestureManager when the user performs a Select gesture
-    public void OnSelect()
+    public void Scroll()
     {
         if(scrollForward)
         {
