@@ -9,13 +9,7 @@ public class ManipulateMenu : SelectMenu {
 	private GameObject interactiveArea;
 
 	[SerializeField]
-	private int hierachyNoOfDrag;
-
-	[SerializeField]
-	private int hierachyNoOfScale;
-
-	[SerializeField]
-	private int hierachyNoOfRotate;
+	private ScrollImagesByDrag imagePlane;
 
 	[HideInInspector]
 	public HandDragging dragScript;
@@ -26,6 +20,7 @@ public class ManipulateMenu : SelectMenu {
 	[HideInInspector]
 	public HandRotate rotateScript;
 
+	// Order in hierachy should represent this order
 	private enum ManipulationType
 	{
 		DRAG,
@@ -51,6 +46,20 @@ public class ManipulateMenu : SelectMenu {
 		int index = Array.IndexOf(buttons, pressedButton);
 
 		ActivateManipulation(index);
+	}
+
+	public override void OpenMenu()
+	{
+		base.OpenMenu();
+		// Disable scrolling through images
+		imagePlane.enabled = false;
+	}
+
+	public override void CloseMenu()
+	{
+		base.CloseMenu();
+		// Enable scrolling through images
+		imagePlane.enabled = true;
 	}
 
 	private void ActivateManipulation(int i)

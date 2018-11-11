@@ -13,8 +13,14 @@ public class SelectMenu : MonoBehaviour {
 	[SerializeField]
 	private Color activeColor;
 
+	private Animator animator;
+
+	private bool deactivateButtons = false;
+
 	public virtual void Start () {
 		buttons = GetComponentsInChildren<SelectMenuButton>();
+		animator = GetComponent<Animator>();
+
 		foreach(var button in buttons)
 		{	
 			if(button != null )
@@ -28,6 +34,42 @@ public class SelectMenu : MonoBehaviour {
 				}
 			}	
 		}
+		deactivateButtons = true;
+		SetAllButtonsActive(false);
+	}
+
+	public virtual void OpenMenu()
+	{	
+		// Activate Buttons
+		SetAllButtonsActive(true);
+
+			// Play Animation
+		animator.SetTrigger("open");
+	}
+
+	public virtual void CloseMenu()
+	{
+		deactivateButtons = true;
+		// Play Animation
+		animator.SetTrigger("close");
+	}
+
+	public virtual void OnCloseAnimationEnded()
+	{
+		if(deactivateButtons)
+		{
+			SetAllButtonsActive(false);
+		}	
+	}
+
+	private void SetAllButtonsActive(bool active)
+	{
+		
+		foreach(var button in buttons)
+		{
+			button.gameObject.SetActive(active);
+		}
+		deactivateButtons = false;
 	}
 
 	public virtual void ChangeActiveButton(SelectMenuButton pressedButton)
