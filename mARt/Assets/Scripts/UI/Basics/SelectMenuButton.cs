@@ -21,6 +21,8 @@ public class SelectMenuButton : MonoBehaviour, IFocusable, IInputClickHandler {
 
 	private Material material;
 
+	private SelectMenu menu;
+
 	public virtual void Awake()
 	{
 		material = Instantiate(iconRenderer.material); 
@@ -35,6 +37,7 @@ public class SelectMenuButton : MonoBehaviour, IFocusable, IInputClickHandler {
 	private void Start()
 	{
 		audioSource = GetComponent<AudioSource>();
+		menu = GetComponentInParent<SelectMenu>();
 
 		// Add a BoxCollider if the interactible does not contain one.
 		Collider collider = GetComponentInChildren<Collider>();
@@ -46,7 +49,7 @@ public class SelectMenuButton : MonoBehaviour, IFocusable, IInputClickHandler {
 
 	public virtual void OnPressed()
 	{
-		
+		menu.ChangeActiveButton(this);
 	}
 
 	public void ChangeButtonColor(Color newColor)

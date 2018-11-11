@@ -47,6 +47,7 @@ public class ManipulateMenu : SelectMenu {
 
 	public override void ChangeActiveButton(SelectMenuButton pressedButton)
 	{
+		base.ChangeActiveButton(pressedButton);
 		int index = Array.IndexOf(buttons, pressedButton);
 
 		ActivateManipulation(index);
