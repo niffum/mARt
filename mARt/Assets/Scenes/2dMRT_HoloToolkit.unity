@@ -517,7 +517,7 @@ GameObject:
   - component: {fileID: 320669473}
   - component: {fileID: 320669472}
   m_Layer: 0
-  m_Name: CurrentScrollStatus
+  m_Name: CurrentBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1646,13 +1646,14 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 925797793}
+  - component: {fileID: 925797794}
   m_Layer: 0
   m_Name: ScrollStatusBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &925797793
 Transform:
   m_ObjectHideFlags: 0
@@ -1670,6 +1671,21 @@ Transform:
   m_Father: {fileID: 1451812845}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &925797794
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 925797792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 204474d324417594ea6b6f6459f85b0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  start: {fileID: 1785694184}
+  end: {fileID: 1367091956}
+  bar: {fileID: 320669470}
+  slideSpeed: 1.5
 --- !u!1 &984860916
 GameObject:
   m_ObjectHideFlags: 0

@@ -37,6 +37,9 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 	[SerializeField]
     float DragSpeed = 1.5f;
 
+	//[SerializeField]
+    //private ScrollBarManager scrollBar;
+
 	Vector3 lastPosition;
 
 	void Start()
@@ -46,6 +49,8 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 
 		depth = 0;
 		material.SetTexture("_MainTex",images[0]);
+
+		//scrollBar.SetMaxDepth(images.Count);
 	}
 
     public void Scroll(Vector3 newPosition)
@@ -81,6 +86,7 @@ public class ScrollImagesByDrag : MonoBehaviour, IManipulationHandler {
 	{
         depth = newDepth;
 		material.SetTexture("_MainTex",images[depth]);
+		//scrollBar.SetCurrentDepth(newDepth);
 	}
 
 	private void AddImagesToList()
