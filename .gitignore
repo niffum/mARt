@@ -5,6 +5,9 @@
 [Bb]uilds/
 Assets/AssetStoreTools*
 
+Assets/3DTextures*
+Assets/VolumeRendering/Textures*
+
 # Visual Studio cache directory
 .vs/
 
@@ -34,6 +37,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
-
-Assets/3DTextures*
-Assets/VolumeRendering/Textures*
