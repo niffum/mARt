@@ -9,13 +9,22 @@ using UnityEditor;
 
 public class LoadMRTImages : MonoBehaviour {
 
-	 private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
+	// TODO:
+	// Check if code is from anywhere
+
+	private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
 
 	private Texture3D tex;
     public Vector3Int size;
 
 	[SerializeField]
 	private string folder; 
+
+	[SerializeField]
+	private string textureName; 
+
+	[SerializeField]
+	private bool create3dTexture; 
  
     void Start ()
     {
@@ -24,10 +33,14 @@ public class LoadMRTImages : MonoBehaviour {
         
 		
 		ApplyPixels(ConvertFolderToVolume(true));
-		//CreateTexture3DAsset(tex);
+		if(create3dTexture)
+		{
+			CreateTexture3DAsset(tex);
+		}
+		
     }  
 
-	public Color[] ConvertFolderToVolume(bool inferAlpha)
+	public Color[] ConvertFolderToVolume(bool inferAlpha)	
 	{
 		var imageNames = GetImagesInFolder(folder);
 		
@@ -75,7 +88,7 @@ public class LoadMRTImages : MonoBehaviour {
 
 	private void CreateTexture3DAsset(Texture3D texture)
 	{
-		//UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/brain.asset");
+		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
 	}
 
 	public static Vector3Int GetSizeOfVolumeFolder(string folder)

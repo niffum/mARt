@@ -37,7 +37,7 @@ Shader "Custom/3DTextureShader"
 			
 			float4 frag (ps_input i) : COLOR
 			{
-				return tex3D (_Volume, i.uv);
+				return tex3D (_Volume, i.uv) * i.uv.x;
 			}
 			
 			ENDCG
