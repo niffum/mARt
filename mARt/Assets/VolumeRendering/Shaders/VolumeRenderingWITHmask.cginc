@@ -74,6 +74,13 @@ float sample_volume_mask(float3 uv, float3 p)
   return v * min * max;
 }
 
+float4 get_transferColor(float isovalue)
+{
+  float2 xy = float2(isovalue, 0);
+
+  return  tex2D(_TransferColor, xy);
+}
+
 bool outside(float3 uv)
 {
   const float EPSILON = 0.01;
@@ -144,14 +151,22 @@ fixed4 frag(v2f i) : SV_Target
   for (int iter = 0; iter < ITERATIONS; iter++)
   {
     float3 uv = get_uv(p);
-    float v = sample_volume(uv, p);  
+    float v = sample_volume(uv, p);
     float4 src = float4(v, v, v, v);
+    // Y
+    if(v != 0.0)
+    {
+      //src = get_transferColor(v);
+    } 
+    
     src.a *= 0.5;
     src.rgb *= src.a;
+
 
     // blend
     dst = (1.0 - dst.a) * src + dst;
    
+    // Sample mask
     if(_ShowMask == 1)
     {
     
@@ -180,7 +195,9 @@ fixed4 frag(v2f i) : SV_Target
   }
   */
 
-  return max(saturate(dst) * _Color , saturate(dstMask) * _ColorMask);
+  //return max(saturate(dst) * _Color , saturate(dstMask) * _ColorMask);
+  //return max(saturate(dst), saturate(dstMask) * _ColorMask);
+  return saturate(dst);
 }
 
 #endif 

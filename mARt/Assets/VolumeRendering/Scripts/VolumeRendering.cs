@@ -14,7 +14,8 @@ namespace VolumeRendering
     [RequireComponent (typeof(MeshRenderer), typeof(MeshFilter))]
     public class VolumeRendering : MonoBehaviour {
 
-        [SerializeField] protected Shader shader;
+        [SerializeField]
+        protected Shader shader;
         protected Material material;
 
         [SerializeField] 
@@ -33,9 +34,11 @@ namespace VolumeRendering
         public Texture volume;
         public Texture volumeMask;
 
+        [SerializeField]
         public Texture2D transferColor;
 
         public bool showMask;
+
 
         protected virtual void Start () {
             material = new Material(shader);

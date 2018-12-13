@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class CreateTransferColorTexture : MonoBehaviour {
 
@@ -8,19 +9,74 @@ public class CreateTransferColorTexture : MonoBehaviour {
 
 	private  List<TransferControlPoint> alphaKnots;
 	void Start () {
-		
+        CreateKnots();
+        //CreateTexture3DAsset(Create2DTransferColorTexture());
+        CreateTexturePNG(Create2DTransferColorTexture());
+	}   
+
+    private void CreateTexture3DAsset(Texture2D texture)
+	{
+		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/2DTransferTextures/TransferTexture.asset");
 	}
 
-	private void Create2DTransferColorTexture()
+    private void CreateTexturePNG(Texture2D texture)
+    {
+         byte[] bytes = texture.EncodeToPNG();
+
+        // For testing purposes, also write to a file in the project folder
+        File.WriteAllBytes(Application.dataPath + "/2DTransferTextures/TransferTexturePNG.png", bytes);
+
+    }
+
+	private Texture2D Create2DTransferColorTexture()
 	{
 		Texture2D texture = new Texture2D(256, 1);
 
-
+        // Go over all pixels, each pixel represents an iso value
 		for (int x = 0; x < texture.width; x++)
 		{
+            Color pixelColor = new Color(0,0,0,0);
+            float pixelAlpha = 0f;
+
+
+            for(int i = 0; i < alphaKnots.Count; i++)
+            {
+
+                //TODO:
+                // Interpolate between alphas e.g with a cubic spline
+
+                TransferControlPoint alphaPoint = alphaKnots[i];
+
+                if(x >= alphaPoint.IsoValue)
+                {
+                    pixelAlpha = alphaPoint.Color.w;
+                }
+            }
+
+            for(int i = 0; i < colorKnots.Count; i++)
+            {
+
+                //TODO:
+                // Interpolate between colors e.g with a cubic spline
+
+                TransferControlPoint colorPoint = colorKnots[i];
+
+                if(x >= colorPoint.IsoValue)
+                {
+                    // color * opacity  (Wittenbrink)
+                    pixelColor = new Color(colorPoint.Color.x * pixelAlpha,
+                                            colorPoint.Color.y * pixelAlpha,
+                                            colorPoint.Color.z* pixelAlpha,
+                                            pixelAlpha);
+                }
+            }
+            
+            
+            texture.SetPixel(x, 1, pixelColor);
 		}
 
 		texture.Apply();
+        return texture;
 	}
 	
 	private void CreateKnots()
@@ -28,8 +84,8 @@ public class CreateTransferColorTexture : MonoBehaviour {
 		colorKnots = new List<TransferControlPoint> {
                         new TransferControlPoint(.91f, .7f, .61f, 0),
                         new TransferControlPoint(.91f, .7f, .61f, 80),
-                        new TransferControlPoint(1.0f, 1.0f, .85f, 82),
-                        new TransferControlPoint(1.0f, 1.0f, .85f, 256)
+                        new TransferControlPoint(.8f, .2f, .6f, 82),
+                        new TransferControlPoint(.8f, .2f, .6f, 256)
                         };
 
 		alphaKnots = new List<TransferControlPoint> {
