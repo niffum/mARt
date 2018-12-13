@@ -12,7 +12,7 @@ public class LoadMRTImages : MonoBehaviour {
 	// TODO:
 	// Check if code is from anywhere
 
-	private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
+	private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png", ".tif" };
 
 	private Texture3D tex;
     public Vector3Int size;
