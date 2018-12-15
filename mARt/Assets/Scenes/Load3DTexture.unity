@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 256, y: 256, z: 110}
-  folder: Assets/StreamingAssets/mrt
-  textureName: full_head_contrast
+  folder: Assets/StreamingAssets/MRTImages/01
+  textureName: dwi_1_gradients
   create3dTexture: 1
 --- !u!65 &1636403734
 BoxCollider:

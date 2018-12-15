@@ -156,7 +156,7 @@ fixed4 frag(v2f i) : SV_Target
     // Y
     if(v != 0.0)
     {
-      //src = get_transferColor(v);
+      src = get_transferColor(v);
     } 
     
     src.a *= 0.5;

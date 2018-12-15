@@ -82,10 +82,10 @@ public class CreateTransferColorTexture : MonoBehaviour {
 	private void CreateKnots()
 	{
 		colorKnots = new List<TransferControlPoint> {
-                        new TransferControlPoint(.91f, .7f, .61f, 0),
-                        new TransferControlPoint(.91f, .7f, .61f, 80),
-                        new TransferControlPoint(.8f, .2f, .6f, 82),
-                        new TransferControlPoint(.8f, .2f, .6f, 256)
+                        new TransferControlPoint(.5f, 0, 0, 0),
+                        new TransferControlPoint(.5f, 0, 0, 80),
+                        new TransferControlPoint(0, .5f, .2f, 82),
+                        new TransferControlPoint(0, .5f, .2f, 256)
                         };
 
 		alphaKnots = new List<TransferControlPoint> {

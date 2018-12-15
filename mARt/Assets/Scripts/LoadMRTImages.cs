@@ -32,7 +32,9 @@ public class LoadMRTImages : MonoBehaviour {
         tex = new Texture3D (size.x, size.y, size.z, TextureFormat.ARGB32, true);
         
 		
-		ApplyPixels(ConvertFolderToVolume(true));
+		//Create3DTexture();
+		Create3DTextureWithGradients();
+		
 		if(create3dTexture)
 		{
 			CreateTexture3DAsset(tex);
@@ -40,6 +42,18 @@ public class LoadMRTImages : MonoBehaviour {
 		
     }  
 
+	private void Create3DTexture()
+	{
+		ApplyPixels(ConvertFolderToVolume(true));
+	}
+
+	private void Create3DTextureWithGradients()
+	{
+		int[,,] isoValues = GetImageValues();
+		Vector3[] gradients = SmoothGradients( CreateGradientValues(isoValues) );
+		ApplyPixels(SaveGradientsAndIsoValues(gradients, isoValues));
+	}
+	
 	public Color[] ConvertFolderToVolume(bool inferAlpha)	
 	{
 		var imageNames = GetImagesInFolder(folder);
@@ -78,6 +92,157 @@ public class LoadMRTImages : MonoBehaviour {
 
 		return cols;//Color32ArrayToByteArray(cols);
 	}
+	
+
+	private int[,,] GetImageValues()
+	{
+		var imageNames = GetImagesInFolder(folder);
+
+		int[,,] isoValues = new int[size.z,size.y,size.x];
+
+		var tex = new Texture2D(2, 2);
+		int z = 0;
+
+		foreach (var imageFile in imageNames)
+		{
+			bool loaded = tex.LoadImage(ReadBytesFromLocalFile(imageFile));
+			if (!loaded)
+			{
+				Debug.LogError("Couldn't load '" + imageFile + "'...");
+				return null;
+			}
+			var fromPixels = tex.GetPixels32();
+			for (var y = 0; y < size.y; ++y)
+			{
+				for (var x = 0; x < size.x; ++x)
+				{
+					var from = fromPixels[x + (y * size.x)];
+					
+					// We take r as isovalue
+					isoValues[z,y,x] = from.r;
+				}
+			}
+			++z;
+		}
+
+		return isoValues;
+	}
+
+	private Vector3[] CreateGradientValues(int[,,] isoValues)
+	{
+		// How to generate gradient value: GPU Gems 1:  39.4.1 
+		//http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
+
+		Vector3[] gradients = new Vector3[size.x*size.y*size.z];
+
+		int n = 1;
+		Vector3 normal = Vector3.zero;
+		Vector3 s1, s2;
+
+		int index = 0;
+
+		for (int z = 0; z < size.z; z++)
+		{
+			for (int y = 0; y < size.y; y++)
+			{
+				for (int x = 0; x < size.x; x++)
+				{
+					// Check voxels before and after current one
+					s1.x = isoValues[x - n, y, z];
+					s2.x = isoValues[x + n, y, z];
+					s1.y = isoValues[x, y - n, z];
+					s2.y = isoValues[x, y + n, z];
+					s1.z = isoValues[x, y, z - n];
+					s2.z = isoValues[x, y, z + n];
+
+
+					//gradients[index++] = Vector3.Normalize(s2 - s1);
+
+					// Divide through distance on x axes 
+					// See: GPU gems
+					gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
+                	if (float.IsNaN(gradients[index - 1].x))
+					{
+						gradients[index - 1] = Vector3.zero;
+					}
+				}
+			}
+		}
+
+		return gradients;
+	}
+
+	private Vector3[] SmoothGradients(Vector3[] gradients)
+	{
+		double[] gaussKernel = Get1DGaussianKernel(5.5f, 5);
+		
+		for(int i= 0; i< gradients.Length; i++)
+		{
+			Vector3 value = Vector3.zero;
+			for(int k = 0; k< gaussKernel.Length; k++)
+			{
+				// Multiply every value with the gaus kernel and add up the results 
+				value += ( gradients[i] * (float)gaussKernel[k] ); 
+			}
+
+			// Calculate value for every dimension and add up the results
+			gradients[i] = value * 3;
+		}
+
+		return gradients;
+	}
+
+	private double[] Get1DGaussianKernel(float sigma, int kernelSize)
+	{
+		double[] kernel = new double[kernelSize];
+
+		int distance = (int)kernelSize/2;
+
+		int x = distance;
+
+		// we fill the kernel from both sides simultaniously (center is filled in twice)
+		for(int i= 0; i <= distance; i++)
+		{
+			// Gaussian function
+			float eulerExponent = -( Mathf.Pow(x ,2) / Mathf.Pow( 2*sigma ,2) );
+			float divider = Mathf.Sqrt( Mathf.Pow( 2*Mathf.PI*sigma ,2) );
+			float kernelValue = 1 / divider * Mathf.Exp(eulerExponent);
+
+			//pixels to the right
+			kernel[(kernelSize-1) - i] = kernelValue;
+			// pixels to the left
+			kernel[i] =  kernelValue;
+
+			x--;
+		}
+ 		return kernel;
+	}
+
+	private Color[] SaveGradientsAndIsoValues(Vector3[] gradients, int[,,] isoValues)
+	{
+		var cols = new Color[size.x*size.y*size.z];
+		int index = 0;
+
+		for (int z = 0; z < size.z; z++)
+		{
+			for (int y = 0; y < size.y; y++)
+			{
+				for (int x = 0; x < size.x; x++)
+				{
+					// Save gradient in color and isovalue in alpha channel
+					cols[index].r = gradients[index].x;
+					cols[index].g = gradients[index].y;
+					cols[index].b = gradients[index].z;
+					cols[index].a = isoValues[z,y,x];
+					index++;
+				}
+			}
+		}
+
+		return cols;
+	}
+	
+	
 
 	private void ApplyPixels(Color[] cols)
 	{
