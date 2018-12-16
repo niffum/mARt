@@ -49,9 +49,10 @@ public class LoadMRTImages : MonoBehaviour {
 
 	private void Create3DTextureWithGradients()
 	{
-		int[,,] isoValues = GetImageValues();
+		float[,,] isoValues = GetImageValues();
 		Vector3[] gradients = SmoothGradients( CreateGradientValues(isoValues) );
 		ApplyPixels(SaveGradientsAndIsoValues(gradients, isoValues));
+		//ApplyPixels(DEBUGIsoValuesToColor(isoValues));
 	}
 	
 	public Color[] ConvertFolderToVolume(bool inferAlpha)	
@@ -94,11 +95,11 @@ public class LoadMRTImages : MonoBehaviour {
 	}
 	
 
-	private int[,,] GetImageValues()
+	private float[,,] GetImageValues()
 	{
 		var imageNames = GetImagesInFolder(folder);
 
-		int[,,] isoValues = new int[size.z,size.y,size.x];
+		float[,,] isoValues = new float[size.z,size.y,size.x];
 
 		var tex = new Texture2D(2, 2);
 		int z = 0;
@@ -117,9 +118,8 @@ public class LoadMRTImages : MonoBehaviour {
 				for (var x = 0; x < size.x; ++x)
 				{
 					var from = fromPixels[x + (y * size.x)];
-					
-					// We take r as isovalue
-					isoValues[z,y,x] = from.r;
+                    // We take r as isovalue
+                    isoValues[z, y, x] = (float)(from.r / 255f);
 				}
 			}
 			++z;
@@ -128,7 +128,7 @@ public class LoadMRTImages : MonoBehaviour {
 		return isoValues;
 	}
 
-	private Vector3[] CreateGradientValues(int[,,] isoValues)
+	private Vector3[] CreateGradientValues(float[,,] isoValues)
 	{
 		// How to generate gradient value: GPU Gems 1:  39.4.1 
 		//http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
@@ -136,35 +136,37 @@ public class LoadMRTImages : MonoBehaviour {
 		Vector3[] gradients = new Vector3[size.x*size.y*size.z];
 
 		int n = 1;
-		Vector3 normal = Vector3.zero;
 		Vector3 s1, s2;
 
 		int index = 0;
 
-		for (int z = 0; z < size.z; z++)
+		for (int z = n; z < size.z - n; z++)
 		{
-			for (int y = 0; y < size.y; y++)
+			for (int y = n; y < size.y - n; y++)
 			{
-				for (int x = 0; x < size.x; x++)
+				for (int x = n; x < size.x - n; x++)
 				{
 					// Check voxels before and after current one
-					s1.x = isoValues[x - n, y, z];
-					s2.x = isoValues[x + n, y, z];
-					s1.y = isoValues[x, y - n, z];
-					s2.y = isoValues[x, y + n, z];
-					s1.z = isoValues[x, y, z - n];
-					s2.z = isoValues[x, y, z + n];
+					s1.x = isoValues[z, y, x - n];
+					s2.x = isoValues[z, y, x + n];
+					s1.y = isoValues[z, y - n, x];
+					s2.y = isoValues[z, y + n, x];
+					s1.z = isoValues[z - n, y, x];
+					s2.z = isoValues[z - n, y, x];
 
 
-					//gradients[index++] = Vector3.Normalize(s2 - s1);
+					gradients[index] = Vector3.Normalize(s2 - s1);
+                    var gradient = gradients[index];
+                    index++;
 
-					// Divide through distance on x axes 
-					// See: GPU gems
-					gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
-                	if (float.IsNaN(gradients[index - 1].x))
+                    // Divide through distance on x axes 
+                    // See: GPU gems
+                    //gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
+                    if (float.IsNaN(gradients[index - 1].x))
 					{
 						gradients[index - 1] = Vector3.zero;
 					}
+                    
 				}
 			}
 		}
@@ -218,7 +220,34 @@ public class LoadMRTImages : MonoBehaviour {
  		return kernel;
 	}
 
-	private Color[] SaveGradientsAndIsoValues(Vector3[] gradients, int[,,] isoValues)
+	private Color[] SaveGradientsAndIsoValues(Vector3[] gradients, float[,,] isoValues)
+	{
+		var cols = new Color[size.x*size.y*size.z];
+        int index = 0;
+
+		for (int z = 0; z < size.z; z++)
+		{
+			for (int y = 0; y < size.y; y++)
+			{
+				for (int x = 0; x < size.x; x++)
+				{
+                    // Save gradient in color and isovalue in alpha channel
+                    
+					cols[index].r = gradients[index].x;
+					cols[index].g = gradients[index].y;
+					cols[index].b = gradients[index].z;
+					cols[index].a = isoValues[z,y,x];
+                    
+                    //cols[index] = new Vector4(gradients[index].x, gradients[index].y, gradients[index].z, isoValues[z, y, x]);
+                    index++;
+				}
+			}
+		}
+
+		return cols;
+	}
+
+	private Color[] DEBUGIsoValuesToColor(float[,,] isoValues)
 	{
 		var cols = new Color[size.x*size.y*size.z];
 		int index = 0;
@@ -230,11 +259,12 @@ public class LoadMRTImages : MonoBehaviour {
 				for (int x = 0; x < size.x; x++)
 				{
 					// Save gradient in color and isovalue in alpha channel
-					cols[index].r = gradients[index].x;
-					cols[index].g = gradients[index].y;
-					cols[index].b = gradients[index].z;
-					cols[index].a = isoValues[z,y,x];
-					index++;
+					cols[index].r = isoValues[z,y,x];
+					cols[index].g = isoValues[z,y,x];
+					cols[index].b =isoValues[z,y,x];
+					cols[index].a = 1f;
+                    var col = cols[index];
+                    index++;
 				}
 			}
 		}
