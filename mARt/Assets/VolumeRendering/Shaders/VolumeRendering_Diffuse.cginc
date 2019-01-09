@@ -29,15 +29,27 @@ struct AABB {
 
 bool intersect(Ray r, AABB aabb, out float t0, out float t1)
 {
-  float3 invR = 1.0 / r.dir;
-  float3 tbot = invR * (aabb.min - r.origin);
-  float3 ttop = invR * (aabb.max - r.origin);
-  float3 tmin = min(ttop, tbot);
-  float3 tmax = max(ttop, tbot);
-  float2 t = max(tmin.xx, tmin.yz);
+	float3 invR = 1.0 / r.dir;
+	//tBottom and top are were the ray hits the planes (every Dimension is a t in the formula for where n the line hits one plane )
+	float3 tBottom = (aabb.min - r.origin) / r.dir;//invR * (aabb.min - r.origin);
+	float3 tTop = (aabb.max - r.origin) / r.dir; //invR * (aabb.max - r.origin);
+	// depending on how the cube is turned
+	// the longer ray is the far one
+  float3 tnear = min(tTop, tBottom);
+  float3 tfar = max(tTop, tBottom);
+
+  // At this point we have 6 ts that are hitpoints with the planes when inserted to formula
+
+  // What happens when ray is parallel to two of the planes? what is in the vectors in the dimension of these planes?
+
+  // check if hitpoint really hits the box and not just the plane
+  // The greatest t of the near plane hits is needed
+  // The smallest t of the far plane
+  float2 t = max(tnear.xx, tnear.yz);
   t0 = max(t.x, t.y);
-  t = min(tmax.xx, tmax.yz);
+  t = min(tfar.xx, tfar.yz);
   t1 = min(t.x, t.y);
+  // if max tnear is greater than min tfar the ray does not intersect with the box
   return t0 <= t1;
 }
 
@@ -52,10 +64,13 @@ float3 get_uv(float3 p) {
 
 float sample_volume(float3 uv, float3 p)
 {
-  float v = tex3D(_Volume, uv).r * _Intensity;
+	//Get iso value from alpha channel of volume
+  float v = tex3D(_Volume, uv).a * _Intensity;
 
+  //Why?
   float3 axis = mul(_AxisRotationMatrix, float4(p, 0)).xyz;
   axis = get_uv(axis);
+  //
   float min = step(_SliceMin.x, axis.x) * step(_SliceMin.y, axis.y) * step(_SliceMin.z, axis.z);
   float max = step(axis.x, _SliceMax.x) * step(axis.y, _SliceMax.y) * step(axis.z, _SliceMax.z);
 
@@ -79,6 +94,13 @@ float4 get_transferColor(float isovalue)
   float2 xy = float2(isovalue, 0);
 
   return  tex2D(_TransferColor, xy);
+}
+
+float3 get_gradient(float3 uv, float3 p)
+{
+	float3 gradient = tex3D(_Volume, uv);
+
+	return gradient;
 }
 
 bool outside(float3 uv)
@@ -184,67 +206,48 @@ fixed4 frag(v2f i) : SV_Target
   float3 end = ray.origin + ray.dir * tfar;
   float dist = abs(tfar - tnear); // float dist = distance(start, end);
   float step_size = dist / float(ITERATIONS);
-  float3 ds = normalize(end - start) * step_size;
+  float3 stepRay = normalize(end - start) * step_size;
 
   float4 dst = float4(0, 0, 0, 0);
   float4 dstMask = float4(0, 0, 0, 0);
-  float3 p = start;
+  float3 currentPoint = start;
+
+  float3 lastUv = float3(0, 0, 0);
 
   [unroll]
   for (int iter = 0; iter < ITERATIONS; iter++)
   {
-    float3 uv = get_uv(p);
-    float v = sample_volume(uv, p);
+	// Sample Volume
+    float3 uv = get_uv(currentPoint);
+	lastUv = uv;
+	// Get iso value
+    float v = sample_volume(uv, currentPoint);
     float4 src = float4(v, v, v, v);
     // Y
     if(v != 0.0)
     {
+		// Look up transfer function color
       src = get_transferColor(v);
     } 
     
+	// Why?
     src.a *= 0.5;
     src.rgb *= src.a;
 
 
     // blend
+	// front to back
     dst = (1.0 - dst.a) * src + dst;
    
-    // Sample mask
-    if(_ShowMask == 1)
-    {
-    
-      float vMask = sample_volume_mask(uv, p);
-      float4 srcMask = float4(vMask, vMask, vMask, vMask);
-
-      srcMask.a *= 0.5;
-      srcMask.rgb *= srcMask.a;
-
-      dstMask = (1.0 - dstMask.a) * srcMask + dstMask;
-    }
-
-    p += ds;
+	currentPoint += stepRay;
 
     if (dst.a > _Threshold) break;
   }
 
-  /*
-  if(dst.a > dstMask.a)
-  {
-    return saturate(dst) * _Color;
-  }
-  else
-  {
-    return saturate(dstMask) * _ColorMask;
-  }
-  */
-
-  //return max(saturate(dst) * _Color , saturate(dstMask) * _ColorMask);
-  //return max(saturate(dst), saturate(dstMask) * _ColorMask);
-
   return saturate(dst);
   // diffuse is transfer color 
   // normal is gradient
-  //return phong(,saturate(dst), i.local);
+  //return phong(get_gradient(lastUv,p),saturate(dst), i.local);
 
   
 }
