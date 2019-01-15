@@ -152,7 +152,7 @@ public class LoadMRTImages : MonoBehaviour {
 					s1.y = isoValues[z, y - n, x];
 					s2.y = isoValues[z, y + n, x];
 					s1.z = isoValues[z - n, y, x];
-					s2.z = isoValues[z - n, y, x];
+					s2.z = isoValues[z + n, y, x];
 
 
 					gradients[index] = Vector3.Normalize(s2 - s1);
@@ -173,6 +173,7 @@ public class LoadMRTImages : MonoBehaviour {
 
 		return gradients;
 	}
+
 
 	private Vector3[] SmoothGradients(Vector3[] gradients)
 	{

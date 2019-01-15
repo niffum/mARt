@@ -10,13 +10,13 @@ public class CreateTransferColorTexture : MonoBehaviour {
 	private  List<TransferControlPoint> alphaKnots;
 	void Start () {
         CreateKnots();
-        //CreateTexture3DAsset(Create2DTransferColorTexture());
+        CreateTexture3DAsset(Create2DTransferColorTexture());
         CreateTexturePNG(Create2DTransferColorTexture());
 	}   
 
     private void CreateTexture3DAsset(Texture2D texture)
 	{
-		//UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/2DTransferTextures/TransferTexture.asset");
+		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/2DTransferTextures/TransferTexture.asset");
 	}
 
     private void CreateTexturePNG(Texture2D texture)

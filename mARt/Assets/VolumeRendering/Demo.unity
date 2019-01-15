@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -2120,9 +2120,9 @@ MonoBehaviour:
   sliceZMin: 0
   sliceZMax: 1
   axis: {x: 0, y: 0, z: 0, w: 1}
-  volume: {fileID: 11700000, guid: 796f2c72faf14c041a447ead85af85c7, type: 2}
-  volumeMask: {fileID: 11700000, guid: a44b014f37d4032498ad93b898f22a5f, type: 2}
-  transferColor: {fileID: 2800000, guid: 8ea0d0e452916a3459bc65d39a10d335, type: 3}
+  volume: {fileID: 11700000, guid: 63057b137bb77154d8f3f111b5b7738a, type: 2}
+  volumeMask: {fileID: 11700000, guid: 7727eac644948fa499296f04ef3c0914, type: 2}
+  transferColor: {fileID: 2800000, guid: 26cf266af2e4f32478df42729abece7b, type: 3}
   showMask: 1
 --- !u!33 &666004488
 MeshFilter:
