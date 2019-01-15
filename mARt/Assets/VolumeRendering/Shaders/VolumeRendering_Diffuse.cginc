@@ -258,9 +258,24 @@ float3 lambert(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 
 	float ndotl = dot(normal, lightDir);
 
-	float3 diffuseComponent = ndotl * diffuseColor.rgb + .1f * diffuseColor.rgb;
+	float3 ambient = .1f * diffuseColor.rgb;
 
-	return diffuseComponent.rgb;
+	float3 diffuseComponent = ndotl * diffuseColor.rgb + ambient;
+
+	// Specular
+	float3 specularColor = float3(1.0, 1.0, 1.0);
+	float shininessPower = 10.0;
+
+	float3 reflectionDir = 0.5 + reflect(-lightDir, normal);
+
+	// max is important or everythinf back facing the light is black
+	float rdotv = max(dot(reflectionDir, viewDir), 0.0);
+
+	float3 specularComponent = specularColor.rgb  * pow(rdotv, shininessPower);
+
+	// specular should not be visible on sourrounding box
+	// by multiplying it with diffuse it gets darker7black when diffuse isn't visible either
+	return diffuseComponent.rgb + specularComponent.rgb * diffuseComponent.rgb;
 	//return float4(abs(normal), 1.0);
 }
 
@@ -325,11 +340,13 @@ fixed4 frag(v2f i) : SV_Target
 		float3 viewDir = 0.5 + normalize(i.local);//normalize(_WorldSpaceCameraPos - i.vertex.xyz);
 
 		//src=  float4(phong(gradient, lightDir, viewDir, src.rgb), 1.0);
-		//src.rgb = lambert(gradient, lightDir, viewDir, src.rgb);
+		src.rgb = lambert(gradient, lightDir, viewDir, src.rgb);
+
 		// from graphics runner 
 		//diffuse shading + fake ambient lighting
 		float ndotl = dot(gradient, lightDir);
-		src.rgb = ndotl * src.rgb + .1f * src.rgb;
+
+		//src.rgb = ndotl * src.rgb + .1f * src.rgb;
 		//src = phong(gradient.xyz, src, i.local);
 
 	}

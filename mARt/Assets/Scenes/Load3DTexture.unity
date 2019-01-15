@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 256, y: 256, z: 110}
-  folder: Assets/StreamingAssets\bunny
-  textureName: bunny_gradients
+  folder: Assets/StreamingAssets/Masks/01
+  textureName: masl_1_gradients
   create3dTexture: 1
 --- !u!65 &1636403734
 BoxCollider:
