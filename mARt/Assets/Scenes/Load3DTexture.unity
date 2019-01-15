@@ -255,7 +255,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &334205752
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -482,8 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 256, y: 256, z: 110}
-  folder: Assets/StreamingAssets/MRTImages/01
-  textureName: dwi_1_gradients
+  folder: Assets/StreamingAssets\bunny
+  textureName: bunny_gradients
   create3dTexture: 1
 --- !u!65 &1636403734
 BoxCollider:

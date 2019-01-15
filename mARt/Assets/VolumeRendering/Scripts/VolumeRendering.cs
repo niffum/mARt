@@ -25,7 +25,7 @@ namespace VolumeRendering
         Color colorMask = Color.white;
         [Range(0f, 1f)] public float threshold = 0.5f;
         [Range(0.5f, 5f)] public float intensity = 1.5f;
-        [Range(0.0f, 3.5f)] public float intensityMask = 0f;
+        [Range(0.0f, 3.5f)] public float intensityMask = 2.2f;
         [Range(0f, 1f)] public float sliceXMin = 0.0f, sliceXMax = 1.0f;
         [Range(0f, 1f)] public float sliceYMin = 0.0f, sliceYMax = 1.0f;
         [Range(0f, 1f)] public float sliceZMin = 0.0f, sliceZMax = 1.0f;

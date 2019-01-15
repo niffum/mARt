@@ -138,14 +138,18 @@ v2f vert(appdata v)
   return o;
 }
 
-fixed4 phong(float3 gradient, float4 diffuse, float3 local)
+fixed4 phong2(float3 gradient, float4 textureColor, float3 local)
 {
-	float specularIntensity = 0.0;
+	// Source: https://github.com/GilFerraz/Unity-Shaders-Introduction/blob/master/Assets/Shaders/5.%20Diffuse%20Ambient%20Specular%20(Phong).shader
 	
-	float AmbientFactor = 0.2;
+	float specularIntensity = 0.6;
+	
+	float AmbientFactor =1.0;
 	float4 specular = float4(1.0, 1.0, 1.0, 0.8);
+	//float4 diffuse = float4(0.5, 0.5, 0.5, 1.0);
+	float4 diffuse = textureColor;
 	float specularStrength = 0.9;
-
+	/*
 	// Calculates the light's direction in world space.
 	float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
 
@@ -168,12 +172,96 @@ fixed4 phong(float3 gradient, float4 diffuse, float3 local)
 	// textureColor = float4(isoValue, isoValue, isoValue, isoValue);
 
 	// Applies a tint to the texture color, based on the passed Diffuse Color.
-	//fixed4 textureTint = textureColor * diffuse;
+	fixed4 textureTint = textureColor * diffuse;
 
 	// Calculates the vetex's ambient color, based on its texture tint color.
 	fixed4 ambientColor = diffuse * AmbientFactor;
 
 	return max(diffuse*intensity + specular * specularIntensity, ambientColor);
+	*/
+
+	// Calculates the light's direction in world space.
+	float3 lightDirection = normalize(_WorldSpaceLightPos0.xyz);
+
+	// Calculates the vertex's surface normal in object space.
+	float3 normal = gradient;//normalize(mul(float4(input.Normal, 0.0), unity_WorldToObject).xyz);
+
+	// Calculates the light's intensity on the vertex.
+	float intensity = dot(normal, lightDirection);
+
+	// Calculates the vetex's ambient color, based on its diffuse color.
+	float4 ambientColor = diffuse * AmbientFactor;
+
+	if (intensity > 0)
+	{
+		// Calculates the reflection's direction.
+		float3 reflectionDirection = -2.0 * intensity * normal + lightDirection;
+
+		// Calculates the view direction.
+		float3 viewDirection = normalize(local);//normalize(mul(unity_ObjectToWorld, input.Vertex).xyz - _WorldSpaceCameraPos);
+
+		// Calculates the specular intensity, based on the reflection direction and view direction.
+		specularIntensity = max(dot(reflectionDirection, viewDirection), 0.0);
+	}
+
+	return (diffuse * intensity + specular * specularIntensity, ambientColor);
+}
+
+float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
+{
+	// Ambient
+	float3 ambientColor = float3(0.5, 0.2, 0.2);
+	float ambientIntensity = 0.5;
+	float3 ambientComponent = ambientColor * ambientIntensity;
+
+	// Diffuse
+	float3 diffuseColor = diffuse;// float3(0.5, 1.0, 1.0);
+	float diffuseIntensity = 1.0;
+
+	float ndotl = dot(normal, lightDir);
+
+	// When point is facing away from light
+	if (ndotl <= 0.0)
+	{
+		return ambientComponent;
+	}
+	else
+	{
+		ndotl = max(ndotl, 0.0);
+	}
+
+	float3 diffuseComponent = diffuseColor * diffuseIntensity * ndotl;
+
+	// Specular
+	float3 specularColor = float3(1.0, 1.0, 1.0);
+	float specularIntensity = 1.0;
+	float shininessPower = 1.0;
+
+	float3 reflectionDir = reflect(-lightDir, normal);
+
+	float rdotv = max(dot(reflectionDir, viewDir), 0.0);
+
+	float3 specularComponent = specularColor * specularIntensity * pow(rdotv, shininessPower);
+
+
+	return ambientComponent + diffuseComponent + specularComponent;
+	//return float4(abs(normal), 1.0);
+}
+
+float3 lambert(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
+{
+
+
+	// Diffuse
+	float3 diffuseColor = diffuse.rgb;// float3(0.5, 1.0, 1.0);
+	float diffuseIntensity = 1.0;
+
+	float ndotl = dot(normal, lightDir);
+
+	float3 diffuseComponent = ndotl * diffuseColor.rgb + .1f * diffuseColor.rgb;
+
+	return diffuseComponent.rgb;
+	//return float4(abs(normal), 1.0);
 }
 
 // =============================================================================
@@ -221,19 +309,38 @@ fixed4 frag(v2f i) : SV_Target
     float3 uv = get_uv(currentPoint);
 	lastUv = uv;
 	// Get iso value
-    float v = sample_volume(uv, currentPoint);
-    float4 src = float4(v, v, v, v);
+    float isoValue = sample_volume(uv, currentPoint);
+    float4 src = float4(isoValue, isoValue, isoValue, isoValue);
     // Y
-    if(v != 0.0)
+    if(isoValue != 0.0)
     {
 		// Look up transfer function color
-      src = get_transferColor(v);
+      //src = get_transferColor(isoValue);
     } 
+	if (isoValue > 0.0)
+	{
+		float3 gradient = get_gradient(uv, currentPoint);
+
+		float3 lightDir = 0.5 + normalize(_WorldSpaceLightPos0.xyz);//normalize((_WorldSpaceLightPos0 - i.vertex).xyz);
+		float3 viewDir = 0.5 + normalize(i.local);//normalize(_WorldSpaceCameraPos - i.vertex.xyz);
+
+		//src=  float4(phong(gradient, lightDir, viewDir, src.rgb), 1.0);
+		//src.rgb = lambert(gradient, lightDir, viewDir, src.rgb);
+		// from graphics runner 
+		//diffuse shading + fake ambient lighting
+		float ndotl = dot(gradient, lightDir);
+		src.rgb = ndotl * src.rgb + .1f * src.rgb;
+		//src = phong(gradient.xyz, src, i.local);
+
+	}
+
+	
     
 	// Why?
     src.a *= 0.5;
     src.rgb *= src.a;
 
+	
 
     // blend
 	// front to back

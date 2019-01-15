@@ -156,7 +156,7 @@ fixed4 frag(v2f i) : SV_Target
     // Y
     if(v != 0.0)
     {
-      src = get_transferColor(v);
+      //src = get_transferColor(v);
     } 
     
     src.a *= 0.5;
@@ -184,7 +184,7 @@ fixed4 frag(v2f i) : SV_Target
     if (dst.a > _Threshold) break;
   }
 
-  /*
+  
   if(dst.a > dstMask.a)
   {
     return saturate(dst) * _Color;
@@ -193,7 +193,7 @@ fixed4 frag(v2f i) : SV_Target
   {
     return saturate(dstMask) * _ColorMask;
   }
-  */
+  
 
   //return max(saturate(dst) * _Color , saturate(dstMask) * _ColorMask);
   //return max(saturate(dst), saturate(dstMask) * _ColorMask);
