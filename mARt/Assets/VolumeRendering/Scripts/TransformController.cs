@@ -29,7 +29,7 @@ namespace VolumeRendering.Utils
         }
         
         protected void Update () {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            //if (EventSystem.current.IsPointerOverGameObject()) return;
             var dt = Time.deltaTime;
             Zoom(dt);
             Rotate(dt);

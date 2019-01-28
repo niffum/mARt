@@ -4,16 +4,4 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Load3DTexture.unity
-    guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: Assets/Scenes/2dMRT_HoloToolkit.unity
-    guid: 2ffa56987ffa4934a9d7e626c26f73d4
-  - enabled: 1
-    path: Assets/VolumeRendering/Demo_Hololens.unity
-    guid: 0277fdb4f3bea1346aa3aee4173cac43
+  m_Scenes: []
