@@ -52,8 +52,12 @@ public class ScrollImages : MonoBehaviour {
         //scrollBar.SetMaxDepth(images.Count);
     }
 
+    int thresholdImageChange = 10;
+    int imageChangeCounterPositive = 0;
+    int imageChangeCounterNegative = 0;
     public void Scroll(float zRotation)
     {
+        /*
         int newDepth = (int)MapValue(0, 360, 0, images.Count, (int)zRotation);
         //int newDepth =(int) (0.5 * zRotation + images.Count / 2);
         Debug.Log("depth: " + newDepth);
@@ -61,10 +65,38 @@ public class ScrollImages : MonoBehaviour {
         {
             ChangeCanvasImage(newDepth);
         }
+        */
+
+        if(zRotation >0 )
+        {
+            imageChangeCounterPositive += (int)zRotation;
+        }
+        if (zRotation < 0)
+        {
+            imageChangeCounterNegative += (int)zRotation;
+        }
+        if (imageChangeCounterPositive > thresholdImageChange)
+        {
+            if (depth < images.Count - 1)
+            {
+                ChangeCanvasImage(depth + 1);
+                imageChangeCounterPositive = 0;
+            }
+        }
+        if (imageChangeCounterNegative < -thresholdImageChange)
+        {
+            if (depth > 0)
+            {
+                ChangeCanvasImage(depth - 1);
+                imageChangeCounterNegative = 0;
+            }
+        }
+
+
         /*
         int scrollBy = (int)zRotation;
 
-        if (lastScrollBy != scrollBy && scrollBy != 0 && Math.Abs(scrollBy) >=3)
+        if (lastScrollBy != scrollBy && scrollBy != 0)
         {
             
             if (scrollBy > 0)
@@ -89,7 +121,7 @@ public class ScrollImages : MonoBehaviour {
     public void ChangeCanvasImage(int newDepth)
     {
         depth = newDepth;
-        currentdepth.text = depth + "/" + images.Count;
+        currentdepth.text = (depth + 1) + "/" + images.Count;
         material.SetTexture("_MainTex", images[depth]);
         //scrollBar.SetCurrentDepth(newDepth);
     }

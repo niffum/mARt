@@ -18,26 +18,28 @@ public class RotateDiscInteraction : MonoBehaviour
     public Color hoverColor = Color.Lerp(Color.black, Color.white, 0.7F);
 
     public Color pressedColor = Color.white;
-
-    Quaternion lastRotation;
-
-    [SerializeField]
-    float RotateSpeed = 25f;
-
-    [SerializeField]
-    float RotationFactor = 50f;
-
+    
     [SerializeField]
     private TextMesh text;
-
-    Vector3 lastPos = Vector3.zero;
 
     Vector3 handPos = Vector3.zero;
 
     [SerializeField]
     private GameObject cylinder;
 
-    private InteractionController currentController; 
+    [SerializeField]
+    private const float SPEED_DAMPER = 0.01f;
+
+    Vector3 previousPosition = Vector3.zero;
+    Vector3 currentPosition = Vector3.zero;
+    bool firstTouch = false;
+
+    private InteractionController currentController;
+
+    [SerializeField]
+    private ScrollImages scroll;
+
+    private float rotationCounter;
 
     void Start()
     {
@@ -91,19 +93,11 @@ public class RotateDiscInteraction : MonoBehaviour
                 targetColor = pressedColor;
                 OnRotation();
             }
-
-
-
+            
             // Lerp actual material color to the target color.
             _material.color = Color.Lerp(_material.color, targetColor, 30F * Time.deltaTime);
         }
     }
-     
-    public const float SPEED_DAMPER = 0.01f;
-
-    Vector3 previousPosition = Vector3.zero;
-    Vector3 currentPosition = Vector3.zero;
-    bool firstTouch = false;
 
     private void EndTouch()
     {
@@ -144,7 +138,14 @@ public class RotateDiscInteraction : MonoBehaviour
             Vector3 centerToPrevioustPos = previousPosition - cylinder.transform.position;
 
             float rotationAmount = Vector3.SignedAngle(centerToPrevioustPos.normalized, centerToCurrentPos.normalized, Vector3.forward);
+            // Lerp?
             cylinder.transform.RotateAroundLocal(Vector3.forward, rotationAmount * SPEED_DAMPER);
+
+            rotationCounter += rotationAmount * SPEED_DAMPER;
+
+            scroll.Scroll(rotationAmount);
+
+            //text.text = "" + rotationAmount;
         }
 
     }
