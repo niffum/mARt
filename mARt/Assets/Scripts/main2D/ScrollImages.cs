@@ -36,9 +36,6 @@ public class ScrollImages : MonoBehaviour {
     [SerializeField]
     float DragSpeed = 1.5f;
 
-    //[SerializeField]
-    //private ScrollBarManager scrollBar;
-
     Vector3 lastPosition;
 
     void Start()
@@ -48,8 +45,7 @@ public class ScrollImages : MonoBehaviour {
 
         depth = 0;
         material.SetTexture("_MainTex", images[0]);
-
-        //scrollBar.SetMaxDepth(images.Count);
+        
     }
 
     int thresholdImageChange = 10;
@@ -57,16 +53,7 @@ public class ScrollImages : MonoBehaviour {
     int imageChangeCounterNegative = 0;
     public void Scroll(float zRotation)
     {
-        /*
-        int newDepth = (int)MapValue(0, 360, 0, images.Count, (int)zRotation);
-        //int newDepth =(int) (0.5 * zRotation + images.Count / 2);
-        Debug.Log("depth: " + newDepth);
-        if (depth < images.Count - 1 && newDepth > 0)
-        {
-            ChangeCanvasImage(newDepth);
-        }
-        */
-
+        
         if(zRotation >0 )
         {
             imageChangeCounterPositive += (int)zRotation;
@@ -90,32 +77,7 @@ public class ScrollImages : MonoBehaviour {
                 ChangeCanvasImage(depth - 1);
                 imageChangeCounterNegative = 0;
             }
-        }
-
-
-        /*
-        int scrollBy = (int)zRotation;
-
-        if (lastScrollBy != scrollBy && scrollBy != 0)
-        {
-            
-            if (scrollBy > 0)
-            {
-                if (depth < images.Count - 1)
-                {
-                    ChangeCanvasImage(depth + 1);
-                }
-            }
-            else
-            {
-                if (depth > 0)
-                {
-                    ChangeCanvasImage(depth - 1);
-                }
-            }
-            lastScrollBy = scrollBy;
-        }
-        */
+        }   
     }
 
     public void ChangeCanvasImage(int newDepth)
@@ -123,7 +85,6 @@ public class ScrollImages : MonoBehaviour {
         depth = newDepth;
         currentdepth.text = (depth + 1) + "/" + images.Count;
         material.SetTexture("_MainTex", images[depth]);
-        //scrollBar.SetCurrentDepth(newDepth);
     }
 
     private void AddImagesToList()
