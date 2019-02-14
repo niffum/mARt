@@ -7,6 +7,9 @@ Assets/AssetStoreTools*
 
 Assets/3DTextures*
 Assets/VolumeRendering/Textures*
+Assets/VolumeRendering/Volumes*
+Assets/StreamingAssets*
+Assets/SteamVR*
 
 # Visual Studio cache directory
 .vs/
@@ -37,3 +40,5 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
+
+*.svg
