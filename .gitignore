@@ -3,13 +3,8 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
-Assets/AssetStoreTools*
+mARt/Assets/AssetStoreTools*
 
-Assets/3DTextures/
-Assets/VolumeRendering/Textures/
-Assets/VolumeRendering/Volumes/
-Assets/StreamingAssets/
-Assets/SteamVR/
 
 # Visual Studio cache directory
 .vs/
@@ -42,3 +37,10 @@ sysinfo.txt
 *.unitypackage
 
 *.svg
+mARt/Assets/VolumeRendering/Textures/
+mARt/Assets/StreamingAssets/
+mARt/Assets/SteamVR/
+mARt/Assets/3DTextures/
+mARt/Assets/VolumeRendering/Volumes/
+
+
