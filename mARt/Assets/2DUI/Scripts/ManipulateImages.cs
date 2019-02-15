@@ -6,7 +6,7 @@ using System.Linq;
 using System.IO;
 using System;
 
-public class ScrollImages : MonoBehaviour {
+public class ManipulateImages : MonoBehaviour {
 
     [SerializeField]
     private string folder;
@@ -24,7 +24,7 @@ public class ScrollImages : MonoBehaviour {
     [SerializeField]
     private TextMesh scrollBytext;
 
-    private Material material;
+    public Material material;
 
     private bool scrollForward = true;
 
@@ -37,20 +37,22 @@ public class ScrollImages : MonoBehaviour {
     float DragSpeed = 1.5f;
 
     Vector3 lastPosition;
+    
 
-    void Start()
+    public void Init()
     {
-        material = GetComponent<Renderer>().material;
+        material = Instantiate(GetComponent<Renderer>().material);
+        GetComponent<Renderer>().material = material;
         AddImagesToList();
 
         depth = 0;
-        material.SetTexture("_MainTex", images[0]);
-        
+        material.SetTexture("_MainTex", images[depth]);
     }
 
     int thresholdImageChange = 10;
     int imageChangeCounterPositive = 0;
     int imageChangeCounterNegative = 0;
+
     public void Scroll(float zRotation)
     {
         
@@ -115,5 +117,15 @@ public class ScrollImages : MonoBehaviour {
     public float MapValue(int a0, int a1, int b0, int b1, int a)
     {
         return b0 + (b1 - b0) * ((a - a0) / (a1 - a0));
+    }
+
+    public void SetContrast(float contrast)
+    {
+        material.SetFloat("_Contrast", contrast);
+    }
+
+    public void SetBrightness(float brightness)
+    {
+        material.SetFloat("_Brightness", brightness);
     }
 }

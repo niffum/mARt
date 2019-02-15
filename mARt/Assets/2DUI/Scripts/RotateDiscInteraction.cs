@@ -5,6 +5,7 @@ using UnityEngine;
 
 using Leap.Unity;
 using Leap.Unity.Interaction;
+using System;
 
 [RequireComponent(typeof(InteractionBehaviour))]
 public class RotateDiscInteraction : MonoBehaviour
@@ -36,10 +37,12 @@ public class RotateDiscInteraction : MonoBehaviour
 
     private InteractionController currentController;
 
-    [SerializeField]
-    private ScrollImages scroll;
+    [HideInInspector]
+    public ManipulateImages scroll;
 
     private float rotationCounter;
+
+    public Action<float> OnScroll;
 
     void Start()
     {
@@ -58,6 +61,7 @@ public class RotateDiscInteraction : MonoBehaviour
         _intObj.OnContactEnd += EndTouch;
         _intObj.OnContactBegin += StartToch;
     }
+
     void Update()
     {
         if (_material != null)
@@ -118,7 +122,11 @@ public class RotateDiscInteraction : MonoBehaviour
     
     private void OnRotation()
     {
-        handPos = currentController.position;
+        if(currentController != null)
+        {
+            handPos = currentController.position;
+        }
+        
 
         if (!firstTouch)
         {
@@ -143,10 +151,15 @@ public class RotateDiscInteraction : MonoBehaviour
 
             rotationCounter += rotationAmount * SPEED_DAMPER;
 
-            scroll.Scroll(rotationAmount);
-
+            //scroll.Scroll(rotationAmount);
+              
+            if(OnScroll != null)
+            {
+                OnScroll(rotationAmount);
+            }
             //text.text = "" + rotationAmount;
         }
 
     }
+
 }

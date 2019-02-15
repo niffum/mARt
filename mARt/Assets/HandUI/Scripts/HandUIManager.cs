@@ -7,8 +7,11 @@ public class HandUIManager : MonoBehaviour {
 
     [SerializeField]
     private TransformTweenBehaviour dataListTween;
-
+    
     private bool dataListIsVisible = false;
+
+    [SerializeField]
+    private ImageAndUiManager imageAndUiManager;
 
     private void Start()
     {
@@ -21,12 +24,52 @@ public class HandUIManager : MonoBehaviour {
         if(!dataListIsVisible)
         {
             dataListTween.PlayForward();
-            dataListIsVisible = true;
         }
         else
         {
             dataListTween.PlayBackward();
-            dataListIsVisible = false;
+        }
+        dataListIsVisible = !dataListIsVisible;
+    }
+
+    public void ToggleViewDisplay()
+    {
+        if(!imageAndUiManager.displayingTwoViews)
+        {
+            Debug.Log("ToggleViews: " + imageAndUiManager.displayingTwoViews);
+            
+            // Get DatasetNames
+            imageAndUiManager.DisplayTwoViews();
+            ToggleSynchroButton(true);
+        }
+        else
+        {
+            
+            // Get DatasetName
+            imageAndUiManager.DisplayOneView();
+            ToggleSynchroButton(false);
+        }
+        imageAndUiManager.displayingTwoViews = !imageAndUiManager.displayingTwoViews;
+    }
+
+    public void ToggleSynchronicity()
+    {   if(imageAndUiManager.displayingTwoViews)
+        {
+            if (!imageAndUiManager.viewsAreSynchronized)
+            {
+                imageAndUiManager.SynchronizeViews();
+            }
+            else
+            {
+                imageAndUiManager.DesynchronizeViews();
+            }
+            imageAndUiManager.viewsAreSynchronized = !imageAndUiManager.viewsAreSynchronized;
         }
     }
+
+    private void ToggleSynchroButton(bool active)
+    {
+
+    }
+
 }
