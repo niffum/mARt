@@ -31,7 +31,17 @@ public class HandUIManager : MonoBehaviour {
         }
         dataListIsVisible = !dataListIsVisible;
     }
+    
+    public void ChooseFirstDataSet()
+    {
 
+    }
+
+    public void ChooseSecondDataSet()
+    {
+
+    }
+    /*
     public void ToggleViewDisplay()
     {
         if(!imageAndUiManager.displayingTwoViews)
@@ -51,7 +61,7 @@ public class HandUIManager : MonoBehaviour {
         }
         imageAndUiManager.displayingTwoViews = !imageAndUiManager.displayingTwoViews;
     }
-
+    */
     public void ToggleSynchronicity()
     {   if(imageAndUiManager.displayingTwoViews)
         {

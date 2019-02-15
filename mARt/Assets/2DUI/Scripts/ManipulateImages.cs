@@ -128,4 +128,12 @@ public class ManipulateImages : MonoBehaviour {
     {
         material.SetFloat("_Brightness", brightness);
     }
+
+    public void ChangeImagePath(string newPath)
+    {
+        folder = newPath;
+        images.Clear();
+        AddImagesToList();
+        ChangeCanvasImage(depth);
+    }
 }

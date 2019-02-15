@@ -48,30 +48,28 @@ public class ImageAndUiManager : MonoBehaviour {
    
 
     //public void DisplayOneView(string dataSetName)
-    public void DisplayOneView()
+    public void DisplayOneView(string firstImagePath, bool switchToOneView)
     {
-        if (displayingTwoViews)
+        if (switchToOneView)
         {
-            // set second image active
             // play animation 
             imageAnimator.SetTrigger("hideSecondImage");
-
+            displayingTwoViews = false;
         }
-        // Exchange image in view
+        primaryImage.ChangeImagePath(firstImagePath);
     }
 
     //public void DisplayTwoViews(string dataSetName1, string dataSetName2)
-    public void DisplayTwoViews()
+    public void DisplayTwoViews(string firstImagePath, string secondImagePath, bool switchToTwoViews)
     {
-        if (!displayingTwoViews)
+        if (switchToTwoViews)
         {
-            // set second image active
-            //secondaryImage.SetActive(true);
             // play animation 
             imageAnimator.SetTrigger("showSecondImage");
-
+            displayingTwoViews = true;
         }
-        // Exchange images in views
+        primaryImage.ChangeImagePath(firstImagePath);
+        secondaryImage.ChangeImagePath(secondImagePath);
     }
 
     public void SynchronizeViews()
