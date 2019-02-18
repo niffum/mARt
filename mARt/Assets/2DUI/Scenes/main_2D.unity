@@ -11847,7 +11847,7 @@ GameObject:
   - component: {fileID: 1818035713}
   - component: {fileID: 1818035712}
   m_Layer: 0
-  m_Name: Cube UI Button_Views
+  m_Name: Cube UI Button_Mask
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

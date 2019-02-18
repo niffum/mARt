@@ -222,7 +222,7 @@ fixed4 frag(v2f i) : SV_Target
     if(isoValue != 0.0)
     {
 		// Look up transfer function color
-      //src = get_transferColor(isoValue);
+      src = get_transferColor(isoValue);
     } 
 	if (isoValue > 0.0)
 	{

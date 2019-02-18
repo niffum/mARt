@@ -155,10 +155,8 @@ public class LoadMRTImages : MonoBehaviour {
 					s2.z = isoValues[z + n, y, x];
 
 
-					gradients[index] = Vector3.Normalize(s2 - s1);
-                    var gradient = gradients[index];
-                    index++;
-
+					gradients[index++] = (s2 - s1)/(2f*n);
+            
                     // Divide through distance on x axes 
                     // See: GPU gems
                     //gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
