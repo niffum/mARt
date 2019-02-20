@@ -54,6 +54,10 @@ public class ImageAndUiManager : MonoBehaviour {
         {
             // play animation 
             imageAnimator.SetTrigger("hideSecondImage");
+            if(!viewsAreSynchronized)
+            {
+                SynchronizeViews();
+            }
             displayingTwoViews = false;
         }
         primaryImage.ChangeImagePath(firstImagePath);

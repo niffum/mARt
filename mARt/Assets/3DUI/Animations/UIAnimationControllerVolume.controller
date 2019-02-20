@@ -5,7 +5,7 @@ AnimatorController:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: ImageAnimationController
+  m_Name: UIAnimationControllerVolume
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: showSecondImage
@@ -160,7 +160,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 45bef5518416a1e46a8f8ccbae288424, type: 2}
+  m_Motion: {fileID: 7400000, guid: ce0839c948edc7346a927d881ff41b10, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -210,7 +210,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 45bef5518416a1e46a8f8ccbae288424, type: 2}
+  m_Motion: {fileID: 7400000, guid: ce0839c948edc7346a927d881ff41b10, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -279,7 +279,7 @@ AnimatorStateMachine:
     m_Position: {x: 324, y: 324, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102042688005816072}
-    m_Position: {x: 288, y: 48, z: 0}
+    m_Position: {x: 288, y: 36, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102604007046511422}
     m_Position: {x: 288, y: -60, z: 0}

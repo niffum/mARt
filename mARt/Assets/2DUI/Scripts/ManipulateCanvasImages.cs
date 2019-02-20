@@ -5,8 +5,9 @@ using UnityEngine;
 using System.Linq;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
-public class ManipulateImages : MonoBehaviour {
+public class ManipulateCanvasImages : MonoBehaviour {
 
     [SerializeField]
     private string folder;
@@ -24,7 +25,7 @@ public class ManipulateImages : MonoBehaviour {
     [SerializeField]
     private TextMesh scrollBytext;
 
-    public Material material;
+    public RawImage rawImage;
 
     private bool scrollForward = true;
 
@@ -35,12 +36,11 @@ public class ManipulateImages : MonoBehaviour {
 
     public void Init()
     {
-        material = Instantiate(GetComponent<Renderer>().material);
-        GetComponent<Renderer>().material = material;
+        rawImage = GetComponent<RawImage>();
         AddImagesToList();
 
         depth = 0;
-        material.SetTexture("_MainTex", images[depth]);
+        rawImage.texture = images[depth];
     }
 
     int thresholdImageChange = 10;
@@ -80,7 +80,7 @@ public class ManipulateImages : MonoBehaviour {
     {
         depth = newDepth;
         currentdepth.text = (depth + 1) + "/" + images.Count;
-        material.SetTexture("_MainTex", images[depth]);
+        rawImage.texture = images[depth];
     }
 
     private void AddImagesToList()
@@ -115,12 +115,12 @@ public class ManipulateImages : MonoBehaviour {
 
     public void SetContrast(float contrast)
     {
-        material.SetFloat("_Contrast", contrast);
+        //material.SetFloat("_Contrast", contrast);
     }
 
     public void SetBrightness(float brightness)
     {
-        material.SetFloat("_Brightness", brightness);
+        //material.SetFloat("_Brightness", brightness);
     }
 
     public void ChangeImagePath(string newPath)
