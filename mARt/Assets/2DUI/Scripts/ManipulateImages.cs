@@ -9,14 +9,14 @@ using System;
 public class ManipulateImages : MonoBehaviour {
 
     [SerializeField]
-    private string folder;
+    public string folder;
 
     private List<Texture2D> images = new List<Texture2D>();
 
     private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
 
 
-    private int depth;
+    public int depth;
 
     [SerializeField]
     private TextMesh currentdepth;
@@ -39,7 +39,7 @@ public class ManipulateImages : MonoBehaviour {
         GetComponent<Renderer>().material = material;
         AddImagesToList();
 
-        depth = 0;
+        depth = 6;
         material.SetTexture("_MainTex", images[depth]);
     }
 

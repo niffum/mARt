@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
+using UnityEngine.SceneManagement;
 
 public class HandUIManager : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class HandUIManager : MonoBehaviour {
 
     [SerializeField]
     private ImageAndUiManager imageAndUiManager;
+
+    [SerializeField]
+    private RestoreState stateManager;
 
     private void Start()
     {
@@ -80,6 +84,11 @@ public class HandUIManager : MonoBehaviour {
     private void ToggleSynchroButton(bool active)
     {
 
+    }
+    public void ChangeScene()
+    {
+        stateManager.SaveCurrentState();
+        SceneManager.LoadScene("main_3D_old_Interactive");
     }
 
 }

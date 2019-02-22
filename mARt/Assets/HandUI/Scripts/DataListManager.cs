@@ -5,10 +5,10 @@ using UnityEngine;
 public class DataListManager : MonoBehaviour {
 
     [SerializeField]
-    private string firstDataSetPath;
+    public string firstDataSetPath;
 
     [SerializeField]
-    private string secondDataSetPath;
+    public string secondDataSetPath;
 
     [SerializeField]
     private GameObject firstDataSetTick;

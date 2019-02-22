@@ -33,4 +33,31 @@ public class UpdateImageValues : MonoBehaviour {
             }
         }
     }
+
+    public void SetContrast(float newContrast)
+    {
+        if (OnContrastChanged != null)
+        {
+            OnContrastChanged(newContrast);
+        }
+        contrastSlider.HorizontalSliderPercent = newContrast;
+    }
+
+    public void SetBrightness(float newBrightness)
+    {
+        if (OnBrightnessChanged != null)
+        {
+            OnBrightnessChanged(newBrightness);
+        }
+        brightnessSlider.HorizontalSliderPercent = newBrightness;
+    }
+
+    public float GetContrast()
+    {
+        return contrastSlider.HorizontalSliderPercent;
+    }
+    public float GetBrightness()
+    {
+        return brightnessSlider.HorizontalSliderPercent;
+    }
 }

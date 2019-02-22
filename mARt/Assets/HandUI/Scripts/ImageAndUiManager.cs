@@ -5,16 +5,18 @@ using UnityEngine;
 public class ImageAndUiManager : MonoBehaviour {
 
     [SerializeField]
-    private ManipulateImages primaryImage;
+    public ManipulateImages primaryImage;
 
     [SerializeField]
-    private ManipulateImages secondaryImage;
+    public ManipulateImages secondaryImage;
 
     [SerializeField]
-    private GameObject primaryUI;
+    private ManipulateImages primaryMask;
+    [SerializeField]
+    public GameObject primaryUI;
 
     [SerializeField]
-    private GameObject secondaryUI;
+    public GameObject secondaryUI;
 
     private Animator uiAnimator;
 
@@ -26,14 +28,16 @@ public class ImageAndUiManager : MonoBehaviour {
 
     [HideInInspector]
     public bool viewsAreSynchronized = true;
-
+    
     private void Start()
     {
+
         uiAnimator = GetComponent<Animator>();
 
         // Make sure materials are loaded before registering methods
         secondaryImage.Init();
         primaryImage.Init();
+        //primaryMask.Init();
 
         primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += primaryImage.Scroll;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += primaryImage.SetContrast;
@@ -59,6 +63,7 @@ public class ImageAndUiManager : MonoBehaviour {
                 SynchronizeViews();
             }
             displayingTwoViews = false;
+
         }
         primaryImage.ChangeImagePath(firstImagePath);
     }
