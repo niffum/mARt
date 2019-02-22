@@ -56,22 +56,22 @@ public class RestoreState3D : MonoBehaviour {
         {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
-                volumeAndUiManger.DisplayOneView(volumeListManager.first3DTexture, false);
+                volumeAndUiManger.DisplayOneView(volumeListManager.first3DTexture, volumeListManager.first3DMaskTexture, false);
             }
             else
             {
-                volumeAndUiManger.DisplayOneView(volumeListManager.second3DTexture, false);
+                volumeAndUiManger.DisplayOneView(volumeListManager.second3DTexture, volumeListManager.second3DMaskTexture, false);
             }
         }
         else
         {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
-                volumeAndUiManger.DisplayTwoViews(volumeListManager.first3DTexture, volumeListManager.second3DTexture, true);
+                volumeAndUiManger.DisplayTwoViews(volumeListManager.first3DTexture, volumeListManager.first3DMaskTexture, volumeListManager.second3DTexture, volumeListManager.second3DMaskTexture, true);
             }
             else
             {
-                volumeAndUiManger.DisplayTwoViews(volumeListManager.second3DTexture, volumeListManager.first3DTexture, true);
+                volumeAndUiManger.DisplayTwoViews(volumeListManager.second3DTexture, volumeListManager.second3DMaskTexture, volumeListManager.first3DTexture, volumeListManager.first3DMaskTexture, true);
             }
         }
 

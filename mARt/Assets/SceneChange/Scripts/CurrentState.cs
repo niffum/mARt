@@ -60,6 +60,8 @@ public class CurrentState : MonoBehaviour {
         oneViewIsDisplayed = true;
         viewsAreSynchronized = true;
 
+        maxDepth = 22;
+
     SceneManager.LoadScene("main_2D");
     }
 
@@ -68,6 +70,8 @@ public class CurrentState : MonoBehaviour {
 
     public ViewInfo primaryViewInfo;
     public ViewInfo secondaryViewInfo;
+
+    public int maxDepth;
 
     public struct ViewInfo
     {

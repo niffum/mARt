@@ -26,6 +26,10 @@ namespace VolumeRendering
         public Action<float> OnIntensitySlid;
         public Action<float> OnThresholdSlid;
 
+        private bool showMask = false;
+        [SerializeField]
+        private GameObject inactiveMaskIcon;
+
         [SerializeField]
         public List<VolumeRendering> volumes;
 
@@ -80,7 +84,17 @@ namespace VolumeRendering
             sliderIntensity.HorizontalSliderValue = volumes[0].intensity;
             sliderThreshold.HorizontalSliderValue = volumes[0].threshold;
         }
-        
+
+        public void ToggleMask()
+        {
+            showMask = !showMask;
+            inactiveMaskIcon.SetActive(!showMask);
+            foreach (var volume in volumes)
+            {
+                volume.showMask = showMask;
+            }
+        }
+
     }
 
 }

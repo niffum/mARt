@@ -31,13 +31,15 @@ namespace VolumeRendering
         [Range(0f, 1f)] public float sliceZMin = 0.0f, sliceZMax = 1.0f;
         public Quaternion axis = Quaternion.identity;
 
+        [Range(0.0f, 20f)] public float shininess = 5f;
+
         public Texture volume;
         public Texture volumeMask;
 
         [SerializeField]
         public Texture2D transferColor;
 
-        public bool showMask;
+        public bool showMask = false;
 
 
         protected virtual void Start () {
@@ -54,6 +56,7 @@ namespace VolumeRendering
             material.SetColor("_ColorMask", colorMask);
             material.SetFloat("_Threshold", threshold);
             material.SetFloat("_Intensity", intensity);
+            material.SetFloat("_Shininess", shininess);
             material.SetFloat("_IntensityMask", intensityMask);
             material.SetVector("_SliceMin", new Vector3(sliceXMin, sliceYMin, sliceZMin));
             material.SetVector("_SliceMax", new Vector3(sliceXMax, sliceYMax, sliceZMax));
@@ -153,8 +156,11 @@ namespace VolumeRendering
         {
             threshold = thresholdValue;
         }
+
+        
     }
 
+   
 }
 
 

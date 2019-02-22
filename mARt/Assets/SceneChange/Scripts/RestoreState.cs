@@ -36,6 +36,8 @@ public class RestoreState : MonoBehaviour {
         currentState.primaryViewInfo.showsFirstDataSet = (imageAndUiManger.primaryImage.folder == dataListManager.firstDataSetPath);
         currentState.secondaryViewInfo.showsFirstDataSet = (imageAndUiManger.secondaryImage.folder == dataListManager.firstDataSetPath);
 
+        currentState.maxDepth = imageAndUiManger.primaryImage.maxDepth;
+
     }
 
     private void RestoreCurrentState()

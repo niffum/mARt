@@ -11,6 +11,12 @@ public class VolumeListManager : MonoBehaviour {
     public Texture second3DTexture;
 
     [SerializeField]
+    public Texture first3DMaskTexture;
+
+    [SerializeField]
+    public Texture second3DMaskTexture;
+
+    [SerializeField]
     private GameObject firstDataSetTick;
 
     [SerializeField]
@@ -34,12 +40,12 @@ public class VolumeListManager : MonoBehaviour {
             {
                 // Load Data to secondary image
                 // Enable double view
-                volumeAndUiManager.DisplayTwoViews(second3DTexture, first3DTexture, true);
+                volumeAndUiManager.DisplayTwoViews(second3DTexture, second3DMaskTexture, first3DTexture, first3DMaskTexture, true);
             }
             else
             {
                 // Load Data to primary image
-                volumeAndUiManager.DisplayOneView(first3DTexture, false);
+                volumeAndUiManager.DisplayOneView(first3DTexture, first3DMaskTexture, false);
             }
         }
         else if(!secondDataSetSelected)
@@ -51,7 +57,7 @@ public class VolumeListManager : MonoBehaviour {
         else
         {
             // Deselect view 
-            volumeAndUiManager.DisplayOneView(second3DTexture, true);
+            volumeAndUiManager.DisplayOneView(second3DTexture, second3DMaskTexture, true);
         }
     }
 
@@ -65,12 +71,12 @@ public class VolumeListManager : MonoBehaviour {
             if (firstDataSetSelected)
             {
                 // Load Data to secondary image
-                volumeAndUiManager.DisplayTwoViews(first3DTexture, second3DTexture, true);
+                volumeAndUiManager.DisplayTwoViews(first3DTexture, first3DMaskTexture,  second3DTexture, second3DMaskTexture, true);
             }
             else
             {
                 // Load Data to primary image
-                volumeAndUiManager.DisplayOneView(second3DTexture, false);
+                volumeAndUiManager.DisplayOneView(second3DTexture, second3DMaskTexture, false);
             }
         }
         else if (!firstDataSetSelected)
@@ -82,7 +88,7 @@ public class VolumeListManager : MonoBehaviour {
         else
         {
             // Deselect view 
-            volumeAndUiManager.DisplayOneView(first3DTexture, true);
+            volumeAndUiManager.DisplayOneView(first3DTexture, first3DMaskTexture, true);
         }
     }
 }

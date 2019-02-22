@@ -35,7 +35,7 @@ public class VolumeAndUiManager : MonoBehaviour {
    
 
     //public void DisplayOneView(string dataSetName)
-    public void DisplayOneView(Texture first3DTexture, bool switchToOneView)
+    public void DisplayOneView(Texture first3DTexture, Texture first3DMaskTexture, bool switchToOneView)
     {
         if (switchToOneView)
         {
@@ -48,11 +48,12 @@ public class VolumeAndUiManager : MonoBehaviour {
             displayingTwoViews = false;
         }
         primaryVolume.volume = first3DTexture;
+        primaryVolume.volumeMask = first3DMaskTexture;
     }
 
 
     //public void DisplayTwoViews(string dataSetName1, string dataSetName2)
-    public void DisplayTwoViews(Texture first3DTexture, Texture second3DTexture, bool switchToTwoViews)
+    public void DisplayTwoViews(Texture first3DTexture, Texture first3DMaskTexture, Texture second3DTexture, Texture second3DMaskTexture, bool switchToTwoViews)
     {
         if (switchToTwoViews)
         {
@@ -61,7 +62,9 @@ public class VolumeAndUiManager : MonoBehaviour {
             displayingTwoViews = true;
         }
         primaryVolume.volume = first3DTexture;
+        primaryVolume.volumeMask = first3DMaskTexture;
         secondaryVolume.volume = second3DTexture;
+        secondaryVolume.volumeMask = second3DMaskTexture;
     }
 
     public void SynchronizeViews()

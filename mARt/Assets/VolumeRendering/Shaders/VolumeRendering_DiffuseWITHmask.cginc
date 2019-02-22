@@ -12,7 +12,7 @@ half4 _ColorMask;
 sampler3D _Volume;
 sampler3D _VolumeMask;
 sampler2D _TransferColor;
-half _Intensity, _Threshold, _IntensityMask;
+half _Intensity, _Threshold, _IntensityMask, _Shininess;
 half3 _SliceMin, _SliceMax;
 float4x4 _AxisRotationMatrix;
 float _ShowMask;
@@ -156,7 +156,7 @@ float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 
 	// Specular
 	float3 specularColor = float3(1.0, 1.0, 1.0);
-	float shininessPower = 10.0;
+	float shininessPower = _Shininess; //5.0;
 
 	float3 reflectionDir = 0.5 + reflect(-lightDir, normal);
 
@@ -224,13 +224,13 @@ fixed4 frag(v2f i) : SV_Target
 		// Look up transfer function color
 		//src = get_transferColor(isoValue);
     } 
+
+	float3 lightDir = 0.5 + normalize(_WorldSpaceLightPos0.xyz);//normalize((_WorldSpaceLightPos0 - i.vertex).xyz);
+	float3 viewDir = 0.5 + normalize(i.local);//normalize(_WorldSpaceCameraPos - i.vertex.xyz);
+
 	if (isoValue > 0.0)
 	{
 		float3 gradient = get_gradient(uv, currentPoint);
-
-		float3 lightDir = 0.5 + normalize(_WorldSpaceLightPos0.xyz);//normalize((_WorldSpaceLightPos0 - i.vertex).xyz);
-		float3 viewDir = 0.5 + normalize(i.local);//normalize(_WorldSpaceCameraPos - i.vertex.xyz);
-
 		src.rgb = phong(gradient, lightDir, viewDir, src.rgb);
 	}
 
@@ -242,12 +242,44 @@ fixed4 frag(v2f i) : SV_Target
     // blend
 	// front to back
     dst = (1.0 - dst.a) * src + dst;
-   
+
+	// Sample mask
+	
+	if (_ShowMask == 1)
+	{
+
+		float isoValueMask = sample_volume_mask(uv, currentPoint);
+		float4 srcMask = float4(isoValueMask, isoValueMask, isoValueMask, isoValueMask);
+
+		if (isoValueMask > 0.0)
+		{
+			float3 gradientMask = get_gradient(uv, currentPoint);
+			srcMask.rgb = phong(gradientMask, lightDir, viewDir, srcMask.rgb);
+		}
+
+		srcMask.a *= 0.5;
+		srcMask.rgb *= srcMask.a;
+
+		dstMask = (1.0 - dstMask.a) * srcMask + dstMask;
+	}
+	
 	currentPoint += stepRay;
 
     if (dst.a > _Threshold) break;
   }
-
+  
+  if (dst.a > dstMask.a)
+  {
+	  return saturate(dst);
+  }
+  else
+  {
+	  if (_ShowMask == 1)
+	  {
+		  return saturate(dstMask) * _ColorMask + saturate(dst);
+	  }
+  }
+  
   return saturate(dst);
   // diffuse is transfer color 
   // normal is gradient
