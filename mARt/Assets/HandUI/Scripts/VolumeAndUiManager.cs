@@ -11,11 +11,12 @@ public class VolumeAndUiManager : MonoBehaviour {
     private VolumeRendering.VolumeRendering secondaryVolume;
 
     [SerializeField]
-    private GameObject primaryUI;
+    private VolumeRendering.VolumeRenderingController3D primaryController;
 
     [SerializeField]
-    private GameObject secondaryUI;
+    private VolumeRendering.VolumeRenderingController3D secondaryController;
 
+    [SerializeField]
     private Animator uiAnimator;
 
     [SerializeField]
@@ -29,7 +30,7 @@ public class VolumeAndUiManager : MonoBehaviour {
 
     private void Start()
     {
-        uiAnimator = GetComponent<Animator>();
+        //uiAnimator = GetComponent<Animator>();
     }
    
 
@@ -69,7 +70,11 @@ public class VolumeAndUiManager : MonoBehaviour {
         {
             // Pplay animation
             // Hide second UI
+            
             uiAnimator.SetTrigger("hideSecondUI");
+
+            primaryController.volumes.Add(secondaryVolume);
+            secondaryController.volumes.Add(primaryVolume);
             /*
             secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryVolume.Scroll; 
             primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryVolume.Scroll;
@@ -91,6 +96,9 @@ public class VolumeAndUiManager : MonoBehaviour {
             // Display second UI
             uiAnimator.SetTrigger("showSecondUI");
             // Reconnent Interactions
+
+            secondaryController.volumes.Remove(primaryVolume);
+            primaryController.volumes.Remove(secondaryVolume);
             /*
             secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryVolume.Scroll;
             primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryVolume.Scroll;

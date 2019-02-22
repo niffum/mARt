@@ -129,6 +129,30 @@ namespace VolumeRendering
             Destroy(material);
         }
 
+        public void UpdateXSlice(float sliceValue)
+        {
+            sliceXMin = Mathf.Min(sliceValue, sliceXMax - threshold);
+        }
+
+        public void UpdateYSlice(float sliceValue)
+        {
+            sliceYMin = Mathf.Min(sliceValue, sliceYMax - threshold);
+        }
+
+        public void UpdateZSlice(float sliceValue)
+        {
+            sliceZMin = Mathf.Min(sliceValue, sliceZMax - threshold);
+        }
+
+        public void UpdateIntensity(float intensityValue)
+        {
+            intensity = intensityValue;
+        }
+
+        public void UpdateThreshold(float thresholdValue)
+        {
+            threshold = thresholdValue;
+        }
     }
 
 }

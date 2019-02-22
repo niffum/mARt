@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
+using UnityEngine.SceneManagement;
 
 public class HandUIManager3D : MonoBehaviour {
 
@@ -12,6 +13,9 @@ public class HandUIManager3D : MonoBehaviour {
 
     [SerializeField]
     private VolumeAndUiManager volumeAndUiManager;
+
+    [SerializeField]
+    private GameObject desynchIcon;
 
     private void Start()
     {
@@ -44,8 +48,12 @@ public class HandUIManager3D : MonoBehaviour {
                 volumeAndUiManager.DesynchronizeViews();
             }
             volumeAndUiManager.viewsAreSynchronized = !volumeAndUiManager.viewsAreSynchronized;
+            desynchIcon.SetActive(!volumeAndUiManager.viewsAreSynchronized);
         }
     }
 
-
+    public void ChangeScene()
+    {
+        SceneManager.LoadScene("main_2D");
+    }
 }

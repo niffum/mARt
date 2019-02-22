@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using Leap.Unity.Interaction;
+using System;
 
 namespace VolumeRendering
 {
 
     public class VolumeRenderingController3D : MonoBehaviour {
 
-        [SerializeField] protected VolumeRendering volume;
+        //[SerializeField] protected VolumeRendering volume;
         [SerializeField] protected InteractionSlider sliderXMin, sliderYMin,  sliderZMin;
         [SerializeField] protected InteractionSlider sliderIntensity, sliderThreshold;
         [SerializeField] protected Transform axis;
@@ -19,53 +20,67 @@ namespace VolumeRendering
 
         private Color maskColor;
 
+        public Action<float> OnSliceXSlid;
+        public Action<float> OnSliceYSlid;
+        public Action<float> OnSliceZSlid;
+        public Action<float> OnIntensitySlid;
+        public Action<float> OnThresholdSlid;
+
+        [SerializeField]
+        public List<VolumeRendering> volumes;
+
         void Update()
         {
-
-            volume.axis = axis.rotation;
+            foreach(var volume in volumes)
+            {
+                volume.axis = axis.rotation;
+            }
 
             if(sliderXMin.wasSlid)
             {
-                volume.sliceXMin = sliderXMin.HorizontalSliderValue = Mathf.Min(sliderXMin.HorizontalSliderValue, volume.sliceXMax - threshold);
+                foreach (var volume in volumes)
+                {
+                    volume.sliceXMin = sliderXMin.HorizontalSliderValue = Mathf.Min(sliderXMin.HorizontalSliderValue, volume.sliceXMax - threshold);
+                }
             }
             if (sliderYMin.wasSlid)
             {
-                volume.sliceYMin = sliderYMin.HorizontalSliderValue = Mathf.Min(sliderYMin.HorizontalSliderValue, volume.sliceYMax - threshold);
+                foreach(var volume in volumes)
+                {
+                    volume.sliceYMin = sliderYMin.HorizontalSliderValue = Mathf.Min(sliderYMin.HorizontalSliderValue, volume.sliceYMax - threshold);
+                }
             }
             if (sliderZMin.wasSlid)
             {
-                volume.sliceZMin = sliderZMin.HorizontalSliderValue = Mathf.Min(sliderZMin.HorizontalSliderValue, volume.sliceZMax - threshold);
+                foreach (var volume in volumes)
+                {
+                    volume.sliceZMin = sliderZMin.HorizontalSliderValue = Mathf.Min(sliderZMin.HorizontalSliderValue, volume.sliceZMax - threshold);
+                }
             }
 
             if (sliderIntensity.wasSlid)
             {
-                volume.intensity = sliderIntensity.HorizontalSliderValue;
+                foreach (var volume in volumes)
+                {
+                    volume.intensity = sliderIntensity.HorizontalSliderValue;
+                }
             }
             if (sliderThreshold.wasSlid)
             {
-                volume.threshold = sliderThreshold.HorizontalSliderValue;
+                foreach (var volume in volumes)
+                {
+                    volume.threshold = sliderThreshold.HorizontalSliderValue;
+                }
             }
-        }
 
-        public void OnIntensity(float v)
-        {
-            volume.intensity = v;
+            // set Slider position when only volume was changed
+            sliderXMin.HorizontalSliderValue = volumes[0].sliceXMin;
+            sliderYMin.HorizontalSliderValue = volumes[0].sliceYMin;
+            sliderZMin.HorizontalSliderValue = volumes[0].sliceZMin;
+            sliderIntensity.HorizontalSliderValue = volumes[0].intensity;
+            sliderThreshold.HorizontalSliderValue = volumes[0].threshold;
         }
-        public void OnMaskIntensity(float v)
-        {
-            volume.intensityMask = v;
-        }
-
-        public void OnMaskToggle()
-        {
-            volume.showMask = !volume.showMask;
-        }
-
-        public void OnThreshold(float v)
-        {
-            volume.threshold = v;
-        }
-
+        
     }
 
 }
