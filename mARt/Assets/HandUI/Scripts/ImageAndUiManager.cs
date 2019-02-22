@@ -11,8 +11,6 @@ public class ImageAndUiManager : MonoBehaviour {
     public ManipulateImages secondaryImage;
 
     [SerializeField]
-    private ManipulateImages primaryMask;
-    [SerializeField]
     public GameObject primaryUI;
 
     [SerializeField]
@@ -42,17 +40,19 @@ public class ImageAndUiManager : MonoBehaviour {
         primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += primaryImage.Scroll;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += primaryImage.SetContrast;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += primaryImage.SetBrightness;
+        primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += primaryImage.ToggleMask;
 
         // This needs to happen whe second image is activated the first time
         primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryImage.Scroll;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
+        primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
 
     }
    
 
     //public void DisplayOneView(string dataSetName)
-    public void DisplayOneView(string firstImagePath, bool switchToOneView)
+    public void DisplayOneView(string firstImagePath, string firstMaskPath, bool switchToOneView)
     {
         if (switchToOneView)
         {
@@ -65,11 +65,11 @@ public class ImageAndUiManager : MonoBehaviour {
             displayingTwoViews = false;
 
         }
-        primaryImage.ChangeImagePath(firstImagePath);
+        primaryImage.ChangeImagePath(firstImagePath, firstMaskPath);
     }
 
     //public void DisplayTwoViews(string dataSetName1, string dataSetName2)
-    public void DisplayTwoViews(string firstImagePath, string secondImagePath, bool switchToTwoViews)
+    public void DisplayTwoViews(string firstImagePath, string firstMaskPath,  string secondImagePath, string secondMaskPath, bool switchToTwoViews)
     {
         if (switchToTwoViews)
         {
@@ -77,8 +77,8 @@ public class ImageAndUiManager : MonoBehaviour {
             imageAnimator.SetTrigger("showSecondImage");
             displayingTwoViews = true;
         }
-        primaryImage.ChangeImagePath(firstImagePath);
-        secondaryImage.ChangeImagePath(secondImagePath);
+        primaryImage.ChangeImagePath(firstImagePath, firstMaskPath);
+        secondaryImage.ChangeImagePath(secondImagePath, secondMaskPath);
     }
 
     public void SynchronizeViews()
@@ -97,6 +97,9 @@ public class ImageAndUiManager : MonoBehaviour {
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryImage.SetBrightness;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
+
+            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
+            primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
         }
     }
 
@@ -116,6 +119,9 @@ public class ImageAndUiManager : MonoBehaviour {
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryImage.SetBrightness;
+
+            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle = secondaryImage.ToggleMask;
+            primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
         }
     }
 }

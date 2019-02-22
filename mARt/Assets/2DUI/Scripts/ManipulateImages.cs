@@ -11,7 +11,11 @@ public class ManipulateImages : MonoBehaviour {
     [SerializeField]
     public string folder;
 
+    [SerializeField]
+    public string folderMasks;
+
     private List<Texture2D> images = new List<Texture2D>();
+    private List<Texture2D> masks = new List<Texture2D>();
 
     private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
 
@@ -32,19 +36,28 @@ public class ManipulateImages : MonoBehaviour {
     int lastScrollBy;
 
     Vector3 lastPosition;
-    
+
+    [SerializeField]
+    private Color maskColor;
+
+    public bool showMask = false;
+
 
     public void Init()
     {
         material = Instantiate(GetComponent<Renderer>().material);
         GetComponent<Renderer>().material = material;
         AddImagesToList();
+        AddMasksToList();
 
         depth = 0;
         
         material.SetTexture("_MainTex", images[depth]);
+        material.SetTexture("_MaskTex", masks[depth]);
+        material.SetColor("_ColorMask", maskColor);
     }
 
+   
     int thresholdImageChange = 10;
     int imageChangeCounterPositive = 0;
     int imageChangeCounterNegative = 0;
@@ -83,6 +96,8 @@ public class ManipulateImages : MonoBehaviour {
         depth = newDepth;
         currentdepth.text = (depth + 1) + "/" + images.Count;
         material.SetTexture("_MainTex", images[depth]);
+        if(masks.Count > depth)
+            material.SetTexture("_MaskTex", masks[depth]);
     }
 
     private void AddImagesToList()
@@ -96,6 +111,18 @@ public class ManipulateImages : MonoBehaviour {
             images.Add(tex);
         }
         maxDepth = images.Count;
+    }
+
+    private void AddMasksToList()
+    {
+        var maskNames = GetImagesInFolder("" + Application.streamingAssetsPath + folderMasks);
+        Debug.LogWarning(Application.streamingAssetsPath + folderMasks);
+        foreach (var maskFile in maskNames)
+        {
+            var tex = new Texture2D(2, 2);
+            bool loaded = tex.LoadImage(File.ReadAllBytes(maskFile));
+            masks.Add(tex);
+        }
     }
     private static string[] GetImagesInFolder(string folder)
     {
@@ -126,11 +153,28 @@ public class ManipulateImages : MonoBehaviour {
         material.SetFloat("_Brightness", brightness);
     }
 
-    public void ChangeImagePath(string newPath)
+    public void ChangeImagePath(string newPath, string maskPath)
     {
         folder = newPath;
+        folderMasks = maskPath;
         images.Clear();
+        masks.Clear();
         AddImagesToList();
+        AddMasksToList();
         ChangeCanvasImage(depth);
+    }
+
+    public void ToggleMask()
+    {
+        showMask = !showMask;
+        if (showMask)
+        {
+            material.SetFloat("_ShowMask", 1);
+        }
+        else
+        {
+            material.SetFloat("_ShowMask", 0);
+        }
+
     }
 }

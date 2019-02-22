@@ -11,6 +11,12 @@ public class DataListManager : MonoBehaviour {
     public string secondDataSetPath;
 
     [SerializeField]
+    public string firstMaskSetPath;
+
+    [SerializeField]
+    public string secondMaskSetPath;
+
+    [SerializeField]
     private GameObject firstDataSetTick;
 
     [SerializeField]
@@ -34,12 +40,12 @@ public class DataListManager : MonoBehaviour {
             {
                 // Load Data to secondary image
                 // Enable double view
-                imageAndUiManager.DisplayTwoViews(secondDataSetPath, firstDataSetPath, true);
+                imageAndUiManager.DisplayTwoViews(secondDataSetPath, secondMaskSetPath, firstDataSetPath, firstMaskSetPath, true);
             }
             else
             {
                 // Load Data to primary image
-                imageAndUiManager.DisplayOneView(firstDataSetPath, false);
+                imageAndUiManager.DisplayOneView(firstDataSetPath, firstMaskSetPath, false);
             }
         }
         else if(!secondDataSetSelected)
@@ -51,7 +57,7 @@ public class DataListManager : MonoBehaviour {
         else
         {
             // Deselect view 
-            imageAndUiManager.DisplayOneView(secondDataSetPath, true);
+            imageAndUiManager.DisplayOneView(secondDataSetPath, secondMaskSetPath, true);
         }
     }
 
@@ -65,12 +71,12 @@ public class DataListManager : MonoBehaviour {
             if (firstDataSetSelected)
             {
                 // Load Data to secondary image
-                imageAndUiManager.DisplayTwoViews(firstDataSetPath, secondDataSetPath, true);
+                imageAndUiManager.DisplayTwoViews(firstDataSetPath, firstMaskSetPath, secondDataSetPath, secondMaskSetPath, true);
             }
             else
             {
                 // Load Data to primary image
-                imageAndUiManager.DisplayOneView(secondDataSetPath, false);
+                imageAndUiManager.DisplayOneView(secondDataSetPath, secondMaskSetPath, false);
             }
         }
         else if (!firstDataSetSelected)
@@ -82,7 +88,7 @@ public class DataListManager : MonoBehaviour {
         else
         {
             // Deselect view 
-            imageAndUiManager.DisplayOneView(firstDataSetPath, true);
+            imageAndUiManager.DisplayOneView(firstDataSetPath, firstMaskSetPath, true);
         }
     }
 }

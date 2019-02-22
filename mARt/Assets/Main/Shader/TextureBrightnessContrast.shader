@@ -3,8 +3,12 @@
 	Properties
 	{
 		_MainTex ("Texture", 2D) = "white" {}
+		_MaskTex("MaskTexture", 2D) = "white" {}
+		_ColorMask("ColorMask", Color) = (1, 1, 1, 1)
 		_Brightness("Brightness", Range(0,1)) = 0.5
 		_Contrast("Contrast", Range(0,1)) = 0.5
+
+		_ShowMask("ShowMask", Float) = 0
 	}
 	SubShader
 	{
@@ -35,7 +39,11 @@
 			};
 
 			sampler2D _MainTex;
+			sampler2D _MaskTex;
+			half4 _ColorMask;
 			float4 _MainTex_ST;
+
+			float _ShowMask;
 
 			float _Contrast, _Brightness;
 			
@@ -70,8 +78,16 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
+				fixed4 maskColor = tex2D(_MaskTex, i.uv);
+				fixed4 col = float4(1, 1, 1, 1);
 				// sample the texture
-				fixed4 col = applyContrastAndBrightness( tex2D(_MainTex, i.uv), _Contrast, _Brightness);
+				if (maskColor.r > 0 && _ShowMask == 1)
+				{
+					col = applyContrastAndBrightness(tex2D(_MainTex, i.uv), _Contrast, _Brightness) * (_ColorMask);
+				}
+				else {
+					col = applyContrastAndBrightness(tex2D(_MainTex, i.uv), _Contrast, _Brightness);
+				}
 				//fixed4 col = tex2D(_MainTex, i.uv);
 
 				return col;

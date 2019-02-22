@@ -14,6 +14,7 @@ public class UpdateImageValues : MonoBehaviour {
 
     public Action<float> OnContrastChanged;
     public Action<float> OnBrightnessChanged;
+    public Action OnMaskToggle;
     	
 	// Update is called once per frame
 	void Update () {
@@ -59,5 +60,10 @@ public class UpdateImageValues : MonoBehaviour {
     public float GetBrightness()
     {
         return brightnessSlider.HorizontalSliderPercent;
+    }
+
+    public void ToggleMask()
+    {
+        OnMaskToggle();
     }
 }

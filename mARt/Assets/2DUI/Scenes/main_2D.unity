@@ -2761,7 +2761,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryImage: {fileID: 1443573361}
   secondaryImage: {fileID: 729339810}
-  primaryMask: {fileID: 0}
   primaryUI: {fileID: 2037201838}
   secondaryUI: {fileID: 278017282}
   imageAnimator: {fileID: 937747821}
@@ -3489,6 +3488,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 278017284}
     m_Modifications:
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.0817
@@ -3529,7 +3533,7 @@ Prefab:
         type: 2}
       propertyPath: _manager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1840902371}
     - target: {fileID: 54104857292544158, guid: df84af96020c94b4695aec5c3427db16,
         type: 2}
       propertyPath: m_Interpolate
@@ -3551,6 +3555,31 @@ Prefab:
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.58586
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1990066026}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMask
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84af96020c94b4695aec5c3427db16, type: 2}
@@ -5647,11 +5676,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   folder: /MRTImages/02
+  folderMasks: /Masks/02
   depth: 0
   maxDepth: 0
   currentdepth: {fileID: 1546257911}
   scrollBytext: {fileID: 55635174}
   material: {fileID: 0}
+  maskColor: {r: 0, g: 0, b: 0, a: 0}
+  showMask: 0
 --- !u!82 &729339811
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7297,7 +7329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &955846920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9429,6 +9461,11 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 2037201839}
     m_Modifications:
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0.0817
@@ -9469,7 +9506,7 @@ Prefab:
         type: 2}
       propertyPath: _manager
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1840902371}
     - target: {fileID: 54104857292544158, guid: df84af96020c94b4695aec5c3427db16,
         type: 2}
       propertyPath: m_Interpolate
@@ -9491,6 +9528,31 @@ Prefab:
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalScale.z
       value: 0.585858
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 551230098}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ToggleMask
+      objectReference: {fileID: 0}
+    - target: {fileID: 114193398573130750, guid: df84af96020c94b4695aec5c3427db16,
+        type: 2}
+      propertyPath: _OnPress.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: df84af96020c94b4695aec5c3427db16, type: 2}
@@ -10173,11 +10235,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   folder: /MRTImages/01
+  folderMasks: /Masks/01
   depth: 0
   maxDepth: 0
   currentdepth: {fileID: 2072766252}
   scrollBytext: {fileID: 1795117070}
   material: {fileID: 0}
+  maskColor: {r: 1, g: 0, b: 0, a: 1}
+  showMask: 0
 --- !u!114 &1443573362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10503,6 +10568,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstDataSetPath: /MRTImages/01
   secondDataSetPath: /MRTImages/02
+  firstMaskSetPath: /Masks/01
+  secondMaskSetPath: /Masks/02
   firstDataSetTick: {fileID: 1081530356}
   secondDataSetTick: {fileID: 772422868}
   imageAndUiManager: {fileID: 322146377}

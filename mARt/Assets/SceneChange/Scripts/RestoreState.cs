@@ -48,22 +48,22 @@ public class RestoreState : MonoBehaviour {
         {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
-                imageAndUiManger.DisplayOneView(dataListManager.firstDataSetPath, false);
+                imageAndUiManger.DisplayOneView(dataListManager.firstDataSetPath, dataListManager.firstMaskSetPath,  false);
             }
             else
             {
-                imageAndUiManger.DisplayOneView(dataListManager.secondDataSetPath, false);
+                imageAndUiManger.DisplayOneView(dataListManager.secondDataSetPath, dataListManager.secondMaskSetPath, false);
             }
         }
         else
         {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
-                imageAndUiManger.DisplayTwoViews(dataListManager.firstDataSetPath, dataListManager.secondDataSetPath, true);
+                imageAndUiManger.DisplayTwoViews(dataListManager.firstDataSetPath, dataListManager.firstMaskSetPath, dataListManager.secondDataSetPath, dataListManager.secondMaskSetPath, true);
             }
             else
             {
-                imageAndUiManger.DisplayTwoViews(dataListManager.secondDataSetPath, dataListManager.firstDataSetPath, true);
+                imageAndUiManger.DisplayTwoViews(dataListManager.secondDataSetPath, dataListManager.secondMaskSetPath, dataListManager.firstDataSetPath, dataListManager.firstMaskSetPath, true);
             }
         }
 
