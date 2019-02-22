@@ -5648,6 +5648,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folder: /MRTImages/02
   depth: 0
+  maxDepth: 0
   currentdepth: {fileID: 1546257911}
   scrollBytext: {fileID: 55635174}
   material: {fileID: 0}
@@ -6754,7 +6755,6 @@ GameObject:
   m_Component:
   - component: {fileID: 894503020}
   - component: {fileID: 894503023}
-  - component: {fileID: 894503022}
   - component: {fileID: 894503021}
   m_Layer: 0
   m_Name: Plane
@@ -6810,20 +6810,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!64 &894503022
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 894503019}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Convex: 0
-  m_CookingOptions: 14
-  m_SkinWidth: 0.01
-  m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &894503023
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -10188,6 +10174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   folder: /MRTImages/01
   depth: 0
+  maxDepth: 0
   currentdepth: {fileID: 2072766252}
   scrollBytext: {fileID: 1795117070}
   material: {fileID: 0}

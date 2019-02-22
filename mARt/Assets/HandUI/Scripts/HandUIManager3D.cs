@@ -17,6 +17,9 @@ public class HandUIManager3D : MonoBehaviour {
     [SerializeField]
     private GameObject desynchIcon;
 
+    [SerializeField]
+    private RestoreState3D stateManager;
+
     private void Start()
     {
         dataListTween.PlayBackward();
@@ -54,6 +57,7 @@ public class HandUIManager3D : MonoBehaviour {
 
     public void ChangeScene()
     {
+        stateManager.SaveCurrentState();
         SceneManager.LoadScene("main_2D");
     }
 }

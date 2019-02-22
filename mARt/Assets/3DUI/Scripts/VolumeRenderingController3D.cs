@@ -12,8 +12,8 @@ namespace VolumeRendering
     public class VolumeRenderingController3D : MonoBehaviour {
 
         //[SerializeField] protected VolumeRendering volume;
-        [SerializeField] protected InteractionSlider sliderXMin, sliderYMin,  sliderZMin;
-        [SerializeField] protected InteractionSlider sliderIntensity, sliderThreshold;
+        [SerializeField] public InteractionSlider sliderXMin, sliderYMin,  sliderZMin;
+        [SerializeField] public InteractionSlider sliderIntensity, sliderThreshold;
         [SerializeField] protected Transform axis;
 
         const float threshold = 0.025f;

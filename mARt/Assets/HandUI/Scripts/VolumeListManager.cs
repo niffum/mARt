@@ -5,10 +5,10 @@ using UnityEngine;
 public class VolumeListManager : MonoBehaviour {
 
     [SerializeField]
-    private Texture first3DTexture;
+    public Texture first3DTexture;
 
     [SerializeField]
-    private Texture second3DTexture;
+    public Texture second3DTexture;
 
     [SerializeField]
     private GameObject firstDataSetTick;

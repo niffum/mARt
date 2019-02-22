@@ -6266,6 +6266,7 @@ MonoBehaviour:
   dataListTween: {fileID: 114276595}
   volumeAndUiManager: {fileID: 186728341}
   desynchIcon: {fileID: 1022833674}
+  stateManager: {fileID: 1797499209}
 --- !u!4 &327804280
 Transform:
   m_ObjectHideFlags: 0
@@ -22095,12 +22096,12 @@ GameObject:
   - component: {fileID: 1797499210}
   - component: {fileID: 1797499209}
   m_Layer: 0
-  m_Name: RestoreState
+  m_Name: StateManger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22109,11 +22110,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1797499208}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ab7e234097e26b47bed4b9c93af1864, type: 3}
+  m_Script: {fileID: 11500000, guid: a7ec0edb58816234983aec21ec57dcba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  imageAndUiManger: {fileID: 0}
-  dataListManager: {fileID: 0}
+  volumeAndUiManger: {fileID: 186728341}
+  volumeListManager: {fileID: 690783500}
 --- !u!4 &1797499210
 Transform:
   m_ObjectHideFlags: 0
@@ -23082,7 +23083,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1883464224
 Transform:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public class ManipulateImages : MonoBehaviour {
 
 
     public int depth;
+    public int maxDepth;
 
     [SerializeField]
     private TextMesh currentdepth;
@@ -39,7 +40,8 @@ public class ManipulateImages : MonoBehaviour {
         GetComponent<Renderer>().material = material;
         AddImagesToList();
 
-        depth = 6;
+        depth = 0;
+        
         material.SetTexture("_MainTex", images[depth]);
     }
 
@@ -93,6 +95,7 @@ public class ManipulateImages : MonoBehaviour {
             bool loaded = tex.LoadImage(File.ReadAllBytes(imageFile));
             images.Add(tex);
         }
+        maxDepth = images.Count;
     }
     private static string[] GetImagesInFolder(string folder)
     {

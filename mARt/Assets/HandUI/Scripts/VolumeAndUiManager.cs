@@ -5,16 +5,16 @@ using UnityEngine;
 public class VolumeAndUiManager : MonoBehaviour {
 
     [SerializeField]
-    private VolumeRendering.VolumeRendering primaryVolume;
+    public VolumeRendering.VolumeRendering primaryVolume;
 
     [SerializeField]
-    private VolumeRendering.VolumeRendering secondaryVolume;
+    public VolumeRendering.VolumeRendering secondaryVolume;
 
     [SerializeField]
-    private VolumeRendering.VolumeRenderingController3D primaryController;
+    public VolumeRendering.VolumeRenderingController3D primaryController;
 
     [SerializeField]
-    private VolumeRendering.VolumeRenderingController3D secondaryController;
+    public VolumeRendering.VolumeRenderingController3D secondaryController;
 
     [SerializeField]
     private Animator uiAnimator;
