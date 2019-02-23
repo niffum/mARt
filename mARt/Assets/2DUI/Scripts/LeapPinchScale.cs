@@ -86,10 +86,6 @@ public class LeapPinchScale : MonoBehaviour {
             transform.SetParent(_anchor, true);
         }
     }
-    public void SetOriginPosition()
-    {
-        originPosition = transform.position;
-    }
 
     private void transformDoubleAnchor()
     {
@@ -101,7 +97,6 @@ public class LeapPinchScale : MonoBehaviour {
             _anchor.localScale = Vector3.one * Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
             
             _anchor.parent = parent;
-            transform.position = originPosition;
 
         }
     }

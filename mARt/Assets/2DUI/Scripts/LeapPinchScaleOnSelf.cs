@@ -84,11 +84,11 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
         
         if (_allowScale)
         {
-            Transform parent = transform.parent;
-            transform.parent = null;
-            transform.localScale = Vector3.one * Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
+            Transform parent = parentTransform.parent;
+            parentTransform.parent = null;
+            parentTransform.localScale = Vector3.one * Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
 
-            transform.parent = parent;
+            parentTransform.parent = parent;
 
         }
     }

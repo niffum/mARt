@@ -131,7 +131,7 @@ namespace VolumeRendering
         {
             Destroy(material);
         }
-
+        /*
         public void UpdateXSlice(float sliceValue)
         {
             sliceXMin = Mathf.Min(sliceValue, sliceXMax - threshold);
@@ -156,7 +156,7 @@ namespace VolumeRendering
         {
             threshold = thresholdValue;
         }
-
+        */
         
     }
 
