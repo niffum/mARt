@@ -32,7 +32,7 @@ public class DataListManager : MonoBehaviour {
     public void ToggleFirstDataSet()
     {
         firstDataSetSelected = !firstDataSetSelected;
-        firstDataSetTick.SetActive(firstDataSetSelected);
+        setActiveFirstTickIcon(firstDataSetSelected);
 
         if(firstDataSetSelected)
         {
@@ -61,10 +61,20 @@ public class DataListManager : MonoBehaviour {
         }
     }
 
+    public void setActiveFirstTickIcon(bool active)
+    {
+        firstDataSetTick.SetActive(active);
+    }
+
+    public void setActiveSecondTickIcon(bool active)
+    {
+        secondDataSetTick.SetActive(active);
+    }
+
     public void ToggleSecondDataSet()
     {
         secondDataSetSelected = !secondDataSetSelected;
-        secondDataSetTick.SetActive(secondDataSetSelected);
+        setActiveSecondTickIcon(secondDataSetSelected);
     
         if (secondDataSetSelected)
         {

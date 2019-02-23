@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RestoreState : MonoBehaviour {
 
@@ -16,10 +17,19 @@ public class RestoreState : MonoBehaviour {
 
         currentState = CurrentState.Instance;
 
+        SceneManager.sceneLoaded += OnSceneLoaded;
         RestoreCurrentState();
     }
 
-    
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "main_2D")
+        {
+           
+        }
+        
+    }
+
     public void SaveCurrentState()
     {
         currentState.oneViewIsDisplayed = !imageAndUiManger.displayingTwoViews;
@@ -38,21 +48,28 @@ public class RestoreState : MonoBehaviour {
 
         currentState.maxDepth = imageAndUiManger.primaryImage.maxDepth;
 
+        currentState.primaryViewInfo.showsFirstDataSet = imageAndUiManger.primaryImage.showMask;
+        currentState.secondaryViewInfo.showsFirstDataSet = imageAndUiManger.secondaryImage.showMask;
+
     }
 
     private void RestoreCurrentState()
     {
-        imageAndUiManger.viewsAreSynchronized = currentState.viewsAreSynchronized;
+        
 
         if (currentState.oneViewIsDisplayed)
         {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
                 imageAndUiManger.DisplayOneView(dataListManager.firstDataSetPath, dataListManager.firstMaskSetPath,  false);
+                dataListManager.setActiveFirstTickIcon(true);
+                dataListManager.setActiveSecondTickIcon(false);
             }
             else
             {
                 imageAndUiManger.DisplayOneView(dataListManager.secondDataSetPath, dataListManager.secondMaskSetPath, false);
+                dataListManager.setActiveSecondTickIcon(true);
+                dataListManager.setActiveFirstTickIcon(false);
             }
         }
         else
@@ -65,6 +82,17 @@ public class RestoreState : MonoBehaviour {
             {
                 imageAndUiManger.DisplayTwoViews(dataListManager.secondDataSetPath, dataListManager.secondMaskSetPath, dataListManager.firstDataSetPath, dataListManager.firstMaskSetPath, true);
             }
+            dataListManager.setActiveSecondTickIcon(true);
+            dataListManager.setActiveFirstTickIcon(true);
+        }
+
+        if(imageAndUiManger.viewsAreSynchronized && !currentState.viewsAreSynchronized)
+        {
+            imageAndUiManger.DesynchronizeViews();
+        }
+        else if(!imageAndUiManger.viewsAreSynchronized && currentState.viewsAreSynchronized)
+        {
+            imageAndUiManger.SynchronizeViews();
         }
 
         imageAndUiManger.primaryUI.GetComponentInChildren<UpdateImageValues>().SetContrast(currentState.primaryViewInfo.contrast);
@@ -74,6 +102,15 @@ public class RestoreState : MonoBehaviour {
 
         imageAndUiManger.primaryImage.ChangeCanvasImage(currentState.primaryViewInfo.depth);
         imageAndUiManger.secondaryImage.ChangeCanvasImage(currentState.secondaryViewInfo.depth);
+
+        if(currentState.primaryViewInfo.showsMask != imageAndUiManger.primaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive)
+        {
+            imageAndUiManger.primaryUI.GetComponentInChildren<UpdateImageValues>().ToggleMask();
+        }
+        if (currentState.secondaryViewInfo.showsMask != imageAndUiManger.secondaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive)
+        {
+            imageAndUiManger.secondaryUI.GetComponentInChildren<UpdateImageValues>().ToggleMask();
+        }
     }
 	
 }

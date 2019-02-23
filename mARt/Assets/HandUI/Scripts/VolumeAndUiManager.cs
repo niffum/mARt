@@ -78,16 +78,11 @@ public class VolumeAndUiManager : MonoBehaviour {
 
             primaryController.volumes.Add(secondaryVolume);
             secondaryController.volumes.Add(primaryVolume);
-            /*
-            secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryVolume.Scroll; 
-            primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryVolume.Scroll;
-
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryVolume.SetContrast;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryVolume.SetContrast;
-
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryVolume.SetBrightness;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryVolume.SetBrightness;
-            */
+            if(secondaryVolume.showMask != primaryController.showMask)
+            {
+                secondaryVolume.showMask = primaryController.showMask;
+            }
+            
         }
     }
 
@@ -102,16 +97,10 @@ public class VolumeAndUiManager : MonoBehaviour {
 
             secondaryController.volumes.Remove(primaryVolume);
             primaryController.volumes.Remove(secondaryVolume);
-            /*
-            secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryVolume.Scroll;
-            primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryVolume.Scroll;
-
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryVolume.SetContrast;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryVolume.SetContrast;
-
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryVolume.SetBrightness;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryVolume.SetBrightness;
-            */
+            if (secondaryController.showMask != primaryController.showMask)
+            {
+                secondaryController.ToggleMask();
+            }
         }
     }
 }

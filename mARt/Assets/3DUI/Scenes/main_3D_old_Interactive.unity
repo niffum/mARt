@@ -6351,7 +6351,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 329787649}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1632488373}
@@ -6799,7 +6799,7 @@ GameObject:
   - component: {fileID: 395614143}
   - component: {fileID: 395614142}
   m_Layer: 0
-  m_Name: Plane (2)
+  m_Name: DeactivateIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8032,6 +8032,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contrastSlider: {fileID: 1283115852}
   brightnessSlider: {fileID: 329787652}
+  maskDeactiveIcon: {fileID: 0}
+  maskIsActive: 0
 --- !u!114 &551230099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8188,6 +8190,7 @@ MonoBehaviour:
   sliderIntensity: {fileID: 1270681643}
   sliderThreshold: {fileID: 1234275926}
   axis: {fileID: 367141619}
+  showMask: 0
   inactiveMaskIcon: {fileID: 395614140}
   volumes:
   - {fileID: 113234168}
@@ -19888,7 +19891,7 @@ GameObject:
   - component: {fileID: 1451234344}
   - component: {fileID: 1451234343}
   m_Layer: 0
-  m_Name: Plane (1)
+  m_Name: DeactivateIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20865,6 +20868,7 @@ MonoBehaviour:
   sliderIntensity: {fileID: 1283115852}
   sliderThreshold: {fileID: 329787652}
   axis: {fileID: 367141619}
+  showMask: 0
   inactiveMaskIcon: {fileID: 1451234341}
   volumes:
   - {fileID: 666004487}
@@ -21463,7 +21467,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: 60cfe703c42c478489ab178da5f7724c, type: 2}
+  - {fileID: 2100000, guid: 4e81f9b7567cfb6498fa9bd6b5a62562, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -21802,6 +21806,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contrastSlider: {fileID: 1270681643}
   brightnessSlider: {fileID: 1234275926}
+  maskDeactiveIcon: {fileID: 0}
+  maskIsActive: 0
 --- !u!114 &1673630354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22679,7 +22685,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0

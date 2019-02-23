@@ -139,7 +139,7 @@ public class ImageAndUiManager : MonoBehaviour {
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryImage.SetBrightness;
 
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle = secondaryImage.ToggleMask;
+            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
 
             

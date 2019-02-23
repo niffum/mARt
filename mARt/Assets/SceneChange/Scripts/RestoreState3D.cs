@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class RestoreState3D : MonoBehaviour {
 
@@ -23,7 +24,6 @@ public class RestoreState3D : MonoBehaviour {
     public void SaveCurrentState()
     {
         currentState.oneViewIsDisplayed = !volumeAndUiManger.displayingTwoViews;
-        currentState.viewsAreSynchronized = volumeAndUiManger.viewsAreSynchronized;
         
         currentState.primaryViewInfo.intensity = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
         currentState.primaryViewInfo.threshold = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
@@ -46,6 +46,9 @@ public class RestoreState3D : MonoBehaviour {
         currentState.primaryViewInfo.showsFirstDataSet = (volumeAndUiManger.primaryVolume.volume == volumeListManager.first3DTexture);
         currentState.secondaryViewInfo.showsFirstDataSet = (volumeAndUiManger.secondaryVolume.volume == volumeListManager.first3DTexture);
 
+        currentState.primaryViewInfo.showsFirstDataSet = volumeAndUiManger.primaryVolume.showMask;
+        currentState.secondaryViewInfo.showsFirstDataSet = volumeAndUiManger.secondaryVolume.showMask;
+
     }
 
     private void RestoreCurrentState()
@@ -57,10 +60,14 @@ public class RestoreState3D : MonoBehaviour {
             if (currentState.primaryViewInfo.showsFirstDataSet)
             {
                 volumeAndUiManger.DisplayOneView(volumeListManager.first3DTexture, volumeListManager.first3DMaskTexture, false);
+                volumeListManager.setActiveFirstTickIcon(true);
+                volumeListManager.setActiveSecondTickIcon(false);
             }
             else
             {
                 volumeAndUiManger.DisplayOneView(volumeListManager.second3DTexture, volumeListManager.second3DMaskTexture, false);
+                volumeListManager.setActiveSecondTickIcon(true);
+                volumeListManager.setActiveFirstTickIcon(false);
             }
         }
         else
@@ -73,6 +80,17 @@ public class RestoreState3D : MonoBehaviour {
             {
                 volumeAndUiManger.DisplayTwoViews(volumeListManager.second3DTexture, volumeListManager.second3DMaskTexture, volumeListManager.first3DTexture, volumeListManager.first3DMaskTexture, true);
             }
+            volumeListManager.setActiveSecondTickIcon(true);
+            volumeListManager.setActiveFirstTickIcon(true);
+        }
+
+        if (volumeAndUiManger.viewsAreSynchronized && !currentState.viewsAreSynchronized)
+        {
+            volumeAndUiManger.DesynchronizeViews();
+        }
+        else if (!volumeAndUiManger.viewsAreSynchronized && currentState.viewsAreSynchronized)
+        {
+            volumeAndUiManger.SynchronizeViews();
         }
 
         volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue = currentState.primaryViewInfo.sliceXMin;
@@ -82,6 +100,15 @@ public class RestoreState3D : MonoBehaviour {
         volumeAndUiManger.secondaryController.sliderXMin.HorizontalSliderValue = currentState.secondaryViewInfo.sliceXMin;
         volumeAndUiManger.secondaryController.sliderYMin.HorizontalSliderValue = currentState.secondaryViewInfo.sliceYMin;
         volumeAndUiManger.secondaryController.sliderZMin.HorizontalSliderValue = currentState.secondaryViewInfo.depth / currentState.maxDepth;
+
+        if (currentState.primaryViewInfo.showsMask != volumeAndUiManger.primaryController.showMask)
+        {
+            volumeAndUiManger.primaryController.ToggleMask();
+        }
+        if (currentState.secondaryViewInfo.showsMask != volumeAndUiManger.secondaryController.showMask)
+        {
+            volumeAndUiManger.secondaryController.ToggleMask();
+        }
     }
 	
 }

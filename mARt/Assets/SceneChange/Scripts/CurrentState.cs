@@ -27,9 +27,9 @@ public class CurrentState : MonoBehaviour {
     {
         primaryViewInfo = new ViewInfo();
 
-        primaryViewInfo.sliceXMin = 1f;
-        primaryViewInfo.sliceYMin = 1f;
-        primaryViewInfo.sliceZMin = 1f;
+        primaryViewInfo.sliceXMin = 0f;
+        primaryViewInfo.sliceYMin = 0f;
+        primaryViewInfo.sliceZMin = 0f;
 
         primaryViewInfo.intensity = 1f;
         primaryViewInfo.threshold = 1f;
@@ -43,9 +43,9 @@ public class CurrentState : MonoBehaviour {
 
         secondaryViewInfo = new ViewInfo();
 
-        secondaryViewInfo.sliceXMin = 1f;
-        secondaryViewInfo.sliceYMin = 1f;
-        secondaryViewInfo.sliceZMin = 1f;
+        secondaryViewInfo.sliceXMin = 0f;
+        secondaryViewInfo.sliceYMin = 0f;
+        secondaryViewInfo.sliceZMin = 0f;
 
         secondaryViewInfo.intensity = 1f;
         secondaryViewInfo.threshold = 1f;
@@ -88,6 +88,7 @@ public class CurrentState : MonoBehaviour {
         public int depth;
 
         public bool showsFirstDataSet;
+        public bool showsMask;
     }
     
 }

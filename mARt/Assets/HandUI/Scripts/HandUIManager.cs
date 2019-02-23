@@ -15,6 +15,9 @@ public class HandUIManager : MonoBehaviour {
     private ImageAndUiManager imageAndUiManager;
 
     [SerializeField]
+    private GameObject desynchIcon;
+    
+    [SerializeField]
     private RestoreState stateManager;
 
     private void Start()
@@ -78,6 +81,7 @@ public class HandUIManager : MonoBehaviour {
                 imageAndUiManager.DesynchronizeViews();
             }
             imageAndUiManager.viewsAreSynchronized = !imageAndUiManager.viewsAreSynchronized;
+            desynchIcon.SetActive(!imageAndUiManager.viewsAreSynchronized);
         }
     }
 
