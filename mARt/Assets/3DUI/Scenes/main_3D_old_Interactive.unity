@@ -7980,8 +7980,9 @@ GameObject:
   m_Component:
   - component: {fileID: 551230097}
   - component: {fileID: 551230096}
-  - component: {fileID: 551230099}
   - component: {fileID: 551230100}
+  - component: {fileID: 551230101}
+  - component: {fileID: 551230099}
   m_Layer: 0
   m_Name: Volume_Primary
   m_TagString: Untagged
@@ -8006,8 +8007,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 551230095}
-  m_LocalRotation: {x: -0, y: 0.008212162, z: -0, w: 0.9999663}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -2.25, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 737314405}
@@ -8042,12 +8043,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 551230095}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceaf96f367c68d245b7a8ee0d0f8f80b, type: 3}
+  m_Script: {fileID: 11500000, guid: a7b311349df970b4bbd00a4c2fa229c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
-  rotateFactor: 0
+  _allowScale: 1
+  scalingInProcess: 0
 --- !u!65 &551230100
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8059,7 +8061,22 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 3.16, y: 3.13, z: 1.88}
-  m_Center: {x: 0, y: -2.53, z: 0.92}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &551230101
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 551230095}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pinchDetectorA: {fileID: 1240411124}
+  _pinchDetectorB: {fileID: 1804995611}
+  _allowScale: 1
+  scalingInProcess: 0
 --- !u!1 &552569613
 GameObject:
   m_ObjectHideFlags: 0
@@ -8675,7 +8692,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 646594003}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 1.437, y: -2.528, z: -0.061}
+  m_LocalPosition: {x: 1.4369999, y: -0.011999778, z: -0.9770002}
   m_LocalScale: {x: 3.0670266, y: 1.0000075, z: 1.0000075}
   m_Children:
   - {fileID: 1870387651}
@@ -8711,7 +8728,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 666004485}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -2.529, z: 0.8859999}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 3.1037095, y: 3.1037114, z: 1.8001525}
   m_Children: []
   m_Father: {fileID: 551230097}
@@ -12275,7 +12292,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 842276940}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.002, y: -0.903, z: -0.092}
+  m_LocalPosition: {x: -0.002, y: 1.613, z: -1.008}
   m_LocalScale: {x: 3.1158967, y: 1.0000075, z: 1.0000076}
   m_Children:
   - {fileID: 1455839722}
@@ -20101,7 +20118,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1469713841}
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 1.5609924, y: -0.87, z: 0.9233824}
+  m_LocalPosition: {x: 1.5609922, y: 1.6460004, z: 0.0073821917}
   m_LocalScale: {x: 1.8415298, y: 1.0000011, z: 1.0000011}
   m_Children:
   - {fileID: 506800975}
@@ -22685,7 +22702,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23658,6 +23675,7 @@ GameObject:
   - component: {fileID: 1883464227}
   - component: {fileID: 1883464226}
   - component: {fileID: 1883464225}
+  - component: {fileID: 1883464228}
   m_Layer: 0
   m_Name: Volume_Secondary
   m_TagString: Untagged
@@ -23721,6 +23739,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f706a66d7747347b05af75d89b00e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1883464228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1883464223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7b311349df970b4bbd00a4c2fa229c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _pinchDetectorA: {fileID: 1240411124}
+  _pinchDetectorB: {fileID: 1804995611}
+  _allowScale: 1
+  scalingInProcess: 0
 --- !u!1 &1887430333
 GameObject:
   m_ObjectHideFlags: 0
