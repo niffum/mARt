@@ -100,6 +100,16 @@ public class ImageAndUiManager : MonoBehaviour {
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
+
+            // set secondary image values to primary UI Values
+            secondaryImage.ChangeCanvasImage(primaryImage.depth);
+            secondaryImage.SetBrightness(primaryUI.GetComponentInChildren<UpdateImageValues>().GetBrightness());
+            secondaryImage.SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
+
+            if (secondaryImage.showMask != primaryImage.showMask)
+            {
+                secondaryImage.ToggleMask();
+            }
         }
     }
 
@@ -107,6 +117,15 @@ public class ImageAndUiManager : MonoBehaviour {
     {
         if (viewsAreSynchronized)
         {
+            // Copy Values of first ui to second ui
+            primaryUI.GetComponentInChildren<UpdateImageValues>().SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
+            primaryUI.GetComponentInChildren<UpdateImageValues>().SetBrightness(primaryUI.GetComponentInChildren<UpdateImageValues>().GetBrightness());
+
+            if (secondaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive != primaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive)
+            {
+                secondaryUI.GetComponentInChildren<UpdateImageValues>().ToggleMask();
+            }
+
             // Play animation
             // Display second UI
             uiAnimator.SetTrigger("showSecondUI");
@@ -122,6 +141,8 @@ public class ImageAndUiManager : MonoBehaviour {
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle = secondaryImage.ToggleMask;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
+
+            
         }
     }
 }

@@ -41,7 +41,7 @@ public class ManipulateImages : MonoBehaviour {
     private Color maskColor;
 
     public bool showMask = false;
-
+    
 
     public void Init()
     {

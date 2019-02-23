@@ -12,12 +12,18 @@ public class UpdateImageValues : MonoBehaviour {
     [SerializeField]
     private InteractionSlider brightnessSlider;
 
+    [SerializeField]
+    private GameObject maskDeactiveIcon;
+
+    [HideInInspector]
+    public bool maskIsActive = false;
+
     public Action<float> OnContrastChanged;
     public Action<float> OnBrightnessChanged;
     public Action OnMaskToggle;
-    	
-	// Update is called once per frame
-	void Update () {
+
+    // Update is called once per frame
+    void Update () {
 		if(contrastSlider.wasSlid)
         {
             if(OnContrastChanged != null)
@@ -64,6 +70,11 @@ public class UpdateImageValues : MonoBehaviour {
 
     public void ToggleMask()
     {
-        OnMaskToggle();
+        maskIsActive = !maskIsActive;
+        maskDeactiveIcon.SetActive(!maskIsActive);
+        if (OnMaskToggle != null)
+        {
+            OnMaskToggle();
+        }
     }
 }
