@@ -28,6 +28,10 @@ public class VolumeAndUiManager : MonoBehaviour {
     [HideInInspector]
     public bool viewsAreSynchronized = true;
 
+
+    [SerializeField]
+    private GameObject desynchIcon;
+
     private void Start()
     {
         //uiAnimator = GetComponent<Animator>();
@@ -82,7 +86,8 @@ public class VolumeAndUiManager : MonoBehaviour {
             {
                 secondaryVolume.showMask = primaryController.showMask;
             }
-            
+
+            ToggleSynchronicity();
         }
     }
 
@@ -101,6 +106,13 @@ public class VolumeAndUiManager : MonoBehaviour {
             {
                 secondaryController.ToggleMask();
             }
+            ToggleSynchronicity();
         }
+    }
+
+    private void ToggleSynchronicity()
+    {
+        viewsAreSynchronized = !viewsAreSynchronized;
+        desynchIcon.SetActive(!viewsAreSynchronized);
     }
 }

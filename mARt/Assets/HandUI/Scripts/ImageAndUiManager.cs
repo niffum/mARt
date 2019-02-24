@@ -26,7 +26,10 @@ public class ImageAndUiManager : MonoBehaviour {
 
     [HideInInspector]
     public bool viewsAreSynchronized = true;
-    
+
+    [SerializeField]
+    private GameObject desynchIcon;
+
     private void Start()
     {
 
@@ -110,6 +113,8 @@ public class ImageAndUiManager : MonoBehaviour {
             {
                 secondaryImage.ToggleMask();
             }
+
+            ToggleSynchronicity();
         }
     }
 
@@ -142,7 +147,13 @@ public class ImageAndUiManager : MonoBehaviour {
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle -= secondaryImage.ToggleMask;
 
-            
+            ToggleSynchronicity();
         }
+    }
+
+    public void ToggleSynchronicity()
+    {
+        viewsAreSynchronized = !viewsAreSynchronized;
+        desynchIcon.SetActive(!viewsAreSynchronized);
     }
 }

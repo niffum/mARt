@@ -2766,6 +2766,7 @@ MonoBehaviour:
   imageAnimator: {fileID: 937747821}
   displayingTwoViews: 0
   viewsAreSynchronized: 1
+  desynchIcon: {fileID: 1058419517}
 --- !u!95 &322146378
 Animator:
   serializedVersion: 3
@@ -2903,7 +2904,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dataListTween: {fileID: 114276595}
   imageAndUiManager: {fileID: 322146377}
-  desynchIcon: {fileID: 1058419517}
   stateManager: {fileID: 955846920}
 --- !u!4 &327804280
 Transform:
@@ -8786,7 +8786,7 @@ Prefab:
     - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
       propertyPath: m_ClearFlags
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4057968051431532, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
       propertyPath: m_RootOrder
@@ -8822,6 +8822,26 @@ Prefab:
       propertyPath: ModelPool.Array.data[0].RightModel
       value: 
       objectReference: {fileID: 2023890714}
+    - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
+        type: 2}
+      propertyPath: m_BackGroundColor.r
+      value: 0.5647059
+      objectReference: {fileID: 0}
+    - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
+        type: 2}
+      propertyPath: m_BackGroundColor.g
+      value: 0.7921569
+      objectReference: {fileID: 0}
+    - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
+        type: 2}
+      propertyPath: m_BackGroundColor.b
+      value: 0.84705883
+      objectReference: {fileID: 0}
+    - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
+        type: 2}
+      propertyPath: m_BackGroundColor.a
+      value: 0.06666667
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae2e2be31c98324eac460f702db97e9, type: 2}
   m_IsPrefabParent: 0
@@ -11591,7 +11611,7 @@ Transform:
   m_GameObject: {fileID: 1617690576}
   m_LocalRotation: {x: -0.5598475, y: 0.4319385, z: -0.43193847, w: 0.5598475}
   m_LocalPosition: {x: -0.007000002, y: 0.0066000028, z: -0.0125999935}
-  m_LocalScale: {x: 0.010000005, y: 0.01000002, z: 0.010000013}
+  m_LocalScale: {x: 0.001000001, y: 0.001000002, z: 0.001000001}
   m_Children: []
   m_Father: {fileID: 957812835}
   m_RootOrder: 0
@@ -12864,11 +12884,11 @@ MonoBehaviour:
   _templateLayer:
     layerIndex: 0
   _interactionLayer:
-    layerIndex: 8
-  _interactionNoContactLayer:
-    layerIndex: 9
-  _contactBoneLayer:
     layerIndex: 10
+  _interactionNoContactLayer:
+    layerIndex: 11
+  _contactBoneLayer:
+    layerIndex: 12
   _drawControllerRuntimeGizmos: 0
 --- !u!4 &1840902372
 Transform:

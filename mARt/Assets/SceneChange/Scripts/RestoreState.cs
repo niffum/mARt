@@ -48,14 +48,14 @@ public class RestoreState : MonoBehaviour {
 
         currentState.maxDepth = imageAndUiManger.primaryImage.maxDepth;
 
-        currentState.primaryViewInfo.showsFirstDataSet = imageAndUiManger.primaryImage.showMask;
-        currentState.secondaryViewInfo.showsFirstDataSet = imageAndUiManger.secondaryImage.showMask;
+        currentState.primaryViewInfo.showsMask = imageAndUiManger.primaryImage.showMask;
+        currentState.secondaryViewInfo.showsMask = imageAndUiManger.secondaryImage.showMask;
 
+        SceneManager.LoadScene("main_3D_old_Interactive");
     }
 
     private void RestoreCurrentState()
     {
-        
 
         if (currentState.oneViewIsDisplayed)
         {

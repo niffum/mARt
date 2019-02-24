@@ -14,8 +14,7 @@ public class HandUIManager : MonoBehaviour {
     [SerializeField]
     private ImageAndUiManager imageAndUiManager;
 
-    [SerializeField]
-    private GameObject desynchIcon;
+    
     
     [SerializeField]
     private RestoreState stateManager;
@@ -80,19 +79,13 @@ public class HandUIManager : MonoBehaviour {
             {
                 imageAndUiManager.DesynchronizeViews();
             }
-            imageAndUiManager.viewsAreSynchronized = !imageAndUiManager.viewsAreSynchronized;
-            desynchIcon.SetActive(!imageAndUiManager.viewsAreSynchronized);
         }
     }
 
-    private void ToggleSynchroButton(bool active)
-    {
-
-    }
     public void ChangeScene()
     {
         stateManager.SaveCurrentState();
-        SceneManager.LoadScene("main_3D_old_Interactive");
+        
     }
 
 }

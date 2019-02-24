@@ -24,7 +24,8 @@ public class RestoreState3D : MonoBehaviour {
     public void SaveCurrentState()
     {
         currentState.oneViewIsDisplayed = !volumeAndUiManger.displayingTwoViews;
-        
+        currentState.viewsAreSynchronized = volumeAndUiManger.viewsAreSynchronized;
+
         currentState.primaryViewInfo.intensity = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
         currentState.primaryViewInfo.threshold = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
         currentState.secondaryViewInfo.intensity = volumeAndUiManger.secondaryController.sliderThreshold.HorizontalSliderValue;
@@ -46,9 +47,10 @@ public class RestoreState3D : MonoBehaviour {
         currentState.primaryViewInfo.showsFirstDataSet = (volumeAndUiManger.primaryVolume.volume == volumeListManager.first3DTexture);
         currentState.secondaryViewInfo.showsFirstDataSet = (volumeAndUiManger.secondaryVolume.volume == volumeListManager.first3DTexture);
 
-        currentState.primaryViewInfo.showsFirstDataSet = volumeAndUiManger.primaryVolume.showMask;
-        currentState.secondaryViewInfo.showsFirstDataSet = volumeAndUiManger.secondaryVolume.showMask;
+        currentState.primaryViewInfo.showsMask = volumeAndUiManger.primaryVolume.showMask;
+        currentState.secondaryViewInfo.showsMask = volumeAndUiManger.secondaryVolume.showMask;
 
+        SceneManager.LoadScene("main_2D");
     }
 
     private void RestoreCurrentState()
