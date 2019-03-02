@@ -32,6 +32,9 @@ public class VolumeAndUiManager : MonoBehaviour {
     [SerializeField]
     private GameObject desynchIcon;
 
+    [SerializeField]
+    private VolumeTransformController volumeTransformController;
+
     private void Start()
     {
         //uiAnimator = GetComponent<Animator>();
@@ -49,6 +52,7 @@ public class VolumeAndUiManager : MonoBehaviour {
             {
                 SynchronizeViews();
             }
+            volumeTransformController.SetActiveScalingOnPrimaryVolume(true);
             displayingTwoViews = false;
         }
         primaryVolume.volume = first3DTexture;
@@ -63,6 +67,7 @@ public class VolumeAndUiManager : MonoBehaviour {
         {
             // play animation 
             volumeAnimator.SetTrigger("showSecondImage");
+            volumeTransformController.SetActiveScalingOnPrimaryVolume(false);
             displayingTwoViews = true;
         }
         primaryVolume.volume = first3DTexture;
@@ -112,6 +117,7 @@ public class VolumeAndUiManager : MonoBehaviour {
 
     private void ToggleSynchronicity()
     {
+        volumeTransformController.ToggleVolumeRotationSynchronicity();
         viewsAreSynchronized = !viewsAreSynchronized;
         desynchIcon.SetActive(!viewsAreSynchronized);
     }
