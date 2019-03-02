@@ -31,9 +31,6 @@ public class RestoreState3D : MonoBehaviour {
         currentState.secondaryViewInfo.intensity = volumeAndUiManger.secondaryController.sliderThreshold.HorizontalSliderValue;
         currentState.secondaryViewInfo.threshold = volumeAndUiManger.secondaryController.sliderThreshold.HorizontalSliderValue;
         
-        currentState.primaryViewInfo.depth = (int) (currentState.maxDepth / volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue);
-        currentState.secondaryViewInfo.depth = (int)(currentState.maxDepth / volumeAndUiManger.secondaryController.sliderXMin.HorizontalSliderValue);
-
         currentState.primaryViewInfo.sliceXMin = volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue;
         currentState.primaryViewInfo.sliceYMin = volumeAndUiManger.primaryController.sliderYMin.HorizontalSliderValue;
         currentState.primaryViewInfo.sliceZMin = volumeAndUiManger.primaryController.sliderZMin.HorizontalSliderValue;
@@ -41,8 +38,8 @@ public class RestoreState3D : MonoBehaviour {
         currentState.secondaryViewInfo.sliceYMin = volumeAndUiManger.secondaryController.sliderYMin.HorizontalSliderValue;
         currentState.secondaryViewInfo.sliceZMin = volumeAndUiManger.secondaryController.sliderZMin.HorizontalSliderValue;
 
-        currentState.primaryViewInfo.depth = (int)volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue / currentState.maxDepth;
-        currentState.secondaryViewInfo.depth = (int)volumeAndUiManger.secondaryController.sliderXMin.HorizontalSliderValue / currentState.maxDepth;
+        currentState.primaryViewInfo.depth = (int)(volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue * (float)currentState.primaryViewInfo.maxDepth);
+        currentState.secondaryViewInfo.depth = (int)(volumeAndUiManger.secondaryController.sliderXMin.HorizontalSliderValue * (float)currentState.secondaryViewInfo.maxDepth);
 
         currentState.primaryViewInfo.showsFirstDataSet = (volumeAndUiManger.primaryVolume.volume == volumeListManager.first3DTexture);
         currentState.secondaryViewInfo.showsFirstDataSet = (volumeAndUiManger.secondaryVolume.volume == volumeListManager.first3DTexture);
@@ -55,7 +52,6 @@ public class RestoreState3D : MonoBehaviour {
 
     private void RestoreCurrentState()
     {
-        volumeAndUiManger.viewsAreSynchronized = currentState.viewsAreSynchronized;
 
         if (currentState.oneViewIsDisplayed)
         {
@@ -94,14 +90,17 @@ public class RestoreState3D : MonoBehaviour {
         {
             volumeAndUiManger.SynchronizeViews();
         }
+        volumeAndUiManger.viewsAreSynchronized = currentState.viewsAreSynchronized;
 
+        float sliderValue = (float)currentState.primaryViewInfo.depth / (float)currentState.primaryViewInfo.maxDepth;
         volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue = currentState.primaryViewInfo.sliceXMin;
         volumeAndUiManger.primaryController.sliderYMin.HorizontalSliderValue = currentState.primaryViewInfo.sliceYMin;
-        volumeAndUiManger.primaryController.sliderZMin.HorizontalSliderValue = currentState.primaryViewInfo.depth / currentState.maxDepth;
+        volumeAndUiManger.primaryController.sliderZMin.HorizontalSliderValue = sliderValue;
 
+        float sliderValueTwo = (float)currentState.secondaryViewInfo.depth / (float)currentState.secondaryViewInfo.maxDepth;
         volumeAndUiManger.secondaryController.sliderXMin.HorizontalSliderValue = currentState.secondaryViewInfo.sliceXMin;
         volumeAndUiManger.secondaryController.sliderYMin.HorizontalSliderValue = currentState.secondaryViewInfo.sliceYMin;
-        volumeAndUiManger.secondaryController.sliderZMin.HorizontalSliderValue = currentState.secondaryViewInfo.depth / currentState.maxDepth;
+        volumeAndUiManger.secondaryController.sliderZMin.HorizontalSliderValue = sliderValueTwo;
 
         if (currentState.primaryViewInfo.showsMask != volumeAndUiManger.primaryController.showMask)
         {

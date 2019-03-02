@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
+// https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
+
 public class HandDragging : MonoBehaviour, IManipulationHandler
 {
     [SerializeField]

@@ -46,7 +46,8 @@ public class RestoreState : MonoBehaviour {
         currentState.primaryViewInfo.showsFirstDataSet = (imageAndUiManger.primaryImage.folder == dataListManager.firstDataSetPath);
         currentState.secondaryViewInfo.showsFirstDataSet = (imageAndUiManger.secondaryImage.folder == dataListManager.firstDataSetPath);
 
-        currentState.maxDepth = imageAndUiManger.primaryImage.maxDepth;
+        currentState.primaryViewInfo.maxDepth = imageAndUiManger.primaryImage.maxDepth;
+        currentState.secondaryViewInfo.maxDepth = imageAndUiManger.primaryImage.maxDepth;
 
         currentState.primaryViewInfo.showsMask = imageAndUiManger.primaryImage.showMask;
         currentState.secondaryViewInfo.showsMask = imageAndUiManger.secondaryImage.showMask;
@@ -94,6 +95,7 @@ public class RestoreState : MonoBehaviour {
         {
             imageAndUiManger.SynchronizeViews();
         }
+        imageAndUiManger.viewsAreSynchronized = currentState.viewsAreSynchronized;
 
         imageAndUiManger.primaryUI.GetComponentInChildren<UpdateImageValues>().SetContrast(currentState.primaryViewInfo.contrast);
         imageAndUiManger.primaryUI.GetComponentInChildren<UpdateImageValues>().SetBrightness(currentState.primaryViewInfo.brightness);

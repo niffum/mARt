@@ -38,6 +38,7 @@ public class CurrentState : MonoBehaviour {
         primaryViewInfo.brightness = 0.5f;
 
         primaryViewInfo.depth = 1;
+        primaryViewInfo.maxDepth = 20;
 
         secondaryViewInfo.showsFirstDataSet = true;
 
@@ -53,6 +54,8 @@ public class CurrentState : MonoBehaviour {
         secondaryViewInfo.contrast = 0.5f;
         secondaryViewInfo.brightness = 0.5f;
 
+        secondaryViewInfo.maxDepth = 20;
+
         secondaryViewInfo.depth = 0;
 
         secondaryViewInfo.showsFirstDataSet = true;
@@ -60,7 +63,7 @@ public class CurrentState : MonoBehaviour {
         oneViewIsDisplayed = true;
         viewsAreSynchronized = true;
 
-        maxDepth = 22;
+        
 
     SceneManager.LoadScene("main_2D");
     }
@@ -86,6 +89,7 @@ public class CurrentState : MonoBehaviour {
         public float brightness;
 
         public int depth;
+        public int maxDepth;
 
         public bool showsFirstDataSet;
         public bool showsMask;
