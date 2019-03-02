@@ -19,8 +19,9 @@ public class ManipulateImages : MonoBehaviour {
 
     private static readonly string[] ValidImageFileExtensions = { ".jpg", ".png" };
 
-
+    [HideInInspector]
     public int depth;
+    [HideInInspector]
     public int maxDepth;
 
     [SerializeField]
@@ -29,6 +30,7 @@ public class ManipulateImages : MonoBehaviour {
     [SerializeField]
     private TextMesh scrollBytext;
 
+    [HideInInspector]
     public Material material;
 
     private bool scrollForward = true;

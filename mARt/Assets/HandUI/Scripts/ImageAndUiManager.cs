@@ -30,6 +30,9 @@ public class ImageAndUiManager : MonoBehaviour {
     [SerializeField]
     private GameObject desynchIcon;
 
+    [SerializeField]
+    private ImageTransformController imageTransformController;
+
     private void Start()
     {
 
@@ -153,6 +156,7 @@ public class ImageAndUiManager : MonoBehaviour {
 
     public void ToggleSynchronicity()
     {
+        imageTransformController.ToggleImageScaleSynchronicity();
         viewsAreSynchronized = !viewsAreSynchronized;
         desynchIcon.SetActive(!viewsAreSynchronized);
     }

@@ -1661,7 +1661,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
-  scaling: {fileID: 729339809}
+  scaling: {fileID: 0}
 --- !u!4 &278017284
 Transform:
   m_ObjectHideFlags: 0
@@ -2767,6 +2767,7 @@ MonoBehaviour:
   displayingTwoViews: 0
   viewsAreSynchronized: 1
   desynchIcon: {fileID: 1058419517}
+  imageTransformController: {fileID: 937747822}
 --- !u!95 &322146378
 Animator:
   serializedVersion: 3
@@ -5734,14 +5735,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 729339808}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b311349df970b4bbd00a4c2fa229c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
   _allowScale: 1
+  maxScale: 2
+  minScale: -2
   scalingInProcess: 0
 --- !u!114 &729339810
 MonoBehaviour:
@@ -7225,6 +7228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 937747820}
   - component: {fileID: 937747821}
+  - component: {fileID: 937747822}
   m_Layer: 0
   m_Name: ImagesParent
   m_TagString: Untagged
@@ -7264,6 +7268,20 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &937747822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 937747819}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b25969a83b225da45bf16e893ff25f4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryImage: {fileID: 1443573367}
+  secondaryImage: {fileID: 729339816}
+  synchronizeImageScales: 0
 --- !u!1 &940357253
 GameObject:
   m_ObjectHideFlags: 0
@@ -7408,7 +7426,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &955846920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7988,12 +8006,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1038187968}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1047914449 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114885214940683100, guid: dae2e2be31c98324eac460f702db97e9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1178271470}
-  m_Script: {fileID: 11500000, guid: a04122797dd84ca43a07055f12d91e0f, type: 3}
 --- !u!1 &1058419517
 GameObject:
   m_ObjectHideFlags: 0
@@ -9188,7 +9200,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _handModel: {fileID: 1870134921}
+  _handModel: {fileID: 733872222}
   ControlsTransform: 1
   ShowGizmos: 1
   ActivateDistance: 0.03
@@ -10425,14 +10437,16 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1443573360}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b311349df970b4bbd00a4c2fa229c8, type: 3}
+  m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
   _allowScale: 1
+  maxScale: 0.2
+  minScale: -0.2
   scalingInProcess: 0
 --- !u!222 &1443573363
 CanvasRenderer:
@@ -10509,7 +10523,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.999999, y: 0.4179813, z: 9.999999}
+  m_Size: {x: 9.999999, y: 2.9, z: 9.999999}
   m_Center: {x: 0, y: 0.010267983, z: 0}
 --- !u!82 &1443573369
 AudioSource:
@@ -12479,7 +12493,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  _handModel: {fileID: 1047914449}
+  _handModel: {fileID: 2023890714}
   ControlsTransform: 1
   ShowGizmos: 1
   ActivateDistance: 0.03
@@ -12932,12 +12946,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1870134921 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114392913348310336, guid: dae2e2be31c98324eac460f702db97e9,
-    type: 2}
-  m_PrefabInternal: {fileID: 1178271470}
-  m_Script: {fileID: 11500000, guid: a04122797dd84ca43a07055f12d91e0f, type: 3}
 --- !u!1 &1871885280
 GameObject:
   m_ObjectHideFlags: 0
@@ -13928,7 +13936,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
-  scaling: {fileID: 1443573362}
+  scaling: {fileID: 0}
 --- !u!1 &2039547300
 GameObject:
   m_ObjectHideFlags: 0

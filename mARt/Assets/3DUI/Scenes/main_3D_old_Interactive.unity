@@ -3800,6 +3800,7 @@ MonoBehaviour:
   displayingTwoViews: 0
   viewsAreSynchronized: 1
   desynchIcon: {fileID: 1022833674}
+  volumeTransformController: {fileID: 1728889962}
 --- !u!1 &198705665
 GameObject:
   m_ObjectHideFlags: 0
@@ -9126,7 +9127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contrastSlider: {fileID: 1283115852}
   brightnessSlider: {fileID: 329787652}
-  maskDeactiveIcon: {fileID: 0}
+  maskDeactiveIcon: {fileID: 1451234341}
   maskIsActive: 0
 --- !u!114 &551230099
 MonoBehaviour:
@@ -9134,7 +9135,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 551230095}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
   m_Name: 
@@ -9142,6 +9143,8 @@ MonoBehaviour:
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
   _allowScale: 1
+  maxScale: 0
+  minScale: 0
   scalingInProcess: 0
 --- !u!65 &551230100
 BoxCollider:
@@ -24691,7 +24694,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   contrastSlider: {fileID: 1270681643}
   brightnessSlider: {fileID: 1234275926}
-  maskDeactiveIcon: {fileID: 0}
+  maskDeactiveIcon: {fileID: 395614140}
   maskIsActive: 0
 --- !u!114 &1673630354
 MonoBehaviour:
@@ -25065,6 +25068,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1728889961}
   - component: {fileID: 1728889960}
+  - component: {fileID: 1728889962}
   m_Layer: 0
   m_Name: VolumeParent
   m_TagString: Untagged
@@ -25106,6 +25110,20 @@ Transform:
   m_Father: {fileID: 186728340}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1728889962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1728889959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1b941661dcdd37a44b23c7c37026498f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  primaryVolume: {fileID: 551230097}
+  secondaryVolume: {fileID: 1883464224}
+  synchronizeVolumeRotations: 0
 --- !u!1 &1744233242
 GameObject:
   m_ObjectHideFlags: 0
@@ -26713,7 +26731,6 @@ GameObject:
   - component: {fileID: 1883464227}
   - component: {fileID: 1883464226}
   - component: {fileID: 1883464225}
-  - component: {fileID: 1883464228}
   - component: {fileID: 1883464229}
   - component: {fileID: 1883464230}
   m_Layer: 9
@@ -26780,21 +26797,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63f706a66d7747347b05af75d89b00e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1883464228
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1883464223}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pinchDetectorA: {fileID: 1240411124}
-  _pinchDetectorB: {fileID: 1804995611}
-  _allowScale: 1
-  scalingInProcess: 0
 --- !u!54 &1883464229
 Rigidbody:
   m_ObjectHideFlags: 0
