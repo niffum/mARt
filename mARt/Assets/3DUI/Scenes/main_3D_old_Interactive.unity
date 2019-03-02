@@ -192,12 +192,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -839,12 +839,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -2226,12 +2226,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -3373,12 +3373,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -3906,12 +3906,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -9191,12 +9191,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 0
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
 --- !u!1 &552569613
@@ -21539,12 +21539,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -24247,12 +24247,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 2
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -25656,7 +25656,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26831,12 +26831,12 @@ MonoBehaviour:
   _allowMultiGrasp: 0
   _moveObjectWhenGrasped: 1
   graspedMovementType: 0
-  _overrideInteractionLayer: 0
+  _overrideInteractionLayer: 1
   _interactionLayer:
-    layerIndex: 0
-  _overrideNoContactLayer: 0
+    layerIndex: 9
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 9
   _eventTable:
     _entries: []
 --- !u!1 &1887430333
