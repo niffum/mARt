@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Leap.Unity.Interaction;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -23,11 +24,24 @@ public class VolumeTransformController : MonoBehaviour {
 
     private Vector3 initialVolumeScale;
 
+    [SerializeField]
+    private List<InteractionSlider> volumeSlider;
+
+    [SerializeField]
+    private InteractionBehaviour primaryVolumeInteraction;
+    [SerializeField]
+    private InteractionBehaviour secondaryVolumeInteraction;
+
     private void Start()
     {
         primaryVolumeScale = primaryVolume.GetComponent<LeapPinchScaleOnSelf>();
         initialVolumeScale = primaryVolume.localScale;
         synchronizeVolumeRotations = true;
+
+        primaryVolumeInteraction.OnContactBegin += StartGrab;
+        secondaryVolumeInteraction.OnContactBegin += StartGrab;
+        primaryVolumeInteraction.OnContactEnd += EndGrab;
+        secondaryVolumeInteraction.OnContactEnd += EndGrab;
     }
 
     private void Update()
@@ -78,4 +92,21 @@ public class VolumeTransformController : MonoBehaviour {
     {
         synchronizeVolumeRotations = !synchronizeVolumeRotations;
     }
+
+    private void StartGrab()
+    {
+        foreach(var slider in volumeSlider)
+        {
+            slider.ignorePrimaryHover = true;
+        }
+    }
+
+    private void EndGrab()
+    {
+        foreach (var slider in volumeSlider)
+        {
+            slider.ignorePrimaryHover = false;
+        }
+    }
 }
+
