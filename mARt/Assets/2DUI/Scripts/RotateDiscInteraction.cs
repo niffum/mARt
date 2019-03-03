@@ -33,6 +33,9 @@ public class RotateDiscInteraction : MonoBehaviour
     private float rotationCounter;
 
     public Action<float> OnScroll;
+
+    [SerializeField]
+    private LeapPinchScaleOnSelf imageScale;
     
     void Start()
     {
@@ -59,8 +62,11 @@ public class RotateDiscInteraction : MonoBehaviour
     {
         if (other.tag == "Hand")
         {
-            _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
-            OnRotation();
+            if(!imageScale.scaling)
+            {
+                _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
+                OnRotation();
+            }
         }
         
     }

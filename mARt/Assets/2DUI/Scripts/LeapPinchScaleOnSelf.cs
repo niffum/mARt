@@ -46,6 +46,8 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
     private float lastDistance;
     private bool lastFrameWasDoublePinched = false;
 
+    public bool scaling = false;
+
     void Start()
     {
         initialScale = transform.localScale;
@@ -59,10 +61,12 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
             transformDoubleAnchor();
            
             lastFrameWasDoublePinched = true;
+            scaling = true;
         }
         else
         {
             lastFrameWasDoublePinched = false;
+            scaling = false;
         }
 
     }
