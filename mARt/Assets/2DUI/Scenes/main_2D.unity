@@ -5721,7 +5721,6 @@ GameObject:
   - component: {fileID: 729339812}
   - component: {fileID: 729339811}
   - component: {fileID: 729339810}
-  - component: {fileID: 729339809}
   m_Layer: 0
   m_Name: ImagePlane (1)
   m_TagString: Untagged
@@ -5729,23 +5728,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &729339809
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 729339808}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38556128fd451ac4194f777d423319c8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pinchDetectorA: {fileID: 1240411124}
-  _pinchDetectorB: {fileID: 1804995611}
-  _allowScale: 1
-  maxScale: 2
-  minScale: -2
-  scalingInProcess: 0
 --- !u!114 &729339810
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7280,8 +7262,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryImage: {fileID: 1443573367}
-  secondaryImage: {fileID: 729339816}
-  synchronizeImageScales: 0
 --- !u!1 &940357253
 GameObject:
   m_ObjectHideFlags: 0
@@ -10445,8 +10425,8 @@ MonoBehaviour:
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
   _allowScale: 1
-  maxScale: 0.2
-  minScale: -0.2
+  maxScale: 2
+  minScale: -2
   scalingInProcess: 0
 --- !u!222 &1443573363
 CanvasRenderer:

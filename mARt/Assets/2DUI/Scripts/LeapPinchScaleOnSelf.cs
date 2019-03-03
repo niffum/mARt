@@ -46,6 +46,9 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
 
     private Transform parentTransform;
 
+    private Vector3 initialScaleParent;
+    private Vector3 initialScale;
+
     [HideInInspector]
     public bool scalingInProcess = false;
 
@@ -57,7 +60,8 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
         //      }
 
         parentTransform = transform.parent;
-        Debug.Log("Start ");
+        initialScaleParent = transform.parent.localScale;
+        initialScale = transform.localScale;
     }
 
     void Update()
@@ -74,11 +78,9 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
         {
             transform.SetParent(null, true);
         }
-        Debug.Log("A pinching: " + _pinchDetectorA.IsPinching + "B pinching: " + _pinchDetectorB.IsPinching);
         if (_pinchDetectorA != null && _pinchDetectorA.IsPinching &&
             _pinchDetectorB != null && _pinchDetectorB.IsPinching)
         {
-            Debug.Log("double anchor; ");
             transformDoubleAnchor();
             scalingInProcess = true;
         }
@@ -99,13 +101,23 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
             float distance = Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
             Debug.Log("distance; " + distance);
             if(distance < maxScale && distance > minScale)
-            {
+            {   
                 parentTransform.localScale = Vector3.one * distance;
             }
 
             parentTransform.parent = parent;
 
         }
+    }
+
+    public void ResetScale()
+    {
+        Transform parent = parentTransform.parent;
+        parentTransform.parent = null;
+        parentTransform.localScale = initialScaleParent;
+        transform.localScale = initialScale;
+        
+        parentTransform.parent = parent;
     }
 
 }

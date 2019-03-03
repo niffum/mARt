@@ -9143,8 +9143,8 @@ MonoBehaviour:
   _pinchDetectorA: {fileID: 1240411124}
   _pinchDetectorB: {fileID: 1804995611}
   _allowScale: 1
-  maxScale: 0
-  minScale: 0
+  maxScale: 2
+  minScale: -2
   scalingInProcess: 0
 --- !u!65 &551230100
 BoxCollider:

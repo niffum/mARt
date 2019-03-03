@@ -7,46 +7,15 @@ public class ImageTransformController : MonoBehaviour
 
     [SerializeField]
     private Transform primaryImage;
-
-    [SerializeField]
-    private Transform secondaryImage;
-
-    private bool primaryImageWasScaledLast;
-
-    private Vector3 lastPrimaryImageScale;
-
-    private Vector3 lastSecondaryImageScale;
-
-    [HideInInspector]
-    public bool synchronizeImageScales;
-
+        
     private Vector3 initialImageScale;
+
+    private LeapPinchScaleOnSelf primaryImageScale;
 
     private void Start()
     {
         initialImageScale = primaryImage.localScale;
-        synchronizeImageScales = true;
-    }
-
-    private void Update()
-    {
-
-        if (lastSecondaryImageScale != secondaryImage.localScale)
-        {
-            primaryImageWasScaledLast = false;
-        }
-        if (lastPrimaryImageScale != primaryImage.localScale)
-        {
-            primaryImageWasScaledLast = true;
-        }
-
-        if (synchronizeImageScales)
-        {
-            SynchronizeImageScales();
-        }
-
-        lastPrimaryImageScale = primaryImage.localScale;
-        lastSecondaryImageScale = secondaryImage.localScale;
+        primaryImageScale = primaryImage.GetComponent<LeapPinchScaleOnSelf>();
     }
 
     public void ResetImageScale(Transform image)
@@ -54,20 +23,14 @@ public class ImageTransformController : MonoBehaviour
         image.localScale = initialImageScale;   
     }
 
-    private void SynchronizeImageScales()
+    public void SetActiveScalingOnPrimaryImage(bool active)
     {
-        if (primaryImageWasScaledLast)
-        {
-            secondaryImage.localScale = primaryImage.localScale;
-        }
-        else
-        {
-            primaryImage.localScale = secondaryImage.localScale;
-        }
-    }
+        primaryImageScale.enabled = active;
 
-    public void ToggleImageScaleSynchronicity()
-    {
-        synchronizeImageScales = !synchronizeImageScales;
+        // Reset scale when switching to two views
+        if (!active)
+        {
+            primaryImageScale.ResetScale();
+        }
     }
 }

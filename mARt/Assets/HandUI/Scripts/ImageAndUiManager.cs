@@ -32,10 +32,9 @@ public class ImageAndUiManager : MonoBehaviour {
 
     [SerializeField]
     private ImageTransformController imageTransformController;
-
+    
     private void Start()
     {
-
         uiAnimator = GetComponent<Animator>();
 
         // Make sure materials are loaded before registering methods
@@ -68,6 +67,7 @@ public class ImageAndUiManager : MonoBehaviour {
             {
                 SynchronizeViews();
             }
+            imageTransformController.SetActiveScalingOnPrimaryImage(true);
             displayingTwoViews = false;
 
         }
@@ -81,6 +81,7 @@ public class ImageAndUiManager : MonoBehaviour {
         {
             // play animation 
             imageAnimator.SetTrigger("showSecondImage");
+            imageTransformController.SetActiveScalingOnPrimaryImage(false);
             displayingTwoViews = true;
         }
         primaryImage.ChangeImagePath(firstImagePath, firstMaskPath);
@@ -156,8 +157,8 @@ public class ImageAndUiManager : MonoBehaviour {
 
     public void ToggleSynchronicity()
     {
-        imageTransformController.ToggleImageScaleSynchronicity();
         viewsAreSynchronized = !viewsAreSynchronized;
         desynchIcon.SetActive(!viewsAreSynchronized);
     }
+
 }
