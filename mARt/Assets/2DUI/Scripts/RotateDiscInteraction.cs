@@ -14,6 +14,7 @@ public class RotateDiscInteraction : MonoBehaviour
 
     private Material _material;
 
+    public Color defaultColor = Color.white;
     public Color pressedColor = Color.white;
     
     Vector3 handPos = Vector3.zero;
@@ -69,6 +70,14 @@ public class RotateDiscInteraction : MonoBehaviour
             }
         }
         
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "Hand")
+        {
+            _material.color = Color.Lerp(_material.color, defaultColor, 30F * Time.deltaTime);
+        }
+
     }
 
     private void EndTouch()
