@@ -77,9 +77,11 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
             {
                 float scaleBy = distance / lastDistance;
 
-                if (scaleBy < maxScale && scaleBy > minScale)
+                Vector3 newScale = transform.localScale * scaleBy;
+
+                if (newScale.x < maxScale && newScale.y > minScale)
                 {
-                    transform.localScale *= scaleBy;
+                    transform.localScale = newScale;
                 }
             }           
             lastDistance = distance;
