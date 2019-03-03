@@ -13,7 +13,10 @@ public class HandUIManager3D : MonoBehaviour {
 
     [SerializeField]
     private VolumeAndUiManager volumeAndUiManager;
-    
+
+    [SerializeField]
+    private GameObject deactiveListIcon;
+
     [SerializeField]
     private RestoreState3D stateManager;
 
@@ -34,6 +37,7 @@ public class HandUIManager3D : MonoBehaviour {
             dataListTween.PlayBackward();
         }
         dataListIsVisible = !dataListIsVisible;
+        deactiveListIcon.SetActive(!dataListIsVisible);
     }
         
     public void ToggleSynchronicity()

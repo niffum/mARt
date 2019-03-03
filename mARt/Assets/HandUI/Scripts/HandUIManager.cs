@@ -14,8 +14,9 @@ public class HandUIManager : MonoBehaviour {
     [SerializeField]
     private ImageAndUiManager imageAndUiManager;
 
-    
-    
+    [SerializeField]
+    private GameObject deactiveListIcon;
+
     [SerializeField]
     private RestoreState stateManager;
 
@@ -36,6 +37,7 @@ public class HandUIManager : MonoBehaviour {
             dataListTween.PlayBackward();
         }
         dataListIsVisible = !dataListIsVisible;
+        deactiveListIcon.SetActive(!dataListIsVisible);
     }
     
     public void ChooseFirstDataSet()
