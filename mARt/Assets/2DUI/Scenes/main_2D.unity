@@ -3518,11 +3518,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.0817
+      value: 0.1407
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.092099994
+      value: 0.1544
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8060,7 +8060,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1058419518
 Transform:
   m_ObjectHideFlags: 0
@@ -9689,11 +9689,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.0817
+      value: 0.1407
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.092099994
+      value: 0.15439999
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.z
@@ -10029,6 +10029,7 @@ GameObject:
   - component: {fileID: 1378843329}
   - component: {fileID: 1378843328}
   - component: {fileID: 1378843327}
+  - component: {fileID: 1378843330}
   m_Layer: 0
   m_Name: InteractionWheel
   m_TagString: Untagged
@@ -10127,6 +10128,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!65 &1378843330
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1378843325}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.54, y: 0.54, z: 0.17}
+  m_Center: {x: -0.09, y: -0.22, z: -0.52}
 --- !u!1 &1402241000
 GameObject:
   m_ObjectHideFlags: 0
@@ -10166,7 +10179,7 @@ BoxCollider:
   m_GameObject: {fileID: 1402241000}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 1.0000002, y: 2.0000012, z: 1.0000006}
   m_Center: {x: 0.00000003725291, y: -0.0000076293945, z: -0.0000005662441}
