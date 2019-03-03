@@ -51,7 +51,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
 
     [HideInInspector]
     public bool scalingInProcess = false;
-
+    
     void Start()
     {
         //      if (_pinchDetectorA == null || _pinchDetectorB == null) {
@@ -76,48 +76,55 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
 
         if (didUpdate)
         {
-            transform.SetParent(null, true);
+            //transform.SetParent(null, true);
         }
         if (_pinchDetectorA != null && _pinchDetectorA.IsPinching &&
             _pinchDetectorB != null && _pinchDetectorB.IsPinching)
         {
             transformDoubleAnchor();
             scalingInProcess = true;
+           
+            lastFrameWasDoublePinched = true;
+        }
+        else
+        {
+            lastFrameWasDoublePinched = false;
         }
 
         if (didUpdate)
         {
-            transform.SetParent(parentTransform, true);
+            //transform.SetParent(parentTransform, true);
         }
     }
 
+    private float lastDistance;
+    private bool lastFrameWasDoublePinched = false;
     private void transformDoubleAnchor()
     {
         
         if (_allowScale)
         {
-            Transform parent = parentTransform.parent;
-            parentTransform.parent = null;
             float distance = Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
-            Debug.Log("distance; " + distance);
-            if(distance < maxScale && distance > minScale)
-            {   
-                parentTransform.localScale = Vector3.one * distance;
-            }
 
-            parentTransform.parent = parent;
+            if (lastFrameWasDoublePinched)
+            {
 
+                float scaleBy = distance / lastDistance;
+                Debug.Log("distance; " + distance);
+                if (scaleBy < maxScale && scaleBy > minScale)
+                {
+                    transform.localScale *= scaleBy;
+                }
+
+            }           
+
+            lastDistance = distance;
         }
     }
 
     public void ResetScale()
     {
-        Transform parent = parentTransform.parent;
-        parentTransform.parent = null;
-        parentTransform.localScale = initialScaleParent;
         transform.localScale = initialScale;
-        
-        parentTransform.parent = parent;
     }
 
 }
