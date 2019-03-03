@@ -58,7 +58,6 @@ public class VolumeTransformController : MonoBehaviour {
         // Reset scale when switching to two views
         if(!active)
         {
-            //primaryVolume.localScale = initialVolumeScale;
             primaryVolumeScale.ResetScale();
         }
     }

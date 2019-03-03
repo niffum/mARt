@@ -6,22 +6,7 @@ public class ImageTransformController : MonoBehaviour
 {
 
     [SerializeField]
-    private Transform primaryImage;
-        
-    private Vector3 initialImageScale;
-
     private LeapPinchScaleOnSelf primaryImageScale;
-
-    private void Start()
-    {
-        initialImageScale = primaryImage.localScale;
-        primaryImageScale = primaryImage.GetComponent<LeapPinchScaleOnSelf>();
-    }
-
-    public void ResetImageScale(Transform image)
-    {
-        image.localScale = initialImageScale;   
-    }
 
     public void SetActiveScalingOnPrimaryImage(bool active)
     {

@@ -40,49 +40,23 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
 
     [SerializeField]
     private float minScale;
-
-
-    private float _defaultNearClip;
-
-    private Transform parentTransform;
-
-    private Vector3 initialScaleParent;
-    private Vector3 initialScale;
-
-    [HideInInspector]
-    public bool scalingInProcess = false;
     
+    private Vector3 initialScale;
+    
+    private float lastDistance;
+    private bool lastFrameWasDoublePinched = false;
+
     void Start()
     {
-        //      if (_pinchDetectorA == null || _pinchDetectorB == null) {
-        //        Debug.LogWarning("Both Pinch Detectors of the LeapRTS component must be assigned. This component has been disabled.");
-        //        enabled = false;
-        //      }
-
-        parentTransform = transform.parent;
-        initialScaleParent = transform.parent.localScale;
         initialScale = transform.localScale;
     }
 
     void Update()
     {
-        scalingInProcess = false;
-
-        bool didUpdate = false;
-        if (_pinchDetectorA != null)
-            didUpdate |= _pinchDetectorA.DidChangeFromLastFrame;
-        if (_pinchDetectorB != null)
-            didUpdate |= _pinchDetectorB.DidChangeFromLastFrame;
-
-        if (didUpdate)
-        {
-            //transform.SetParent(null, true);
-        }
         if (_pinchDetectorA != null && _pinchDetectorA.IsPinching &&
             _pinchDetectorB != null && _pinchDetectorB.IsPinching)
         {
             transformDoubleAnchor();
-            scalingInProcess = true;
            
             lastFrameWasDoublePinched = true;
         }
@@ -91,33 +65,23 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
             lastFrameWasDoublePinched = false;
         }
 
-        if (didUpdate)
-        {
-            //transform.SetParent(parentTransform, true);
-        }
     }
 
-    private float lastDistance;
-    private bool lastFrameWasDoublePinched = false;
     private void transformDoubleAnchor()
     {
-        
         if (_allowScale)
         {
             float distance = Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
 
             if (lastFrameWasDoublePinched)
             {
-
                 float scaleBy = distance / lastDistance;
-                Debug.Log("distance; " + distance);
+
                 if (scaleBy < maxScale && scaleBy > minScale)
                 {
                     transform.localScale *= scaleBy;
                 }
-
             }           
-
             lastDistance = distance;
         }
     }
