@@ -44,6 +44,8 @@ public class RotateDiscInteraction : MonoBehaviour
 
     public Action<float> OnScroll;
 
+    private Collider wheelCollider;
+
     void Start()
     {
         _intObj = GetComponent<InteractionBehaviour>();
@@ -60,6 +62,8 @@ public class RotateDiscInteraction : MonoBehaviour
 
         _intObj.OnContactEnd += EndTouch;
         _intObj.OnContactBegin += StartToch;
+
+        wheelCollider = GetComponent<Collider>();
     }
 
     void Update()
@@ -94,13 +98,25 @@ public class RotateDiscInteraction : MonoBehaviour
             // and assign them a unique color in that case.
             if (_intObj is InteractionButton && (_intObj as InteractionButton).isPressed)
             {
-                targetColor = pressedColor;
-                OnRotation();
+                //targetColor = pressedColor;
+                //OnRotation();
             }
             
             // Lerp actual material color to the target color.
             _material.color = Color.Lerp(_material.color, targetColor, 30F * Time.deltaTime);
         }
+
+        
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Hand")
+        {
+            _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
+            OnRotation();
+        }
+        
     }
 
     private void EndTouch()
@@ -119,25 +135,29 @@ public class RotateDiscInteraction : MonoBehaviour
             }
         }
     }
-    
+
+    Vector3 fingerPos;
     private void OnRotation()
     {
         if(currentController != null)
         {
             handPos = currentController.position;
+            Leap.Vector indexFinger = currentController.intHand.leapHand.Fingers[1].TipPosition;
+            
+            fingerPos = new Vector3(indexFinger.x, indexFinger.y,  indexFinger.z);
         }
         
 
         if (!firstTouch)
         {
-            previousPosition = handPos;
-            currentPosition = handPos;
+            previousPosition = fingerPos;
+            currentPosition = fingerPos;
             firstTouch = true;
         }
         else
         {
             previousPosition = currentPosition;
-            currentPosition = handPos;
+            currentPosition = fingerPos;
         }
 
         if (previousPosition != -currentPosition)
