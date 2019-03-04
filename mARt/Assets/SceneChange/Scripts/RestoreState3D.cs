@@ -12,7 +12,10 @@ public class RestoreState3D : MonoBehaviour {
     
     [SerializeField]
     private VolumeListManager volumeListManager;
-    
+
+    [SerializeField]
+    private string sceneName2D = "main_2D";
+
     void Start () {
 
         currentState = CurrentState.Instance;
@@ -47,7 +50,7 @@ public class RestoreState3D : MonoBehaviour {
         currentState.primaryViewInfo.showsMask = volumeAndUiManger.primaryVolume.showMask;
         currentState.secondaryViewInfo.showsMask = volumeAndUiManger.secondaryVolume.showMask;
 
-        SceneManager.LoadScene("main_2D");
+        SceneManager.LoadScene(sceneName2D);
     }
 
     private void RestoreCurrentState()

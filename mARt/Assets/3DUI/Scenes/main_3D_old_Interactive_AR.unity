@@ -21334,22 +21334,22 @@ Prefab:
     - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
       propertyPath: m_BackGroundColor.r
-      value: 0.5647059
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
       propertyPath: m_BackGroundColor.g
-      value: 0.7921569
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
       propertyPath: m_BackGroundColor.b
-      value: 0.84705883
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 20862101930491778, guid: dae2e2be31c98324eac460f702db97e9,
         type: 2}
       propertyPath: m_BackGroundColor.a
-      value: 0.06666667
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dae2e2be31c98324eac460f702db97e9, type: 2}

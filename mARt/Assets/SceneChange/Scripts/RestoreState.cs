@@ -12,23 +12,17 @@ public class RestoreState : MonoBehaviour {
     
     [SerializeField]
     private DataListManager dataListManager;
+
+   [SerializeField]
+   private string sceneName3D = "main_3D_old_Interactive";
     
     void Start () {
 
         currentState = CurrentState.Instance;
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
         RestoreCurrentState();
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-    {
-        if(scene.name == "main_2D")
-        {
-           
-        }
-        
-    }
 
     public void SaveCurrentState()
     {
@@ -52,7 +46,7 @@ public class RestoreState : MonoBehaviour {
         currentState.primaryViewInfo.showsMask = imageAndUiManger.primaryImage.showMask;
         currentState.secondaryViewInfo.showsMask = imageAndUiManger.secondaryImage.showMask;
 
-        SceneManager.LoadScene("main_3D_old_Interactive");
+        SceneManager.LoadScene(sceneName3D);
     }
 
     private void RestoreCurrentState()

@@ -9,6 +9,9 @@ public class CurrentState : MonoBehaviour {
 
     public static CurrentState Instance { get { return _instance; } }
 
+    [SerializeField]
+    private string firstSceneName = "main_2D";
+
 
     private void Awake()
     {
@@ -40,7 +43,7 @@ public class CurrentState : MonoBehaviour {
         primaryViewInfo.depth = 1;
         primaryViewInfo.maxDepth = 20;
 
-        secondaryViewInfo.showsFirstDataSet = true;
+        primaryViewInfo.showsFirstDataSet = true;
 
         secondaryViewInfo = new ViewInfo();
 
@@ -58,14 +61,14 @@ public class CurrentState : MonoBehaviour {
 
         secondaryViewInfo.depth = 0;
 
-        secondaryViewInfo.showsFirstDataSet = true;
+        secondaryViewInfo.showsFirstDataSet = false;
 
         oneViewIsDisplayed = true;
         viewsAreSynchronized = true;
 
         
 
-    SceneManager.LoadScene("main_2D");
+    SceneManager.LoadScene(firstSceneName);
     }
 
     public bool oneViewIsDisplayed = true;
