@@ -156,7 +156,7 @@ float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 
 	// Specular
 	float3 specularColor = float3(1.0, 1.0, 1.0);
-	float shininessPower = 10.0;
+	float shininessPower = 5.0;
 
 	float3 reflectionDir = 0.5 + reflect(-lightDir, normal);
 
@@ -222,7 +222,8 @@ fixed4 frag(v2f i) : SV_Target
     if(isoValue != 0.0)
     {
 		// Look up transfer function color
-		//src = get_transferColor(isoValue);
+    float4 transcolor = get_transferColor(isoValue);
+		src.a = transcolor.a;
     } 
 	if (isoValue > 0.0)
 	{
