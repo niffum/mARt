@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 using System.Linq;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -140,30 +141,38 @@ public class LoadMRTImages : MonoBehaviour {
 
 		int index = 0;
 
-		for (int z = n; z < size.z - n; z++)
+		for (int z = 0; z < size.z; z++)
 		{
-			for (int y = n; y < size.y - n; y++)
+			for (int y = 0; y < size.y; y++)
 			{
-				for (int x = n; x < size.x - n; x++)
+				for (int x = 0; x < size.x; x++)
 				{
-					// Check voxels before and after current one
-					s1.x = isoValues[z, y, x - n];
-					s2.x = isoValues[z, y, x + n];
-					s1.y = isoValues[z, y - n, x];
-					s2.y = isoValues[z, y + n, x];
-					s1.z = isoValues[z - n, y, x];
-					s2.z = isoValues[z + n, y, x];
+					try{
+						// Check voxels before and after current one
+						s1.x = isoValues[z, y, x - n];
+						s2.x = isoValues[z, y, x + n];
+						s1.y = isoValues[z, y - n, x];
+						s2.y = isoValues[z, y + n, x];
+						s1.z = isoValues[z - n, y, x];
+						s2.z = isoValues[z + n, y, x];
+
+					}
+					catch(IndexOutOfRangeException e)
+					{
+						// Check voxels before and after current one
+						s1.x = isoValues[z, y, x];
+						s2.x = isoValues[z, y, x];
+						s1.y = isoValues[z, y, x];
+						s2.y = isoValues[z, y, x];
+						s1.z = isoValues[z, y, x];
+						s2.z = isoValues[z, y, x];
 
 
+						
+					}
 					gradients[index++] = (s2 - s1)/(2f*n);
             
-                    // Divide through distance on x axes 
-                    // See: GPU gems
-                    //gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
-                    if (float.IsNaN(gradients[index - 1].x))
-					{
-						gradients[index - 1] = Vector3.zero;
-					}
+                   
                     
 				}
 			}
