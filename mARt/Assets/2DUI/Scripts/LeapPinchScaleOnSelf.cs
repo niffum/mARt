@@ -33,7 +33,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
     }
     
     [SerializeField]
-    private bool _allowScale = true;
+    public bool _allowScale = true;
 
     [SerializeField]
     private float maxScale;

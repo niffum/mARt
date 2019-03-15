@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-
-
-using Leap.Unity;
+﻿using Leap.Unity;
 using Leap.Unity.Interaction;
-using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class DragViewAnUI : MonoBehaviour {
+public class RotateView : MonoBehaviour {
 
     private InteractionBehaviour _intObj;
 
@@ -23,22 +22,16 @@ public class DragViewAnUI : MonoBehaviour {
     private InteractionController currentController;
 
     [SerializeField]
-    private LeapPinchScaleOnSelf imageScale;
-
-    [SerializeField]
     private Transform viewParent;
 
     [SerializeField]
-    private float dragFactor;
+    private float rotateFactor = 0.01f;
 
-    [SerializeField]
-    private GameObject rotateSphere;
-
-    [HideInInspector]
-    public bool allowDragging = true;
+    private DragViewAnUI dragView;
 
     void Start()
     {
+        dragView = transform.parent.GetComponent<DragViewAnUI>();
         _intObj = GetComponent<InteractionBehaviour>();
 
         Renderer renderer = GetComponent<Renderer>();
@@ -51,7 +44,7 @@ public class DragViewAnUI : MonoBehaviour {
             _material = renderer.material;
         }
 
-        _intObj.OnGraspStay += Drag;
+        _intObj.OnGraspStay += Rotate;
         _intObj.OnGraspBegin += StartGrab;
         _intObj.OnGraspEnd += EndGrab;
     }
@@ -60,16 +53,14 @@ public class DragViewAnUI : MonoBehaviour {
     {
         if (other.tag == "Hand")
         {
-            if (!imageScale.scaling)
-            {
-                _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
-                
-            }
+           _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
+
         }
 
     }
     private void OnTriggerExit(Collider other)
     {
+        Debug.Log("Triggger: " + other.tag);
         if (other.tag == "Hand")
         {
             _material.color = Color.Lerp(_material.color, defaultColor, 30F * Time.deltaTime);
@@ -80,8 +71,7 @@ public class DragViewAnUI : MonoBehaviour {
     private void EndGrab()
     {
         firstTouch = false;
-        rotateSphere.SetActive(false);
-        imageScale._allowScale = true;
+        dragView.allowDragging = true;
     }
 
     private void StartGrab()
@@ -94,13 +84,11 @@ public class DragViewAnUI : MonoBehaviour {
                 currentController = controller;
             }
         }
-        rotateSphere.SetActive(true);
-        imageScale._allowScale = false;
+        dragView.allowDragging = false;
     }
 
-    private void Drag()
+    private void Rotate()
     {
-        Debug.Log("DRAG");
         if (currentController != null)
         {
             handPos = currentController.position;
@@ -120,11 +108,16 @@ public class DragViewAnUI : MonoBehaviour {
             previousPosition = currentPosition;
             currentPosition = handPos;
         }
-        Debug.Log("Translate: " + currentPosition + " prevPos: "+ previousPosition);
-        if (allowDragging)
+
+        if (previousPosition != -currentPosition)
         {
-            viewParent.Translate((currentPosition - previousPosition) * dragFactor);
+            Vector3 centerToCurrentPos = currentPosition - viewParent.transform.position;
+            Vector3 centerToPrevioustPos = previousPosition - viewParent.transform.position;
+
+            float rotationAmount = Vector3.SignedAngle(centerToPrevioustPos.normalized, centerToCurrentPos.normalized, Vector3.up);
+            // Lerp?
+            viewParent.transform.RotateAroundLocal(Vector3.up, rotationAmount * rotateFactor);
         }
-        
+
     }
 }
