@@ -79,6 +79,9 @@ public class CurrentState : MonoBehaviour {
 
     public int maxDepth;
 
+    [SerializeField]
+    public Transform viewParentTransform;
+
     public struct ViewInfo
     {
         public float sliceXMin;

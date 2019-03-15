@@ -60,7 +60,7 @@ public class RotateView : MonoBehaviour {
     }
     private void OnTriggerExit(Collider other)
     {
-        Debug.Log("Triggger: " + other.tag);
+        
         if (other.tag == "Hand")
         {
             _material.color = Color.Lerp(_material.color, defaultColor, 30F * Time.deltaTime);

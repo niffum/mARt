@@ -13,7 +13,10 @@ public class RestoreState : MonoBehaviour {
     [SerializeField]
     private DataListManager dataListManager;
 
-   [SerializeField]
+    [SerializeField]
+    private Transform viewParent;
+
+    [SerializeField]
    private string sceneName3D = "main_3D_old_Interactive";
     
     void Start () {
@@ -45,6 +48,9 @@ public class RestoreState : MonoBehaviour {
 
         currentState.primaryViewInfo.showsMask = imageAndUiManger.primaryImage.showMask;
         currentState.secondaryViewInfo.showsMask = imageAndUiManger.secondaryImage.showMask;
+
+        currentState.viewParentTransform.position = viewParent.position;
+        currentState.viewParentTransform.rotation = viewParent.rotation;
 
         SceneManager.LoadScene(sceneName3D);
     }
@@ -107,6 +113,9 @@ public class RestoreState : MonoBehaviour {
         {
             imageAndUiManger.secondaryUI.GetComponentInChildren<UpdateImageValues>().ToggleMask();
         }
+
+        viewParent.transform.position = currentState.viewParentTransform.position;
+        viewParent.transform.rotation = currentState.viewParentTransform.rotation;
     }
 	
 }

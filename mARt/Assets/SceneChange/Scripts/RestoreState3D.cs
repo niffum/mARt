@@ -14,6 +14,9 @@ public class RestoreState3D : MonoBehaviour {
     private VolumeListManager volumeListManager;
 
     [SerializeField]
+    private Transform viewParent;
+
+    [SerializeField]
     private string sceneName2D = "main_2D";
 
     void Start () {
@@ -49,6 +52,9 @@ public class RestoreState3D : MonoBehaviour {
 
         currentState.primaryViewInfo.showsMask = volumeAndUiManger.primaryVolume.showMask;
         currentState.secondaryViewInfo.showsMask = volumeAndUiManger.secondaryVolume.showMask;
+
+        currentState.viewParentTransform.position = viewParent.position;
+        currentState.viewParentTransform.rotation = viewParent.rotation;
 
         SceneManager.LoadScene(sceneName2D);
     }
@@ -113,6 +119,9 @@ public class RestoreState3D : MonoBehaviour {
         {
             volumeAndUiManger.secondaryController.ToggleMask();
         }
+
+        viewParent.transform.position = currentState.viewParentTransform.position;
+        viewParent.transform.rotation = currentState.viewParentTransform.rotation;
     }
 	
 }

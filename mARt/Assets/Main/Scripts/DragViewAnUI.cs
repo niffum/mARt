@@ -26,6 +26,9 @@ public class DragViewAnUI : MonoBehaviour {
     private LeapPinchScaleOnSelf imageScale;
 
     [SerializeField]
+    private bool checkForScale;
+
+    [SerializeField]
     private Transform viewParent;
 
     [SerializeField]
@@ -60,7 +63,7 @@ public class DragViewAnUI : MonoBehaviour {
     {
         if (other.tag == "Hand")
         {
-            if (!imageScale.scaling)
+            if (!imageScale.scaling || !checkForScale)
             {
                 _material.color = Color.Lerp(_material.color, pressedColor, 30F * Time.deltaTime);
                 
@@ -81,7 +84,10 @@ public class DragViewAnUI : MonoBehaviour {
     {
         firstTouch = false;
         rotateSphere.SetActive(false);
-        imageScale._allowScale = true;
+        if (checkForScale)
+        {
+            imageScale._allowScale = true;
+        }
     }
 
     private void StartGrab()
@@ -95,12 +101,15 @@ public class DragViewAnUI : MonoBehaviour {
             }
         }
         rotateSphere.SetActive(true);
-        imageScale._allowScale = false;
+        if (checkForScale)
+        {
+
+            imageScale._allowScale = false;
+        }
     }
 
     private void Drag()
     {
-        Debug.Log("DRAG");
         if (currentController != null)
         {
             handPos = currentController.position;
@@ -120,7 +129,6 @@ public class DragViewAnUI : MonoBehaviour {
             previousPosition = currentPosition;
             currentPosition = handPos;
         }
-        Debug.Log("Translate: " + currentPosition + " prevPos: "+ previousPosition);
         if (allowDragging)
         {
             viewParent.Translate((currentPosition - previousPosition) * dragFactor);
