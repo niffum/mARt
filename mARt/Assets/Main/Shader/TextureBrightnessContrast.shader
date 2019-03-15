@@ -5,7 +5,7 @@
 		_MainTex ("Texture", 2D) = "white" {}
 		_MaskTex("MaskTexture", 2D) = "white" {}
 		_ColorMask("ColorMask", Color) = (1, 1, 1, 1)
-		_Brightness("Brightness", Range(0,1)) = 0.5
+		_Brightness("Brightness", Range(0,3)) = 0.5
 		_Contrast("Contrast", Range(0,1)) = 0.5
 
 		_ShowMask("ShowMask", Float) = 0
@@ -61,14 +61,23 @@
 				//https://forum.unity.com/threads/hue-saturation-brightness-contrast-shader.260649/
 
 				
-				brightness = brightness * 2 - 1;
+				//brightness = brightness * 2 - 1;
 				contrast = contrast * 2;
+				brightness *= 5;
 				
 				//float _Saturation = hsbc.a * 2;
 
 				float4 outputColor = startColor;
-				outputColor.rgb = (outputColor.rgb - 0.5f) * (contrast)+0.5f;
-				outputColor.rgb = outputColor.rgb + brightness;
+				//outputColor.rgb = (outputColor.rgb - 0.5f) * (contrast)+0.5f;
+				//outputColor.rgb = outputColor.rgb + brightness;
+
+				// Gamma correction
+				float3 gammaVector = float3(brightness, brightness, brightness);
+				//outputColor.rgb = pow(outputColor.rgb, outputColor.rgb)‏;
+
+				float3 rgb = pow(outputColor.rgb, gammaVector);
+				
+				outputColor.rgb = rgb;
 				/*
 				float3 intensity = dot(outputColor.rgb, float3(0.299, 0.587, 0.114));
 				outputColor.rgb = lerp(intensity, outputColor.rgb, _Saturation);
@@ -78,7 +87,7 @@
 			
 			fixed4 frag (v2f i) : SV_Target
 			{
-				fixed4 maskColor = tex2D(_MaskTex, i.uv);
+				fixed4 maskColor = tex2D(_MaskTex, i.uv);	
 				fixed4 col = float4(1, 1, 1, 1);
 				// sample the texture
 				if (maskColor.r > 0 && _ShowMask == 1)

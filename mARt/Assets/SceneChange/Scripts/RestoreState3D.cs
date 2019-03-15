@@ -34,8 +34,8 @@ public class RestoreState3D : MonoBehaviour {
 
         currentState.primaryViewInfo.intensity = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
         currentState.primaryViewInfo.threshold = volumeAndUiManger.primaryController.sliderIntensity.HorizontalSliderValue;
-        currentState.secondaryViewInfo.intensity = volumeAndUiManger.secondaryController.sliderThreshold.HorizontalSliderValue;
-        currentState.secondaryViewInfo.threshold = volumeAndUiManger.secondaryController.sliderThreshold.HorizontalSliderValue;
+        currentState.secondaryViewInfo.intensity = volumeAndUiManger.secondaryController.sliderGamma.HorizontalSliderValue;
+        currentState.secondaryViewInfo.threshold = volumeAndUiManger.secondaryController.sliderGamma.HorizontalSliderValue;
         
         currentState.primaryViewInfo.sliceXMin = volumeAndUiManger.primaryController.sliderXMin.HorizontalSliderValue;
         currentState.primaryViewInfo.sliceYMin = volumeAndUiManger.primaryController.sliderYMin.HorizontalSliderValue;

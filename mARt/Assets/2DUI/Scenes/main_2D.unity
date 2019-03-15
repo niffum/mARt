@@ -7162,6 +7162,7 @@ MonoBehaviour:
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   pressedColor: {r: 0.73333335, g: 0.8588236, b: 0.90196085, a: 1}
   imageScale: {fileID: 1443573362}
+  checkForScale: 0
   viewParent: {fileID: 322146379}
   dragFactor: 1
   rotateSphere: {fileID: 722434330}
@@ -7847,6 +7848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imageAndUiManger: {fileID: 322146377}
   dataListManager: {fileID: 1481818278}
+  viewParent: {fileID: 0}
   sceneName3D: main_3D_old_Interactive
 --- !u!4 &955846921
 Transform:

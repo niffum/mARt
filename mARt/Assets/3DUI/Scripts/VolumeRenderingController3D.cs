@@ -13,7 +13,7 @@ namespace VolumeRendering
 
         //[SerializeField] protected VolumeRendering volume;
         [SerializeField] public InteractionSlider sliderXMin, sliderYMin,  sliderZMin, sliderZMax;
-        [SerializeField] public InteractionSlider sliderIntensity, sliderThreshold;
+        [SerializeField] public InteractionSlider sliderIntensity, sliderGamma;
         [SerializeField] protected Transform axis;
 
         const float threshold = 0.025f;
@@ -77,11 +77,11 @@ namespace VolumeRendering
                     volume.intensity = sliderIntensity.HorizontalSliderValue;
                 }
             }
-            if (sliderThreshold.wasSlid)
+            if (sliderGamma.wasSlid)
             {
                 foreach (var volume in volumes)
                 {
-                    volume.threshold = sliderThreshold.HorizontalSliderValue;
+                    volume.gamma = sliderGamma.HorizontalSliderValue;
                 }
             }
 
@@ -91,7 +91,7 @@ namespace VolumeRendering
             sliderYMin.HorizontalSliderValue = volumes[0].sliceYMin;
             sliderZMin.HorizontalSliderValue = volumes[0].sliceZMin;
             sliderIntensity.HorizontalSliderValue = volumes[0].intensity;
-            sliderThreshold.HorizontalSliderValue = volumes[0].threshold;
+            sliderGamma.HorizontalSliderValue = volumes[0].gamma;
 
             
         }

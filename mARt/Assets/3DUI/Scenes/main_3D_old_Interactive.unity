@@ -2445,6 +2445,7 @@ MonoBehaviour:
   sliceZMax: 1
   axis: {x: 0, y: 0, z: 0, w: 1}
   shininess: 5
+  gamma: 0.5
   volume: {fileID: 11700000, guid: a6545bb765694bb4baeba8a02d6d6f60, type: 2}
   volumeMask: {fileID: 11700000, guid: 47e9cbadc27669a45b6d9453f4f88e21, type: 2}
   transferColor: {fileID: 2800000, guid: 4906483a6fba0584a91511a1349feb40, type: 2}
@@ -7113,7 +7114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebbb41b110e5794ab82d986ca172460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
+  _manager: {fileID: 1840902371}
   _ignoreHoverMode: 0
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -7151,7 +7152,7 @@ MonoBehaviour:
   overrideRectLimits: 0
   _parentHasRectTransform: 0
   defaultHorizontalValue: 1
-  _horizontalValueRange: {x: 0, y: 5}
+  _horizontalValueRange: {x: 0, y: 3}
   horizontalSlideLimits: {x: -0.5, y: 0.49999976}
   horizontalSteps: 0
   _horizontalSlideEvent:
@@ -9406,7 +9407,7 @@ MonoBehaviour:
   sliderZMin: {fileID: 4022173}
   sliderZMax: {fileID: 210102854}
   sliderIntensity: {fileID: 1270681643}
-  sliderThreshold: {fileID: 1234275926}
+  sliderGamma: {fileID: 1234275926}
   axis: {fileID: 367141619}
   showMask: 0
   inactiveMaskIcon: {fileID: 395614140}
@@ -10272,6 +10273,7 @@ MonoBehaviour:
   sliceZMax: 1
   axis: {x: 0, y: 0, z: 0, w: 1}
   shininess: 5
+  gamma: 0.5
   volume: {fileID: 11700000, guid: 796f2c72faf14c041a447ead85af85c7, type: 2}
   volumeMask: {fileID: 11700000, guid: 0bc64a330964d7a48a3fb475474ed272, type: 2}
   transferColor: {fileID: 2800000, guid: 4906483a6fba0584a91511a1349feb40, type: 2}
@@ -21505,7 +21507,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebbb41b110e5794ab82d986ca172460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
+  _manager: {fileID: 1840902371}
   _ignoreHoverMode: 0
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -24458,7 +24460,7 @@ MonoBehaviour:
   sliderZMin: {fileID: 98228406}
   sliderZMax: {fileID: 123371552}
   sliderIntensity: {fileID: 1283115852}
-  sliderThreshold: {fileID: 329787652}
+  sliderGamma: {fileID: 329787652}
   axis: {fileID: 367141619}
   showMask: 0
   inactiveMaskIcon: {fileID: 1451234341}
@@ -25377,7 +25379,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1673630351}
   m_LocalRotation: {x: -0, y: -0.008212162, z: -0, w: 0.9999663}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.016600013, z: 0}
   m_LocalScale: {x: 0.13770007, y: 0.1377, z: 0.13770008}
   m_Children:
   - {fileID: 1244491821}
@@ -27166,7 +27168,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1859861148}
   m_LocalRotation: {x: -0, y: -0.008212162, z: -0, w: 0.9999663}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -0.0166, z: 0}
   m_LocalScale: {x: 0.13769926, y: 0.1376991, z: 0.13769922}
   m_Children:
   - {fileID: 1057830582}

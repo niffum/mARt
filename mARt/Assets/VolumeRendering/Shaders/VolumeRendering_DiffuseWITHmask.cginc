@@ -1,4 +1,4 @@
-#ifndef __VOLUME_RENDERING_INCLUDED__
+﻿#ifndef __VOLUME_RENDERING_INCLUDED__
 #define __VOLUME_RENDERING_INCLUDED__
 
 #include "UnityCG.cginc"
@@ -12,7 +12,7 @@ half4 _ColorMask;
 sampler3D _Volume;
 sampler3D _VolumeMask;
 sampler2D _TransferColor;
-half _Intensity, _Threshold, _IntensityMask, _Shininess;
+half _Intensity, _Threshold, _IntensityMask, _Shininess, _Gamma;
 half3 _SliceMin, _SliceMax;
 float4x4 _AxisRotationMatrix;
 float _ShowMask;
@@ -171,6 +171,17 @@ float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 	//return float4(abs(normal), 1.0);
 }
 
+float3 gammaCorrection(float4 color) {
+	// Gamma correction
+	float gamma = _Gamma * 2;
+	float3 gammaVector = float3(gamma, gamma, gamma);
+
+	float3 rgb = pow(color.rgb, gammaVector);
+	//float3 rgb = (outputColor.rgb - 0.5f) * (contrast)+0.5f;
+
+	return rgb;
+}
+
 // =============================================================================
 // Fragment Function
 // =============================================================================
@@ -223,6 +234,8 @@ fixed4 frag(v2f i) : SV_Target
     {
 		// Look up transfer function color
 		//src = get_transferColor(isoValue);
+		float4 transcolor = get_transferColor(isoValue);
+		src.a = transcolor.a;
     } 
 
 	float3 lightDir = 0.5 + normalize(_WorldSpaceLightPos0.xyz);//normalize((_WorldSpaceLightPos0 - i.vertex).xyz);
@@ -268,6 +281,8 @@ fixed4 frag(v2f i) : SV_Target
     if (dst.a > _Threshold) break;
   }
   
+  dst.rgb = gammaCorrection(dst);
+
   if (dst.a > dstMask.a)
   {
 	  return saturate(dst);

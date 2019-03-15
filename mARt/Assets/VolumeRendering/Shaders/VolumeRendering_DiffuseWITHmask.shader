@@ -16,6 +16,8 @@
 		_ShowMask ("ShowMask", Float) = 0
 
 		_Shininess("Shininess", Range(0.0, 20.0)) = 5.0
+
+		_Gamma("Gamma", Range(0.0, 3.0)) = 0.5
 	}
 
 	CGINCLUDE

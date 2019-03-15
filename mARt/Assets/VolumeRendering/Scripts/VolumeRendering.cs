@@ -32,6 +32,7 @@ namespace VolumeRendering
         public Quaternion axis = Quaternion.identity;
 
         [Range(0.0f, 20f)] public float shininess = 5f;
+        [Range(0.0f, 3f)] public float gamma = 1f;
 
         public Texture volume;
         public Texture volumeMask;
@@ -57,6 +58,7 @@ namespace VolumeRendering
             material.SetFloat("_Threshold", threshold);
             material.SetFloat("_Intensity", intensity);
             material.SetFloat("_Shininess", shininess);
+            material.SetFloat("_Gamma", gamma);
             material.SetFloat("_IntensityMask", intensityMask);
             material.SetVector("_SliceMin", new Vector3(sliceXMin, sliceYMin, sliceZMin));
             material.SetVector("_SliceMax", new Vector3(sliceXMax, sliceYMax, sliceZMax));
