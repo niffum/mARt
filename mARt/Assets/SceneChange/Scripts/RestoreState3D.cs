@@ -53,8 +53,8 @@ public class RestoreState3D : MonoBehaviour {
         currentState.primaryViewInfo.showsMask = volumeAndUiManger.primaryVolume.showMask;
         currentState.secondaryViewInfo.showsMask = volumeAndUiManger.secondaryVolume.showMask;
 
-        currentState.viewParentTransform.position = viewParent.position;
-        currentState.viewParentTransform.rotation = viewParent.rotation;
+        currentState.viewParentTransformPosition = viewParent.position;
+        currentState.viewParentTransformRotation = viewParent.rotation;
 
         SceneManager.LoadScene(sceneName2D);
     }
@@ -120,8 +120,8 @@ public class RestoreState3D : MonoBehaviour {
             volumeAndUiManger.secondaryController.ToggleMask();
         }
 
-        viewParent.transform.position = currentState.viewParentTransform.position;
-        viewParent.transform.rotation = currentState.viewParentTransform.rotation;
+        viewParent.transform.position = currentState.viewParentTransformPosition;
+        viewParent.transform.rotation = currentState.viewParentTransformRotation;
     }
 	
 }

@@ -80,7 +80,10 @@ public class CurrentState : MonoBehaviour {
     public int maxDepth;
 
     [SerializeField]
-    public Transform viewParentTransform;
+    public Vector3 viewParentTransformPosition;
+
+    [SerializeField]
+    public Quaternion viewParentTransformRotation;
 
     public struct ViewInfo
     {

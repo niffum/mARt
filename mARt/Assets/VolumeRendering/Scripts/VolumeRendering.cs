@@ -32,7 +32,7 @@ namespace VolumeRendering
         public Quaternion axis = Quaternion.identity;
 
         [Range(0.0f, 20f)] public float shininess = 5f;
-        [Range(0.0f, 3f)] public float gamma = 1f;
+        [Range(0.0f, 3f)] public float gamma = 0.5f;
 
         public Texture volume;
         public Texture volumeMask;

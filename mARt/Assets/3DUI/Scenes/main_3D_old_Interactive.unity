@@ -766,7 +766,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &75124280
 Transform:
   m_ObjectHideFlags: 0
@@ -3229,7 +3229,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &150392351
 Transform:
   m_ObjectHideFlags: 0
@@ -5532,7 +5532,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &261707897
 Transform:
   m_ObjectHideFlags: 0
@@ -7091,7 +7091,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 329787649}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b02e2f8ae628ac4f9faca951fe12db4, type: 3}
   m_Name: 
@@ -7824,6 +7824,7 @@ GameObject:
   - component: {fileID: 399521567}
   - component: {fileID: 399521566}
   - component: {fileID: 399521565}
+  - component: {fileID: 399521568}
   m_Layer: 0
   m_Name: OuterCube (2)
   m_TagString: Untagged
@@ -7886,10 +7887,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399521563}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5.88, y: 2.35, z: 1.15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &399521567
 MeshFilter:
@@ -7898,6 +7899,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 399521563}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &399521568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 399521563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146dc28a5b393f94d886ea258b0bbe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  collisionColor: {r: 0.7254902, g: 0.854902, b: 0.90196085, a: 1}
 --- !u!1 &410551129
 GameObject:
   m_ObjectHideFlags: 0
@@ -14723,8 +14737,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultColor: {r: 1, g: 1, b: 1, a: 1}
   pressedColor: {r: 0.73333335, g: 0.8588236, b: 0.90196085, a: 1}
-  imageScale: {fileID: 0}
-  checkForScale: 0
+  imageScale: {fileID: 551230099}
   viewParent: {fileID: 186728340}
   dragFactor: 1
   rotateSphere: {fileID: 722434330}
@@ -20751,7 +20764,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1234275923}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b02e2f8ae628ac4f9faca951fe12db4, type: 3}
   m_Name: 
@@ -20774,7 +20787,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebbb41b110e5794ab82d986ca172460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
+  _manager: {fileID: 1840902371}
   _ignoreHoverMode: 0
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -21241,7 +21254,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1270681640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b02e2f8ae628ac4f9faca951fe12db4, type: 3}
   m_Name: 
@@ -21264,7 +21277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebbb41b110e5794ab82d986ca172460, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 0}
+  _manager: {fileID: 1840902371}
   _ignoreHoverMode: 0
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -21484,7 +21497,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1283115849}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4b02e2f8ae628ac4f9faca951fe12db4, type: 3}
   m_Name: 
@@ -25167,6 +25180,7 @@ GameObject:
   - component: {fileID: 1632488376}
   - component: {fileID: 1632488375}
   - component: {fileID: 1632488374}
+  - component: {fileID: 1632488377}
   m_Layer: 0
   m_Name: OuterCube (1)
   m_TagString: Untagged
@@ -25229,10 +25243,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632488372}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5.88, y: 2.35, z: 1.15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &1632488376
 MeshFilter:
@@ -25241,6 +25255,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1632488372}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1632488377
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1632488372}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146dc28a5b393f94d886ea258b0bbe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  collisionColor: {r: 0.7254902, g: 0.854902, b: 0.90196085, a: 1}
 --- !u!1 &1640432973
 GameObject:
   m_ObjectHideFlags: 0
@@ -26390,7 +26417,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26404,7 +26431,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   volumeAndUiManger: {fileID: 186728341}
   volumeListManager: {fileID: 690783500}
-  viewParent: {fileID: 0}
+  viewParent: {fileID: 186728340}
   sceneName2D: main_2D
 --- !u!4 &1797499210
 Transform:
@@ -28337,7 +28364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1977395402
 Transform:
   m_ObjectHideFlags: 0
@@ -29530,6 +29557,7 @@ GameObject:
   - component: {fileID: 2099955472}
   - component: {fileID: 2099955471}
   - component: {fileID: 2099955470}
+  - component: {fileID: 2099955473}
   m_Layer: 0
   m_Name: OuterCube (2)
   m_TagString: Untagged
@@ -29592,10 +29620,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2099955468}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5.88, y: 2.35, z: 1.15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2099955472
 MeshFilter:
@@ -29604,6 +29632,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2099955468}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2099955473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2099955468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146dc28a5b393f94d886ea258b0bbe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  collisionColor: {r: 0.7254902, g: 0.854902, b: 0.90196085, a: 1}
 --- !u!1 &2109733645
 GameObject:
   m_ObjectHideFlags: 0
@@ -29721,6 +29762,7 @@ GameObject:
   - component: {fileID: 2121141211}
   - component: {fileID: 2121141210}
   - component: {fileID: 2121141209}
+  - component: {fileID: 2121141212}
   m_Layer: 0
   m_Name: OuterCube (1)
   m_TagString: Untagged
@@ -29783,10 +29825,10 @@ BoxCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2121141207}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 5.88, y: 2.35, z: 1.15}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!33 &2121141211
 MeshFilter:
@@ -29795,6 +29837,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2121141207}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &2121141212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2121141207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 146dc28a5b393f94d886ea258b0bbe6d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  collisionColor: {r: 0.7254902, g: 0.854902, b: 0.90196085, a: 1}
 --- !u!1 &2146761614
 GameObject:
   m_ObjectHideFlags: 0
