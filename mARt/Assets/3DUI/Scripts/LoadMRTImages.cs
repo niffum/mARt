@@ -48,7 +48,7 @@ public class LoadMRTImages : MonoBehaviour {
 		ApplyPixels(ConvertFolderToVolume(true));
 	}
 
-	private void Create3DTextureWithGradients()
+	public void Create3DTextureWithGradients()
 	{
 		float[,,] isoValues = GetImageValues();
 		Vector3[] gradients = SmoothGradients( CreateGradientValues(isoValues) );
@@ -129,23 +129,23 @@ public class LoadMRTImages : MonoBehaviour {
 		return isoValues;
 	}
 
-	private Vector3[] CreateGradientValues(float[,,] isoValues)
+	public Vector3[] CreateGradientValues(float[,,] isoValues)
 	{
-		// How to generate gradient value: GPU Gems 1:  39.4.1 
-		//http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
+        // How to generate gradient value: GPU Gems 1:  39.4.1 
+        //http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
 
-		Vector3[] gradients = new Vector3[size.x*size.y*size.z];
-
-		int n = 1;
+        //Vector3[] gradients = new Vector3[size.x*size.y*size.z];
+        Vector3[] gradients = new Vector3[isoValues.GetLength(0) * isoValues.GetLength(1) * isoValues.GetLength(2)];
+        int n = 1;
 		Vector3 s1, s2;
 
 		int index = 0;
 
-		for (int z = 0; z < size.z; z++)
+		for (int z = 0; z < isoValues.GetLength(0); z++)
 		{
-			for (int y = 0; y < size.y; y++)
+			for (int y = 0; y < isoValues.GetLength(1); y++)
 			{
-				for (int x = 0; x < size.x; x++)
+				for (int x = 0; x < isoValues.GetLength(2); x++)
 				{
 					try{
 						// Check voxels before and after current one
@@ -167,9 +167,7 @@ public class LoadMRTImages : MonoBehaviour {
 						s1.z = isoValues[z, y, x];
 						s2.z = isoValues[z, y, x];
 
-
-						
-					}
+                    }
 					gradients[index++] = (s2 - s1)/(2f*n);
             
                    
@@ -182,7 +180,7 @@ public class LoadMRTImages : MonoBehaviour {
 	}
 
 
-	private Vector3[] SmoothGradients(Vector3[] gradients)
+	public Vector3[] SmoothGradients(Vector3[] gradients)
 	{
 		double[] gaussKernel = Get1DGaussianKernel(5.5f, 5);
 		
@@ -228,24 +226,25 @@ public class LoadMRTImages : MonoBehaviour {
  		return kernel;
 	}
 
-	private Color[] SaveGradientsAndIsoValues(Vector3[] gradients, float[,,] isoValues)
+    public Color[] SaveGradientsAndIsoValues(Vector3[] gradients, float[,,] isoValues)
 	{
-		var cols = new Color[size.x*size.y*size.z];
+		//var cols = new Color[size.x*size.y*size.z];
+        Color[] cols = new Color[isoValues.GetLength(0) * isoValues.GetLength(1) * isoValues.GetLength(2)];
         int index = 0;
 
-		for (int z = 0; z < size.z; z++)
+		for (int z = 0; z < isoValues.GetLength(0); z++)
 		{
-			for (int y = 0; y < size.y; y++)
+			for (int y = 0; y < isoValues.GetLength(1); y++)
 			{
-				for (int x = 0; x < size.x; x++)
+				for (int x = 0; x < isoValues.GetLength(2); x++)
 				{
                     // Save gradient in color and isovalue in alpha channel
-                    
+
 					cols[index].r = gradients[index].x;
 					cols[index].g = gradients[index].y;
 					cols[index].b = gradients[index].z;
 					cols[index].a = isoValues[z,y,x];
-                    
+
                     //cols[index] = new Vector4(gradients[index].x, gradients[index].y, gradients[index].z, isoValues[z, y, x]);
                     index++;
 				}
@@ -289,7 +288,7 @@ public class LoadMRTImages : MonoBehaviour {
         GetComponent<Renderer>().material.SetTexture ("_Volume", tex);
 	}
 
-	private void CreateTexture3DAsset(Texture3D texture)
+	public void CreateTexture3DAsset(Texture3D texture)
 	{
 		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
 	}
