@@ -9191,8 +9191,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 551230095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.54608774, y: 0.54608774, z: 0.54608774}
   m_Children:
   - {fileID: 737314405}
   - {fileID: 767284123}
@@ -25825,7 +25825,7 @@ Animator:
   m_GameObject: {fileID: 1728889959}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 91db60852a92ac84f84af7784a323ba9, type: 2}
+  m_Controller: {fileID: 9100000, guid: 15806903a25514743adccdc1e040cad3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -27132,11 +27132,11 @@ MonoBehaviour:
   _templateLayer:
     layerIndex: 0
   _interactionLayer:
-    layerIndex: 8
-  _interactionNoContactLayer:
-    layerIndex: 9
-  _contactBoneLayer:
     layerIndex: 10
+  _interactionNoContactLayer:
+    layerIndex: 11
+  _contactBoneLayer:
+    layerIndex: 12
   _drawControllerRuntimeGizmos: 0
 --- !u!4 &1840902372
 Transform:
@@ -27502,8 +27502,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1883464223}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 0.54608774, y: 0.54608774, z: 0.54608774}
   m_Children:
   - {fileID: 996472711}
   - {fileID: 1757146063}
