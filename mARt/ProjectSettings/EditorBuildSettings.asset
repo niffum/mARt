@@ -4,4 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Main/Scenes/Preload.unity
+    guid: 801748eea35b6ea4d9aaaa5a85f3a542
+  - enabled: 1
+    path: Assets/3DUI/Scenes/main_3D_old_Interactive.unity
+    guid: eb2c52848db7e384b8bf6c21a078b591
+  - enabled: 1
+    path: Assets/3DUI/Scenes/main_3D_old_Interactive_AR.unity
+    guid: 08de0c711e50eaa4da97c7e509bf00c7
+  - enabled: 1
+    path: Assets/2DUI/Scenes/main_2D.unity
+    guid: 9373c847436d5e34198655efde6f775d
+  - enabled: 1
+    path: Assets/2DUI/Scenes/main_2D_AR.unity
+    guid: cb16669f402251e449130eca12eaa2ff

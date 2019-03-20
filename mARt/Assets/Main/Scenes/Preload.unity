@@ -141,7 +141,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d148099e6a5c7f499edf5247776e2d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstSceneName: main_2D_AR
+  firstSceneName: main_2D
   oneViewIsDisplayed: 0
   viewsAreSynchronized: 0
   maxDepth: 0
