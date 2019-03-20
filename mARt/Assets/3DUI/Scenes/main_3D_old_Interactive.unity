@@ -9235,6 +9235,7 @@ MonoBehaviour:
   _allowScale: 1
   maxScale: 1.5
   minScale: 0.2
+  initialScale: {x: 1, y: 1, z: 1}
   scaling: 0
 --- !u!65 &551230100
 BoxCollider:
@@ -27132,11 +27133,11 @@ MonoBehaviour:
   _templateLayer:
     layerIndex: 0
   _interactionLayer:
-    layerIndex: 8
-  _interactionNoContactLayer:
-    layerIndex: 9
-  _contactBoneLayer:
     layerIndex: 10
+  _interactionNoContactLayer:
+    layerIndex: 11
+  _contactBoneLayer:
+    layerIndex: 12
   _drawControllerRuntimeGizmos: 0
 --- !u!4 &1840902372
 Transform:

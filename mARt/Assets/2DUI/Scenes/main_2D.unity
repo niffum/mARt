@@ -11165,6 +11165,7 @@ MonoBehaviour:
   _allowScale: 1
   maxScale: 0.1
   minScale: 0.01
+  initialScale: {x: 0.02, y: 0.02, z: 0.02}
   scaling: 0
 --- !u!222 &1443573363
 CanvasRenderer:

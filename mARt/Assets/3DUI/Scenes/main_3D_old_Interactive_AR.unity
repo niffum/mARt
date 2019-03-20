@@ -9235,6 +9235,7 @@ MonoBehaviour:
   _allowScale: 1
   maxScale: 1.5
   minScale: 0.2
+  initialScale: {x: 0.5460877, y: 0.5460877, z: 0.5460877}
   scaling: 0
 --- !u!65 &551230100
 BoxCollider:
@@ -26423,7 +26424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0

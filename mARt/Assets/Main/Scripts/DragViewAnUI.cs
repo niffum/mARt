@@ -117,7 +117,7 @@ public class DragViewAnUI : MonoBehaviour {
         }
         if (allowDragging)
         {
-            viewParent.Translate((currentPosition - previousPosition) * dragFactor);
+            viewParent.Translate((currentPosition - previousPosition) * dragFactor, Space.World);
         }
         
     }

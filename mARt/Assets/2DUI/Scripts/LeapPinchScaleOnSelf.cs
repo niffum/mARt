@@ -41,17 +41,15 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
     [SerializeField]
     private float minScale;
     
+    [SerializeField]
     private Vector3 initialScale;
     
     private float lastDistance;
     private bool lastFrameWasDoublePinched = false;
 
+    [HideInInspector]
     public bool scaling = false;
 
-    void Start()
-    {
-        initialScale = transform.localScale;
-    }
 
     void Update()
     {
@@ -86,6 +84,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
                 if (newScale.x < maxScale && newScale.y > minScale)
                 {
                     transform.localScale = newScale;
+                    Debug.Log("SUKALUUU");
                 }
             }           
             lastDistance = distance;
