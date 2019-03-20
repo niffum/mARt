@@ -11518,6 +11518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e933f13d48c681d48b14750922ac906d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comment: 
+  _isEditing: 1
 --- !u!1 &722434330
 GameObject:
   m_ObjectHideFlags: 0
@@ -11679,7 +11681,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.0759197
+      value: -1.248
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11687,7 +11689,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -0.017673042
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4493201980653798, guid: df84af96020c94b4695aec5c3427db16, type: 2}
       propertyPath: m_LocalRotation.x
@@ -13883,6 +13885,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e933f13d48c681d48b14750922ac906d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comment: 
+  _isEditing: 1
 --- !u!1 &824709238
 GameObject:
   m_ObjectHideFlags: 0
@@ -20275,6 +20279,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e933f13d48c681d48b14750922ac906d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comment: 
+  _isEditing: 1
 --- !u!1 &1205525282
 GameObject:
   m_ObjectHideFlags: 0
@@ -20824,8 +20830,8 @@ MonoBehaviour:
   dispatchSlideValueOnStart: 1
   overrideRectLimits: 0
   _parentHasRectTransform: 0
-  defaultHorizontalValue: 0.5
-  _horizontalValueRange: {x: 0, y: 1}
+  defaultHorizontalValue: 1
+  _horizontalValueRange: {x: 0, y: 3}
   horizontalSlideLimits: {x: -0.5, y: 0.49999976}
   horizontalSteps: 0
   _horizontalSlideEvent:
@@ -21314,8 +21320,8 @@ MonoBehaviour:
   dispatchSlideValueOnStart: 1
   overrideRectLimits: 0
   _parentHasRectTransform: 0
-  defaultHorizontalValue: 0.5
-  _horizontalValueRange: {x: 0, y: 1}
+  defaultHorizontalValue: 1
+  _horizontalValueRange: {x: 0, y: 5}
   horizontalSlideLimits: {x: -0.5, y: 0.5}
   horizontalSteps: 0
   _horizontalSlideEvent:
@@ -26417,7 +26423,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1797499209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27036,6 +27042,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e933f13d48c681d48b14750922ac906d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comment: 
+  _isEditing: 1
 --- !u!1 &1840201757
 GameObject:
   m_ObjectHideFlags: 0
@@ -27082,6 +27090,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e933f13d48c681d48b14750922ac906d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _comment: 
+  _isEditing: 1
 --- !u!1 &1840902370
 GameObject:
   m_ObjectHideFlags: 0
@@ -27122,11 +27132,11 @@ MonoBehaviour:
   _templateLayer:
     layerIndex: 0
   _interactionLayer:
-    layerIndex: 10
+    layerIndex: 8
   _interactionNoContactLayer:
-    layerIndex: 11
+    layerIndex: 9
   _contactBoneLayer:
-    layerIndex: 12
+    layerIndex: 10
   _drawControllerRuntimeGizmos: 0
 --- !u!4 &1840902372
 Transform:
