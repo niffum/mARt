@@ -280,8 +280,9 @@ PlayerSettings:
     m_Devices:
     - Oculus
   - m_BuildTarget: Metro
-    m_Enabled: 0
-    m_Devices: []
+    m_Enabled: 1
+    m_Devices:
+    - WindowsMR
   - m_BuildTarget: N3DS
     m_Enabled: 0
     m_Devices: []
@@ -627,6 +628,7 @@ PlayerSettings:
   scriptingDefineSymbols: {}
   platformArchitecture: {}
   scriptingBackend:
+    Metro: 2
     Standalone: 0
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
