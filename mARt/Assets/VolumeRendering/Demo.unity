@@ -2111,7 +2111,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shader: {fileID: 4800000, guid: a962a8e468c09994db9c629b62feb947, type: 3}
   color: {r: 0.5661765, g: 0.7486815, b: 1, a: 1}
-  colorMask: {r: 1, g: 0, b: 0, a: 1}
+  colorMask: {r: 1, g: 0, b: 0, a: 0}
   threshold: 1
   intensity: 1
   intensityMask: 2.2
@@ -2124,8 +2124,8 @@ MonoBehaviour:
   axis: {x: 0, y: 0, z: 0, w: 1}
   shininess: 5
   gamma: 0.5
-  volume: {fileID: 11700000, guid: 328cb73007fa680449ffbbce05ea92e0, type: 2}
-  volumeMask: {fileID: 11700000, guid: 0a3c38474f80637478cdb055abf12bb1, type: 2}
+  volume: {fileID: 11700000, guid: 796f2c72faf14c041a447ead85af85c7, type: 2}
+  volumeMask: {fileID: 11700000, guid: 0bc64a330964d7a48a3fb475474ed272, type: 2}
   transferColor: {fileID: 2800000, guid: 4906483a6fba0584a91511a1349feb40, type: 2}
   showMask: 1
 --- !u!33 &666004488
@@ -4246,7 +4246,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
