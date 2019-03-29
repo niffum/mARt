@@ -7853,7 +7853,7 @@ MonoBehaviour:
   imageAndUiManger: {fileID: 322146377}
   dataListManager: {fileID: 1481818278}
   viewParent: {fileID: 322146379}
-  sceneName3D: main_3D_old_Interactive
+  sceneName3D: main_3D
 --- !u!4 &955846921
 Transform:
   m_ObjectHideFlags: 0
