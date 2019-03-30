@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ * Based on: http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
@@ -41,10 +46,7 @@ public class CreateTransferColorTexture : MonoBehaviour {
 
             for(int i = 0; i < alphaKnots.Count; i++)
             {
-
-                //TODO:
-                // Interpolate between alphas e.g with a cubic spline
-
+                
                 TransferControlPoint alphaPoint = alphaKnots[i];
 
                 if(x >= alphaPoint.IsoValue)
@@ -55,10 +57,7 @@ public class CreateTransferColorTexture : MonoBehaviour {
 
             for(int i = 0; i < colorKnots.Count; i++)
             {
-
-                //TODO:
-                // Interpolate between colors e.g with a cubic spline
-
+                
                 TransferControlPoint colorPoint = colorKnots[i];
 
                 if(x >= colorPoint.IsoValue)
@@ -101,8 +100,7 @@ public class CreateTransferColorTexture : MonoBehaviour {
 
 }
 
-// Reference: 
-// http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
+// Source : http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html ---------------------
 public class TransferControlPoint
 {
     public Vector4 Color;
@@ -139,4 +137,5 @@ public class TransferControlPoint
         Color.w = alpha;
         IsoValue = isovalue;
     }
+    // ---------------------------------------------------------------------------------------------------------------------
 }

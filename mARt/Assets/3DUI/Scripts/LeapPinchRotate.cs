@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ * Based on: https://github.com/leapmotion/UnityModules/releases/tag/DetectionExamples-1.0.1
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity;

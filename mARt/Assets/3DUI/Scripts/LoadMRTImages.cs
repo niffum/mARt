@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -25,18 +30,27 @@ public class LoadMRTImages : MonoBehaviour {
 	private string textureName; 
 
 	[SerializeField]
-	private bool create3dTexture; 
+	private bool save3dTexture;
+
+    [SerializeField]
+    private bool createTextureWithGradients;
  
     void Start ()
     {
 		size = GetSizeOfVolumeFolder(folder);
         tex = new Texture3D (size.x, size.y, size.z, TextureFormat.ARGB32, true);
+
+
+        if (createTextureWithGradients)
+        {
+            Create3DTextureWithGradients();
+        }
+        else
+        {
+            Create3DTexture();
+        }
         
-		
-		//Create3DTexture();
-		Create3DTextureWithGradients();
-		
-		if(create3dTexture)
+		if(save3dTexture)
 		{
 			CreateTexture3DAsset(tex);
 		}
@@ -55,8 +69,10 @@ public class LoadMRTImages : MonoBehaviour {
 		ApplyPixels(SaveGradientsAndIsoValues(gradients, isoValues));
 		//ApplyPixels(DEBUGIsoValuesToColor(isoValues));
 	}
-	
-	public Color[] ConvertFolderToVolume(bool inferAlpha)	
+
+    // Source: MixedRealityToolkit-Unity-master/Assets/HoloToolkit-Examples/Medical/Scripts/VolumeImportImages.cs 
+    // in old version of https://github.com/Microsoft/MixedRealityToolkit-Unity ----------------------------------------------
+    public Color[] ConvertFolderToVolume(bool inferAlpha)	
 	{
 		var imageNames = GetImagesInFolder(folder);
 		
@@ -94,9 +110,9 @@ public class LoadMRTImages : MonoBehaviour {
 
 		return cols;//Color32ArrayToByteArray(cols);
 	}
-	
+// --------------------------------------------------------------------------------------------------------
 
-	private float[,,] GetImageValues()
+    private float[,,] GetImageValues()
 	{
 		var imageNames = GetImagesInFolder(folder);
 
@@ -129,10 +145,10 @@ public class LoadMRTImages : MonoBehaviour {
 		return isoValues;
 	}
 
-	public Vector3[] CreateGradientValues(float[,,] isoValues)
+//Gradient calculation based on: http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html ----------
+
+    public Vector3[] CreateGradientValues(float[,,] isoValues)
 	{
-        // How to generate gradient value: GPU Gems 1:  39.4.1 
-        //http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
 
         //Vector3[] gradients = new Vector3[size.x*size.y*size.z];
         Vector3[] gradients = new Vector3[isoValues.GetLength(0) * isoValues.GetLength(1) * isoValues.GetLength(2)];
@@ -178,9 +194,9 @@ public class LoadMRTImages : MonoBehaviour {
 
 		return gradients;
 	}
+// --------------------------------------------------------------------------------------------------------
 
-
-	public Vector3[] SmoothGradients(Vector3[] gradients)
+    public Vector3[] SmoothGradients(Vector3[] gradients)
 	{
 		double[] gaussKernel = Get1DGaussianKernel(5.5f, 5);
 		

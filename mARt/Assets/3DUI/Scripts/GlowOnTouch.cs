@@ -1,4 +1,8 @@
-
+/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ * Based on: LeapMotion/Modules/InteractionEngine/Examples/Common Example Assets/Scripts/SimpleInteractionGlow.cs
+ */
 using Leap.Unity;
 using Leap.Unity.Interaction;
 using System.Collections;

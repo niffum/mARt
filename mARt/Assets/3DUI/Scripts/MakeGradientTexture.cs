@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
@@ -8,10 +12,7 @@ using UnityEditor;
 #endif
 
 public class MakeGradientTexture : MonoBehaviour {
-
-    // TODO:
-    // Check if code is from anywhere
-
+    
     [SerializeField]
     private Texture3D texture3D;
 
@@ -29,8 +30,6 @@ public class MakeGradientTexture : MonoBehaviour {
         size = new Vector3Int(texture3D.width , texture3D.height , texture3D.depth);
         tex = new Texture3D (size.x, size.y, size.z, TextureFormat.ARGB32, true);
         
-		
-		//Create3DTexture();
 		Create3DTextureWithGradients();
 		
 		if(create3dTexture)
@@ -69,12 +68,10 @@ public class MakeGradientTexture : MonoBehaviour {
         return isoValues;
     }
 	
+//Gradient calculation based on: http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html ----------
 
 	private Vector3[] CreateGradientValues(float[,,] isoValues)
 	{
-		// How to generate gradient value: GPU Gems 1:  39.4.1 
-		//http://graphicsrunner.blogspot.com/2009/01/volume-rendering-102-transfer-functions.html
-
 		Vector3[] gradients = new Vector3[size.x*size.y*size.z];
 
 		int n = 1;
@@ -113,7 +110,7 @@ public class MakeGradientTexture : MonoBehaviour {
 
 		return gradients;
 	}
-
+// --------------------------------------------------------------------------------------------------------
 
 	private Vector3[] SmoothGradients(Vector3[] gradients)
 	{
