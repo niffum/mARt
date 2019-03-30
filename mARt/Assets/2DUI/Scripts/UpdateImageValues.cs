@@ -1,4 +1,9 @@
-﻿using Leap.Unity.Interaction;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
+using Leap.Unity.Interaction;
 using System;
 using System.Collections;
 using System.Collections.Generic;

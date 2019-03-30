@@ -1,4 +1,8 @@
-﻿using HoloToolkit.Unity.InputModule;
+﻿/* 
+ * Source: https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
+ */
+
+using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 
 public class HandResize : MonoBehaviour, IManipulationHandler

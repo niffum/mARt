@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -60,13 +64,11 @@ public class ScrollBarManager : MonoBehaviour {
 		//float newYPos = Mathf.Lerp(startYPosBar, endYPosBar, stepSize / depth);
 		if(depth > 0 )
 		{
-			Debug.LogWarning("startYPosBar: " + startYPosBar +  " depth: " + depth + " " + maxDepth +" dist :" + distStartEnd);
             newY = startYPosBar - depth / (maxDepth - 1) * distStartEnd;
             return newY;
 		}
 		else
 		{
-			Debug.LogWarning("NULL");
 			return  startYPosBar;
 		}
 		
@@ -76,7 +78,6 @@ public class ScrollBarManager : MonoBehaviour {
 	{
 		double newYPosition = CalculateCurrentBarYPosition(currentDepth);
 		//float translateBy = Mathf.Lerp(lastPosition.y, newYPosition, slideSpeed);
-		Debug.LogWarning("NEW: " + newYPosition);
 
 		var tmpPos = bar.transform.localPosition;
 		bar.transform.localPosition = new Vector3(tmpPos.x, (float)newYPosition, tmpPos.z);//.Translate(0f, translateBy, 0f);

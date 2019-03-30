@@ -1,7 +1,10 @@
-﻿using HoloToolkit.Unity.InputModule;
+﻿/* 
+ * Source: https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
+ */
+
+using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 
-// https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
 public class HandRotate : MonoBehaviour, IManipulationHandler
 {
     [Tooltip("Speed of static rotation when tapping game object.")]

@@ -1,10 +1,11 @@
-﻿using HoloToolkit.Unity.InputModule;
+﻿/* 
+ * Source: https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
+ */
+using HoloToolkit.Unity.InputModule;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
-// https://www.billmccrary.com/holotoolkit-simple-dragresizerotate/
 
 public class HandDragging : MonoBehaviour, IManipulationHandler
 {

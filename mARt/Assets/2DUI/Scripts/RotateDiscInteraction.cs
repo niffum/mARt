@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -127,7 +132,6 @@ public class RotateDiscInteraction : MonoBehaviour
             Vector3 centerToPrevioustPos = previousPosition - cylinder.transform.position;
 
             float rotationAmount = Vector3.SignedAngle(centerToPrevioustPos.normalized, centerToCurrentPos.normalized, Vector3.forward);
-            // Lerp?
             cylinder.transform.RotateAroundLocal(Vector3.forward, rotationAmount * SPEED_DAMPER);
 
             //rotationCounter += rotationAmount * SPEED_DAMPER;
