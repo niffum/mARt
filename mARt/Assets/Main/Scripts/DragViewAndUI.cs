@@ -1,11 +1,14 @@
-﻿using UnityEngine;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
 
-
+using UnityEngine;
 using Leap.Unity;
 using Leap.Unity.Interaction;
 using System;
 
-public class DragViewAnUI : MonoBehaviour {
+public class DragViewAndUI : MonoBehaviour {
 
     private InteractionBehaviour _intObj;
 

@@ -1,4 +1,10 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ * Based on: LeapMotion/Modules/InteractionEngine/Examples/Common Example Assets/Scripts/SimpleInteractionGlow.cs
+ */
+
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -27,7 +33,6 @@ public class ChangeColorOnCollision : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("ENTER SANDMAN");
         _material.color = Color.Lerp(_material.color, collisionColor, 30F * Time.deltaTime);
     }
 

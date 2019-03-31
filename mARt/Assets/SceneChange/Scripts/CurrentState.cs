@@ -1,4 +1,8 @@
-﻿using System.Collections;
+﻿/*
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -28,6 +32,7 @@ public class CurrentState : MonoBehaviour {
 
     void Start()
     {
+        // Initialize state
         primaryViewInfo = new ViewInfo();
 
         primaryViewInfo.sliceXMin = 0f;

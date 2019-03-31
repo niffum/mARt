@@ -1,4 +1,8 @@
-﻿Shader "Unlit/TextureBrightnessContrast"
+﻿/*
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+Shader "Unlit/TextureBrightnessContrast"
 {
 	Properties
 	{
@@ -56,11 +60,9 @@
 				return o;
 			}
 
+			// Contrast and brightness calculation based on: https://forum.unity.com/threads/hue-saturation-brightness-contrast-shader.260649/
 			inline float4 applyContrastAndBrightness(float4 startColor, float contrast, float brightness)
-			{
-				//https://forum.unity.com/threads/hue-saturation-brightness-contrast-shader.260649/
-
-				
+			{				
 				//brightness = brightness * 2 - 1;
 				contrast = contrast * 2;
 				brightness *= 5;
@@ -71,7 +73,7 @@
 				//outputColor.rgb = (outputColor.rgb - 0.5f) * (contrast)+0.5f;
 				//outputColor.rgb = outputColor.rgb + brightness;
 
-				// Gamma correction
+				// Gamma correction, brightness is used as gamma value
 				float3 gammaVector = float3(brightness, brightness, brightness);
 				//outputColor.rgb = pow(outputColor.rgb, outputColor.rgb)‏;
 

@@ -1,4 +1,8 @@
-﻿Shader "Unlit/PhongUnlit"
+﻿/*
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+Shader "Unlit/PhongUnlit"
 {
 	Properties
 	{

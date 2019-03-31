@@ -1,4 +1,8 @@
-﻿using Leap.Unity;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using Leap.Unity;
 using Leap.Unity.Interaction;
 using System.Collections;
 using System.Collections.Generic;
@@ -27,11 +31,11 @@ public class RotateView : MonoBehaviour {
     [SerializeField]
     private float rotateFactor = 0.01f;
 
-    private DragViewAnUI dragView;
+    private DragViewAndUI dragView;
 
     void Start()
     {
-        dragView = transform.parent.GetComponent<DragViewAnUI>();
+        dragView = transform.parent.GetComponent<DragViewAndUI>();
         _intObj = GetComponent<InteractionBehaviour>();
 
         Renderer renderer = GetComponent<Renderer>();
