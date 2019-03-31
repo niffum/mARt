@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
 using UnityEngine.SceneManagement;
 
+// For 2D scene
 public class HandUIManager : MonoBehaviour {
 
     [SerializeField]
@@ -40,36 +45,6 @@ public class HandUIManager : MonoBehaviour {
         deactiveListIcon.SetActive(!dataListIsVisible);
     }
     
-    public void ChooseFirstDataSet()
-    {
-
-    }
-
-    public void ChooseSecondDataSet()
-    {
-
-    }
-    /*
-    public void ToggleViewDisplay()
-    {
-        if(!imageAndUiManager.displayingTwoViews)
-        {
-            Debug.Log("ToggleViews: " + imageAndUiManager.displayingTwoViews);
-            
-            // Get DatasetNames
-            imageAndUiManager.DisplayTwoViews();
-            ToggleSynchroButton(true);
-        }
-        else
-        {
-            
-            // Get DatasetName
-            imageAndUiManager.DisplayOneView();
-            ToggleSynchroButton(false);
-        }
-        imageAndUiManager.displayingTwoViews = !imageAndUiManager.displayingTwoViews;
-    }
-    */
     public void ToggleSynchronicity()
     {   if(imageAndUiManager.displayingTwoViews)
         {

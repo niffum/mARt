@@ -1,9 +1,14 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Leap.Unity.Animation;
 using UnityEngine.SceneManagement;
 
+// For 3D scene
 public class HandUIManager3D : MonoBehaviour {
 
     [SerializeField]

@@ -1,7 +1,12 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Handles selection of datasets for 2D scene
 public class DataListManager : MonoBehaviour {
 
     [SerializeField]
