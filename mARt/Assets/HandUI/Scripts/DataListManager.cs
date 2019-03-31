@@ -6,7 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Handles selection of datasets for 2D scene
+    // Handles selection of datasets for 2D scene
 public class DataListManager : MonoBehaviour {
 
     [SerializeField]

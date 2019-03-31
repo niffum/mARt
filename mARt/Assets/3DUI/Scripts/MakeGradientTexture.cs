@@ -220,7 +220,7 @@ public class MakeGradientTexture : MonoBehaviour {
 
 	private void CreateTexture3DAsset(Texture3D texture)
 	{
-		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
+		//UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
 	}
 
 

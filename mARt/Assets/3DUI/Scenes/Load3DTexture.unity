@@ -529,7 +529,8 @@ MonoBehaviour:
   size: {x: 256, y: 256, z: 110}
   folder: Assets/StreamingAssets/MRTImages/02
   textureName: dwi_2_gradients
-  create3dTexture: 1
+  save3dTexture: 1
+  createTextureWithGradients: 1
 --- !u!65 &1636403734
 BoxCollider:
   m_ObjectHideFlags: 0

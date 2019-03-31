@@ -16,6 +16,7 @@ Requirements:
 - Leap Motion SDK Orion
 - Steam VR
 - VR/AR system 
+- Leap Motion
 
 ## Use VR application on HoloLens 
 

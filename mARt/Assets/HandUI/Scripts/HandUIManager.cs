@@ -46,7 +46,8 @@ public class HandUIManager : MonoBehaviour {
     }
     
     public void ToggleSynchronicity()
-    {   if(imageAndUiManager.displayingTwoViews)
+    {
+        if (imageAndUiManager.displayingTwoViews)
         {
             if (!imageAndUiManager.viewsAreSynchronized)
             {

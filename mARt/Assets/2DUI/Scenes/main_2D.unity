@@ -1650,7 +1650,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 278017284}
-  - component: {fileID: 278017283}
   m_Layer: 0
   m_Name: UIParent (1)
   m_TagString: Untagged
@@ -1658,20 +1657,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
---- !u!114 &278017283
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 278017282}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f8000edb45db84a88e0de71ea2a540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pinchDetectorA: {fileID: 1240411124}
-  _pinchDetectorB: {fileID: 1804995611}
-  scaling: {fileID: 0}
 --- !u!4 &278017284
 Transform:
   m_ObjectHideFlags: 0
@@ -13385,7 +13370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba520a60e47274cb1e5afbb57aae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 1840902371}
+  _manager: {fileID: 0}
   _ignoreHoverMode: 1
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -13400,7 +13385,7 @@ MonoBehaviour:
     layerIndex: 5
   _overrideNoContactLayer: 0
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 5
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -14271,7 +14256,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1960169088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.03310001, y: 0, z: -0.0053999973}
+  m_LocalPosition: {x: 0.0331, y: 0, z: -0.0054}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 506257776}
@@ -14309,7 +14294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cba520a60e47274cb1e5afbb57aae0c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _manager: {fileID: 1840902371}
+  _manager: {fileID: 0}
   _ignoreHoverMode: 1
   _isIgnoringAllHoverState: 0
   _ignorePrimaryHover: 0
@@ -14322,9 +14307,9 @@ MonoBehaviour:
   _overrideInteractionLayer: 1
   _interactionLayer:
     layerIndex: 5
-  _overrideNoContactLayer: 0
+  _overrideNoContactLayer: 1
   _noContactLayer:
-    layerIndex: 0
+    layerIndex: 5
   _eventTable:
     _entries: []
   _controlEnabled: 1
@@ -14824,7 +14809,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 2037201839}
-  - component: {fileID: 2037201840}
   m_Layer: 0
   m_Name: UIParent
   m_TagString: Untagged
@@ -14848,20 +14832,6 @@ Transform:
   m_Father: {fileID: 322146379}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2037201840
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2037201838}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0f8000edb45db84a88e0de71ea2a540, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _pinchDetectorA: {fileID: 1240411124}
-  _pinchDetectorB: {fileID: 1804995611}
-  scaling: {fileID: 0}
 --- !u!1 &2039547300
 GameObject:
   m_ObjectHideFlags: 0

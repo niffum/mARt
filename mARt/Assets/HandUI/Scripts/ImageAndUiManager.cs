@@ -48,13 +48,13 @@ public class ImageAndUiManager : MonoBehaviour {
         //primaryMask.Init();
 
         primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += primaryImage.Scroll;
-        primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += primaryImage.SetContrast;
+        //primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += primaryImage.SetContrast;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += primaryImage.SetBrightness;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += primaryImage.ToggleMask;
 
         // This needs to happen whe second image is activated the first time
         primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryImage.Scroll;
-        primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
+        //primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
         primaryUI.GetComponentInChildren<UpdateImageValues>().OnMaskToggle += secondaryImage.ToggleMask;
 
@@ -104,8 +104,8 @@ public class ImageAndUiManager : MonoBehaviour {
             secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryImage.Scroll; 
             primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryImage.Scroll;
 
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryImage.SetContrast;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
+            //secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryImage.SetContrast;
+            //primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryImage.SetBrightness;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
@@ -116,7 +116,7 @@ public class ImageAndUiManager : MonoBehaviour {
             // set secondary image values to primary UI Values
             secondaryImage.ChangeCanvasImage(primaryImage.depth);
             secondaryImage.SetBrightness(primaryUI.GetComponentInChildren<UpdateImageValues>().GetBrightness());
-            secondaryImage.SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
+            //secondaryImage.SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
 
             if (secondaryImage.showMask != primaryImage.showMask)
             {
@@ -132,7 +132,7 @@ public class ImageAndUiManager : MonoBehaviour {
         if (viewsAreSynchronized)
         {
             // Copy Values of first ui to second ui
-            primaryUI.GetComponentInChildren<UpdateImageValues>().SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
+            //primaryUI.GetComponentInChildren<UpdateImageValues>().SetContrast(primaryUI.GetComponentInChildren<UpdateImageValues>().GetContrast());
             primaryUI.GetComponentInChildren<UpdateImageValues>().SetBrightness(primaryUI.GetComponentInChildren<UpdateImageValues>().GetBrightness());
 
             if (secondaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive != primaryUI.GetComponentInChildren<UpdateImageValues>().maskIsActive)
@@ -140,6 +140,7 @@ public class ImageAndUiManager : MonoBehaviour {
                 secondaryUI.GetComponentInChildren<UpdateImageValues>().ToggleMask();
             }
 
+            Debug.Log("Before Anim: " + viewsAreSynchronized);
             // Play animation
             // Display second UI
             uiAnimator.SetTrigger("showSecondUI");
@@ -147,8 +148,8 @@ public class ImageAndUiManager : MonoBehaviour {
             secondaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll += secondaryImage.Scroll;
             primaryUI.GetComponentInChildren<RotateDiscInteraction>().OnScroll -= secondaryImage.Scroll;
 
-            secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
-            primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryImage.SetContrast;
+            //secondaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged += secondaryImage.SetContrast;
+            //primaryUI.GetComponentInChildren<UpdateImageValues>().OnContrastChanged -= secondaryImage.SetContrast;
 
             secondaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged += secondaryImage.SetBrightness;
             primaryUI.GetComponentInChildren<UpdateImageValues>().OnBrightnessChanged -= secondaryImage.SetBrightness;

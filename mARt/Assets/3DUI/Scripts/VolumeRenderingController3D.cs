@@ -53,6 +53,7 @@ namespace VolumeRendering
                     volume.sliceXMin = sliderXMin.HorizontalSliderValue = Mathf.Min(sliderXMin.HorizontalSliderValue, volume.sliceXMax - threshold);
                 }
             }
+            /*
             if (sliderZMax.wasSlid)
             {
                 foreach (var volume in volumes)
@@ -60,6 +61,7 @@ namespace VolumeRendering
                     volume.sliceZMax = sliderZMax.HorizontalSliderValue = Mathf.Min(sliderZMax.HorizontalSliderValue, volume.sliceZMax - threshold);
                 }
             }
+            */
             if (sliderYMin.wasSlid)
             {
                 foreach(var volume in volumes)
@@ -92,7 +94,7 @@ namespace VolumeRendering
 
             // set Slider position when only volume was changed
             sliderXMin.HorizontalSliderValue = volumes[0].sliceXMin;
-            sliderZMax.HorizontalSliderValue = volumes[0].sliceXMax;
+            //sliderZMax.HorizontalSliderValue = volumes[0].sliceXMax;
             sliderYMin.HorizontalSliderValue = volumes[0].sliceYMin;
             sliderZMin.HorizontalSliderValue = volumes[0].sliceZMin;
             sliderIntensity.HorizontalSliderValue = volumes[0].intensity;

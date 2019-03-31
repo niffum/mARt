@@ -305,7 +305,7 @@ public class LoadMRTImages : MonoBehaviour {
 
 	public void CreateTexture3DAsset(Texture3D texture)
 	{
-		UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
+		//UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
 	}
 
 	public static Vector3Int GetSizeOfVolumeFolder(string folder)

@@ -30,8 +30,7 @@ public class CreateGradientsForAsset : MonoBehaviour {
 
     private Texture3D LoadAssetData()
     {
-
-       return (Texture3D)UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(Texture3D));
+        return null; //(Texture3D)UnityEditor.AssetDatabase.LoadAssetAtPath(path, typeof(Texture3D));
     }
 
     private float[,,] ConvertToFloatArray(Texture3D texture)
@@ -57,7 +56,7 @@ public class CreateGradientsForAsset : MonoBehaviour {
 
     public void CreateTexture3DAsset(Texture3D texture)
     {
-        UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
+        //UnityEditor.AssetDatabase.CreateAsset(texture, "Assets/3DTextures/" + textureName + ".asset");
     }
 
     private void ApplyPixels(Color[] cols, Texture3D tex)
