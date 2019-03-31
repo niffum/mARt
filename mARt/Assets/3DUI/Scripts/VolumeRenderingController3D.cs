@@ -1,4 +1,9 @@
-﻿using System.Collections;
+﻿/* 
+ * Created by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ * Based on: VolumeRendering/Script/VolumeRenderingController.cs
+ */
+using System.Collections;
 using System.Collections.Generic;
 
 using UnityEngine;
@@ -8,7 +13,7 @@ using System;
 
 namespace VolumeRendering
 {
-
+    // Transfers user interactions with ui to volume rendering
     public class VolumeRenderingController3D : MonoBehaviour {
 
         //[SerializeField] protected VolumeRendering volume;
