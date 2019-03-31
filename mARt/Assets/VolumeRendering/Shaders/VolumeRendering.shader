@@ -1,4 +1,8 @@
-﻿Shader "VolumeRendering/VolumeRendering"
+﻿/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ */
+
+Shader "VolumeRendering/VolumeRendering"
 {
 	Properties
 	{

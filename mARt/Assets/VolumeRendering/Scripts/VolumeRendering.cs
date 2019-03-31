@@ -1,4 +1,9 @@
-﻿
+﻿/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ * Modified by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
 using System;
 using System.IO;
 using System.Text;
@@ -21,8 +26,6 @@ namespace VolumeRendering
         [SerializeField] 
         Color color = Color.white;
 
-        [SerializeField] 
-        Color colorMask = Color.white;
         [Range(0f, 1f)] public float threshold = 0.5f;
         [Range(0.5f, 5f)] public float intensity = 1.5f;
         [Range(0.0f, 3.5f)] public float intensityMask = 2.2f;
@@ -31,17 +34,23 @@ namespace VolumeRendering
         [Range(0f, 1f)] public float sliceZMin = 0.0f, sliceZMax = 1.0f;
         public Quaternion axis = Quaternion.identity;
 
+        public Texture volume;
+
+        // Added by Viola Jertschat -----------------------------------------------
+
+        [SerializeField]
+        Color colorMask = Color.white;
+
+        public Texture volumeMask;
+
         [Range(0.0f, 20f)] public float shininess = 5f;
         [Range(0.0f, 3f)] public float gamma = 0.5f;
-
-        public Texture volume;
-        public Texture volumeMask;
 
         [SerializeField]
         public Texture2D transferColor;
 
         public bool showMask = false;
-
+        // ------------------------------------------------------------------------
 
         protected virtual void Start () {
             material = new Material(shader);
@@ -51,19 +60,23 @@ namespace VolumeRendering
         
         protected void Update () {
             material.SetTexture("_Volume", volume);
-            material.SetTexture("_VolumeMask", volumeMask);
-            material.SetTexture("_TransferColor", transferColor);
+            
+            
             material.SetColor("_Color", color);
-            material.SetColor("_ColorMask", colorMask);
             material.SetFloat("_Threshold", threshold);
             material.SetFloat("_Intensity", intensity);
-            material.SetFloat("_Shininess", shininess);
-            material.SetFloat("_Gamma", gamma);
-            material.SetFloat("_IntensityMask", intensityMask);
             material.SetVector("_SliceMin", new Vector3(sliceXMin, sliceYMin, sliceZMin));
             material.SetVector("_SliceMax", new Vector3(sliceXMax, sliceYMax, sliceZMax));
 
-            if(showMask)
+            // Added by Viola Jertschat -----------------------------------------------
+            material.SetTexture("_VolumeMask", volumeMask);
+            material.SetTexture("_TransferColor", transferColor);
+            material.SetColor("_ColorMask", colorMask);
+            material.SetFloat("_Shininess", shininess);
+            material.SetFloat("_Gamma", gamma);
+            material.SetFloat("_IntensityMask", intensityMask);
+
+            if (showMask)
             {
                 material.SetFloat("_ShowMask", 1f);
             }
@@ -71,7 +84,7 @@ namespace VolumeRendering
             {
                 material.SetFloat("_ShowMask", 0f);
             }
-            
+            // ------------------------------------------------------------------------
 
             material.SetMatrix("_AxisRotationMatrix", Matrix4x4.Rotate(axis));
         }

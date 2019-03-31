@@ -1,3 +1,7 @@
+/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ */
+
 #ifndef __VOLUME_RENDERING_INCLUDED__
 #define __VOLUME_RENDERING_INCLUDED__
 

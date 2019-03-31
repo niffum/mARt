@@ -1,3 +1,9 @@
+/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ * Modified by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
 #ifndef __VOLUME_RENDERING_INCLUDED__
 #define __VOLUME_RENDERING_INCLUDED__
 
@@ -8,14 +14,18 @@
 #endif
 
 half4 _Color;
-half4 _ColorMask;
 sampler3D _Volume;
-sampler3D _VolumeMask;
-sampler2D _TransferColor;
-half _Intensity, _Threshold, _IntensityMask;
+half _Intensity, _Threshold;
 half3 _SliceMin, _SliceMax;
 float4x4 _AxisRotationMatrix;
+
+// Added by Viola Jertschat ---------
+half _IntensityMask;
+sampler2D _TransferColor;
 float _ShowMask;
+sampler3D _VolumeMask;
+half4 _ColorMask;
+// ----------------------------------
 
 struct Ray {
   float3 origin;
@@ -62,6 +72,7 @@ float sample_volume(float3 uv, float3 p)
   return v * min * max;
 }
 
+// Added by Viola Jertschat -----------------------------------------------
 float sample_volume_mask(float3 uv, float3 p)
 {
   float v = tex3D(_VolumeMask, uv).r * _IntensityMask;
@@ -80,6 +91,7 @@ float4 get_transferColor(float isovalue)
 
   return  tex2D(_TransferColor, xy);
 }
+// ------------------------------------------------------------------------
 
 bool outside(float3 uv)
 {
@@ -154,18 +166,21 @@ fixed4 frag(v2f i) : SV_Target
     float v = sample_volume(uv, p);
     float4 src = float4(v, v, v, v);
     // Y
+	// Added by Viola Jertschat -----------------------------------------------
     if(v != 0.0)
     {
       //src = get_transferColor(v);
     } 
-    
+	// ------------------------------------------------------------------------
+
     src.a *= 0.5;
     src.rgb *= src.a;
 
 
     // blend
     dst = (1.0 - dst.a) * src + dst;
-   
+
+	// Added by Viola Jertschat -----------------------------------------------
     // Sample mask
     if(_ShowMask == 1)
     {
@@ -178,13 +193,14 @@ fixed4 frag(v2f i) : SV_Target
 
       dstMask = (1.0 - dstMask.a) * srcMask + dstMask;
     }
+	// ------------------------------------------------------------------------
 
     p += ds;
 
     if (dst.a > _Threshold) break;
   }
 
-  
+  // Modified by Viola Jertschat -----------------------------------------------
   if(dst.a > dstMask.a)
   {
     return saturate(dst) * _Color;
@@ -198,6 +214,8 @@ fixed4 frag(v2f i) : SV_Target
   //return max(saturate(dst) * _Color , saturate(dstMask) * _ColorMask);
   //return max(saturate(dst), saturate(dstMask) * _ColorMask);
   return saturate(dst);
+
+  // ------------------------------------------------------------------------
 }
 
 #endif 

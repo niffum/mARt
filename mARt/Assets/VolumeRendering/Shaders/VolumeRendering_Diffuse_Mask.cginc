@@ -1,4 +1,10 @@
-﻿#ifndef __VOLUME_RENDERING_INCLUDED__
+﻿/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ * Modified by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
+#ifndef __VOLUME_RENDERING_INCLUDED__
 #define __VOLUME_RENDERING_INCLUDED__
 
 #include "UnityCG.cginc"
@@ -8,14 +14,18 @@
 #endif
 
 half4 _Color;
-half4 _ColorMask;
 sampler3D _Volume;
-sampler3D _VolumeMask;
-sampler2D _TransferColor;
-half _Intensity, _Threshold, _IntensityMask, _Shininess, _Gamma;
+half _Intensity, _Threshold;
 half3 _SliceMin, _SliceMax;
 float4x4 _AxisRotationMatrix;
+
+// Added by Viola Jertschat ---------
+half _IntensityMask, _Shininess, _Gamma;
+sampler2D _TransferColor;
 float _ShowMask;
+sampler3D _VolumeMask;
+half4 _ColorMask;
+// ----------------------------------
 
 struct Ray {
   float3 origin;
@@ -77,6 +87,7 @@ float sample_volume(float3 uv, float3 p)
   return v * min * max;
 }
 
+// Added by Viola Jertschat -----------------------------------------------
 float sample_volume_mask(float3 uv, float3 p)
 {
   float v = tex3D(_VolumeMask, uv).a * _IntensityMask;
@@ -102,6 +113,7 @@ float3 get_gradient(float3 uv, float3 p)
 
 	return gradient;
 }
+// ------------------------------------------------------------------------
 
 bool outside(float3 uv)
 {
@@ -138,6 +150,7 @@ v2f vert(appdata v)
   return o;
 }
 
+// Added by Viola Jertschat -----------------------------------------------
 float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 {
 
@@ -166,7 +179,7 @@ float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 	float3 specularComponent = specularColor.rgb  * pow(rdotv, shininessPower);
 
 	// specular should not be visible on sourrounding box
-	// by multiplying it with diffuse it gets darker7black when diffuse isn't visible either
+	// by multiplying it with diffuse it gets darker/black when diffuse isn't visible either
 	return diffuseComponent.rgb + specularComponent.rgb * diffuseComponent.rgb;
 	//return float4(abs(normal), 1.0);
 }
@@ -181,6 +194,7 @@ float3 gammaCorrection(float4 color) {
 
 	return rgb;
 }
+// ------------------------------------------------------------------------
 
 // =============================================================================
 // Fragment Function
@@ -229,7 +243,8 @@ fixed4 frag(v2f i) : SV_Target
 	// Get iso value
     float isoValue = sample_volume(uv, currentPoint);
     float4 src = float4(isoValue, isoValue, isoValue, isoValue);
-    // Y
+    
+	// Added by Viola Jertschat -----------------------------------------------
     if(isoValue != 0.0)
     {
 		// Look up transfer function color
@@ -246,8 +261,8 @@ fixed4 frag(v2f i) : SV_Target
 		float3 gradient = get_gradient(uv, currentPoint);
 		src.rgb = phong(gradient, lightDir, viewDir, src.rgb);
 	}
+	// ------------------------------------------------------------------------
 
-	// Why?
     src.a *= 0.5;
     src.rgb *= src.a;
 
@@ -256,6 +271,7 @@ fixed4 frag(v2f i) : SV_Target
 	// front to back
     dst = (1.0 - dst.a) * src + dst;
 
+	// Added by Viola Jertschat -----------------------------------------------
 	// Sample mask
 	
 	if (_ShowMask == 1)
@@ -275,12 +291,14 @@ fixed4 frag(v2f i) : SV_Target
 
 		dstMask = (1.0 - dstMask.a) * srcMask + dstMask;
 	}
+	// ------------------------------------------------------------------------
 	
 	currentPoint += stepRay;
 
     if (dst.a > _Threshold) break;
   }
   
+  // Added by Viola Jertschat -----------------------------------------------
   dst.rgb = gammaCorrection(dst);
 
   if (dst.a > dstMask.a)
@@ -294,13 +312,9 @@ fixed4 frag(v2f i) : SV_Target
 		  return saturate(dstMask) * _ColorMask + saturate(dst);
 	  }
   }
-  
-  return saturate(dst);
-  // diffuse is transfer color 
-  // normal is gradient
-  //return phong(get_gradient(lastUv,p),saturate(dst), i.local);
+  // ------------------------------------------------------------------------
 
-  
+  return saturate(dst);
 }
 
 #endif 

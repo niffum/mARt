@@ -1,3 +1,9 @@
+/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ * Modified by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
+ */
+
 #ifndef __VOLUME_RENDERING_INCLUDED__
 #define __VOLUME_RENDERING_INCLUDED__
 
@@ -8,14 +14,18 @@
 #endif
 
 half4 _Color;
-half4 _ColorMask;
 sampler3D _Volume;
-sampler3D _VolumeMask;
-sampler2D _TransferColor;
-half _Intensity, _Threshold, _IntensityMask;
+half _Intensity, _Threshold;
 half3 _SliceMin, _SliceMax;
 float4x4 _AxisRotationMatrix;
+
+// Added by Viola Jertschat ---------
+half _IntensityMask;
+sampler2D _TransferColor;
 float _ShowMask;
+sampler3D _VolumeMask;
+half4 _ColorMask;
+// ----------------------------------
 
 struct Ray {
   float3 origin;
@@ -64,19 +74,20 @@ float3 get_uv(float3 p) {
 
 float sample_volume(float3 uv, float3 p)
 {
+	// Modified by Viola Jertschat ----------------
 	//Get iso value from alpha channel of volume
   float v = tex3D(_Volume, uv).a * _Intensity;
+  // -------------------------------------------
 
-  //Why?
   float3 axis = mul(_AxisRotationMatrix, float4(p, 0)).xyz;
   axis = get_uv(axis);
-  //
+
   float min = step(_SliceMin.x, axis.x) * step(_SliceMin.y, axis.y) * step(_SliceMin.z, axis.z);
   float max = step(axis.x, _SliceMax.x) * step(axis.y, _SliceMax.y) * step(axis.z, _SliceMax.z);
 
   return v * min * max;
 }
-
+// Added by Viola Jertschat -----------------------------------------------
 float sample_volume_mask(float3 uv, float3 p)
 {
   float v = tex3D(_VolumeMask, uv).a * _IntensityMask;
@@ -102,6 +113,7 @@ float3 get_gradient(float3 uv, float3 p)
 
 	return gradient;
 }
+// ------------------------------------------------------------------------
 
 bool outside(float3 uv)
 {
@@ -138,6 +150,7 @@ v2f vert(appdata v)
   return o;
 }
 
+// Added by Viola Jertschat -----------------------------------------------
 float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 {
 
@@ -170,11 +183,11 @@ float3 phong(float3 normal, float3 viewDir, float3 lightDir, float3 diffuse)
 	return diffuseComponent.rgb + specularComponent.rgb * diffuseComponent.rgb;
 	//return float4(abs(normal), 1.0);
 }
+// ------------------------------------------------------------------------
 
 // =============================================================================
 // Fragment Function
 // =============================================================================
-
 
 fixed4 frag(v2f i) : SV_Target
 {
@@ -218,7 +231,9 @@ fixed4 frag(v2f i) : SV_Target
 	// Get iso value
     float isoValue = sample_volume(uv, currentPoint);
     float4 src = float4(isoValue, isoValue, isoValue, isoValue);
-    // Y
+
+
+	// Added by Viola Jertschat -----------------------------------------------
     if(isoValue != 0.0)
     {
 		// Look up transfer function color
@@ -234,8 +249,7 @@ fixed4 frag(v2f i) : SV_Target
 
 		src.rgb = phong(gradient, lightDir, viewDir, src.rgb);
 	}
-
-	// Why?
+	// ------------------------------------------------------------------------
     src.a *= 0.5;
     src.rgb *= src.a;
 
