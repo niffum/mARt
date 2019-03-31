@@ -1,5 +1,7 @@
 ﻿/*
  * Source: https://github.com/mattatz/unity-volume-rendering
+ * Modified by Viola Jertschat
+ * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
  */
 
 using System.Collections;
@@ -17,7 +19,9 @@ namespace VolumeRendering
         [SerializeField] protected Slider sliderXMin, sliderXMax, sliderYMin, sliderYMax, sliderZMin, sliderZMax;
         [SerializeField] protected Transform axis;
 
+        // Created by Viola Jertschat
         private Color maskColor;
+
         void Start ()
         {
             const float threshold = 0.025f;
@@ -54,6 +58,7 @@ namespace VolumeRendering
         {
             volume.intensity = v;
         }
+        // Added by Viola Jertschat -----------------------------------------------
         public void OnMaskIntensity(float v)
         {
             volume.intensityMask = v;
@@ -63,7 +68,7 @@ namespace VolumeRendering
         {
             volume.showMask = !volume.showMask;
         }
-
+        // ------------------------------------------------------------------------
         public void OnThreshold(float v)
         {
             volume.threshold = v;

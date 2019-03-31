@@ -1,7 +1,7 @@
 /* 
- * Created by Viola Jertschat
+ * Source: LeapMotion/Modules/InteractionEngine/Examples/Common Example Assets/Scripts/SimpleInteractionGlow.cs
+ * Modified by Viola Jertschat
  * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
- * Based on: LeapMotion/Modules/InteractionEngine/Examples/Common Example Assets/Scripts/SimpleInteractionGlow.cs
  */
 using Leap.Unity;
 using Leap.Unity.Interaction;
@@ -42,9 +42,10 @@ public class GlowOnTouch : MonoBehaviour {
 
     private Material _material;
 
-
+    // Added by Viola Jertschat -----------------------------------------------
     [SerializeField]
     private Renderer[] gridRenderer;
+    // ------------------------------------------------------------------------
 
     private InteractionBehaviour _intObj;
 
@@ -60,11 +61,13 @@ public class GlowOnTouch : MonoBehaviour {
       _material = renderer.material;
     }
 
+    // Added by Viola Jertschat -----------------------------------------------
     foreach(var rend in gridRenderer)
     {
         Material mat = Instantiate(rend.material);
         rend.material = mat;
     }
+    // ------------------------------------------------------------------------
   }
 
   void Update() {
@@ -72,15 +75,19 @@ public class GlowOnTouch : MonoBehaviour {
 
       // The target color for the Interaction object will be determined by various simple state checks.
       Color targetColor = defaultColor;
-
+      
+      // Added by Viola Jertschat -----------------------------------------------
       Color newGridColor = inActiveGridColor;
+      // ------------------------------------------------------------------------
 
       // "Primary hover" is a special kind of hover state that an InteractionBehaviour can
       // only have if an InteractionHand's thumb, index, or middle finger is closer to it
       // than any other interaction object.
       if (_intObj.isPrimaryHovered && usePrimaryHover) {
         targetColor = primaryHoverColor;
+        // Added by Viola Jertschat -----------------------------------------------
         newGridColor = activeGridColor;
+        // ------------------------------------------------------------------------
     }
       else {
         // Of course, any number of objects can be hovered by any number of InteractionHands.
@@ -90,7 +97,10 @@ public class GlowOnTouch : MonoBehaviour {
         if (_intObj.isHovered && useHover) {
           float glow = _intObj.closestHoveringControllerDistance.Map(0F, 0.2F, 1F, 0.0F);
           targetColor = Color.Lerp(defaultColor, hoverColor, glow);
+
+          // Added by Viola Jertschat -----------------------------------------------
           newGridColor = activeGridColor;
+          // ------------------------------------------------------------------------
         }
       }
 
@@ -110,11 +120,13 @@ public class GlowOnTouch : MonoBehaviour {
 
       // Lerp actual material color to the target color.
       _material.color = Color.Lerp(_material.color, targetColor, 30F * Time.deltaTime);
-
+      
+      // Added by Viola Jertschat -----------------------------------------------
       foreach(var rend in gridRenderer)
         {
                 rend.material.color = Color.Lerp(rend.material.color, newGridColor, 30F * Time.deltaTime);
         }
+      // ------------------------------------------------------------------------
     }
   }
 

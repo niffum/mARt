@@ -1,4 +1,8 @@
-﻿using System.IO;
+﻿/*
+ * Source: https://github.com/mattatz/unity-volume-rendering
+ */
+
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 

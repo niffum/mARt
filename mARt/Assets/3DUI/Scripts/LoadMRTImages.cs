@@ -163,6 +163,7 @@ public class LoadMRTImages : MonoBehaviour {
 			{
 				for (int x = 0; x < isoValues.GetLength(2); x++)
 				{
+                    // Modified by Viola Jertschat ----------------------------------------------- 
 					try{
 						// Check voxels before and after current one
 						s1.x = isoValues[z, y, x - n];
@@ -185,11 +186,9 @@ public class LoadMRTImages : MonoBehaviour {
 
                     }
 					gradients[index++] = (s2 - s1)/(2f*n);
-            
-                   
-                    
-				}
-			}
+                    // ------------------------------------------------------------------------
+                }
+            }
 		}
 
 		return gradients;

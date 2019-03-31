@@ -85,8 +85,9 @@ public class MakeGradientTexture : MonoBehaviour {
 			{
 				for (int x = n; x < size.x - n; x++)
 				{
-					// Check voxels before and after current one
-					s1.x = isoValues[z, y, x - n];
+                    // Modified by Viola Jertschat -----------------------------------------------
+                    // Check voxels before and after current one
+                    s1.x = isoValues[z, y, x - n];
 					s2.x = isoValues[z, y, x + n];
 					s1.y = isoValues[z, y - n, x];
 					s2.y = isoValues[z, y + n, x];
@@ -95,10 +96,8 @@ public class MakeGradientTexture : MonoBehaviour {
 
 
 					gradients[index++] = (s2 - s1)/(2f*n);
-            
-                    // Divide through distance on x axes 
-                    // See: GPU gems
-                    //gradients[index++] = Vector3.Normalize(s2 - s1)/ 2;
+                    // ------------------------------------------------------------------------
+
                     if (float.IsNaN(gradients[index - 1].x))
 					{
 						gradients[index - 1] = Vector3.zero;

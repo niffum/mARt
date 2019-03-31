@@ -2,6 +2,7 @@
  * Created by Viola Jertschat
  * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
  * Based on: https://github.com/leapmotion/UnityModules/releases/tag/DetectionExamples-1.0.1
+ * Assets/LeapMotionModules/DetectionExamples/Scripts/LeapRTS.cs
  */
 
 using System.Collections;
@@ -41,6 +42,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
     [SerializeField]
     public bool _allowScale = true;
 
+    // Added by Viola Jertschat -----------------------------------------------  
     [SerializeField]
     private float maxScale;
 
@@ -55,7 +57,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
 
     [HideInInspector]
     public bool scaling = false;
-
+    // ------------------------------------------------------------------------
 
     void Update()
     {
@@ -63,14 +65,17 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
             _pinchDetectorB != null && _pinchDetectorB.IsPinching)
         {
             transformDoubleAnchor();
-           
+
+            // Added by Viola Jertschat -----------------------------------------------  
             lastFrameWasDoublePinched = true;
             scaling = true;
         }
         else
         {
+            // Added by Viola Jertschat -----------------------------------------------  
             lastFrameWasDoublePinched = false;
             scaling = false;
+            // ------------------------------------------------------------------------
         }
 
     }
@@ -79,6 +84,7 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
     {
         if (_allowScale)
         {
+            // Added by Viola Jertschat ----------------------------------------------- 
             float distance = Vector3.Distance(_pinchDetectorA.Position, _pinchDetectorB.Position);
 
             if (lastFrameWasDoublePinched)
@@ -93,12 +99,14 @@ public class LeapPinchScaleOnSelf : MonoBehaviour {
                 }
             }           
             lastDistance = distance;
+            // ------------------------------------------------------------------------
         }
     }
 
+    // Added by Viola Jertschat ----------------------------------------------- 
     public void ResetScale()
     {
         transform.localScale = initialScale;
     }
-
+    // ------------------------------------------------------------------------
 }

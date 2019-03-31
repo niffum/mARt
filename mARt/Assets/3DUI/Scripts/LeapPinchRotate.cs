@@ -1,7 +1,8 @@
 ﻿/* 
  * Created by Viola Jertschat
  * For master thesis "mARt: Interaktive Darstellung von MRT-Daten in AR"
- * Based on: https://github.com/leapmotion/UnityModules/releases/tag/DetectionExamples-1.0.1
+ * Based On: https://github.com/leapmotion/UnityModules/releases/tag/DetectionExamples-1.0.1
+ * Assets/LeapMotionModules/DetectionExamples/Scripts/LeapRTS.cs
  */
 using System.Collections;
 using System.Collections.Generic;
@@ -39,28 +40,27 @@ public class LeapPinchRotate : MonoBehaviour {
         }
     }
 
+    // Added by Viola Jertschat -----------------------------------------------   
     private Vector3 lastPos;
 
     private Vector3 lastRotation;
 
     [SerializeField]
     private float rotateFactor;
-  
+    // ------------------------------------------------------------------------
+
     private Transform _anchor;
         
 
     void Start()
     {
-        //      if (_pinchDetectorA == null || _pinchDetectorB == null) {
-        //        Debug.LogWarning("Both Pinch Detectors of the LeapRTS component must be assigned. This component has been disabled.");
-        //        enabled = false;
-        //      }
-
         GameObject pinchControl = new GameObject("RTS Anchor");
         _anchor = pinchControl.transform;
         _anchor.transform.parent = transform.parent;
+        // Added by Viola Jertschat
         _anchor.localPosition = transform.localPosition;
         transform.parent = _anchor;
+        // Added by Viola Jertschat
         transform.localPosition = Vector3.zero;
     }
 
@@ -96,6 +96,7 @@ public class LeapPinchRotate : MonoBehaviour {
  
     private void transformSingleAnchor(PinchDetector singlePinch)
     {
+        // Added by Viola Jertschat -----------------------------------------------   
         Vector3 newPosition = singlePinch.Position;
 
         Vector3 rotateBy = lastPos - newPosition;
@@ -116,5 +117,6 @@ public class LeapPinchRotate : MonoBehaviour {
         _anchor.Rotate(rotateBy * rotateFactor, Space.World);
 
         lastPos = newPosition;
+        // ------------------------------------------------------------------------
     }
 }
